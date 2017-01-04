@@ -1,6 +1,9 @@
-package fr.esigelec.Quiz.dao;
+package fr.esigelec.quiz.dao;
 
-import fr.esigelec.Quiz.model.Quiz;
+
+import java.util.List;
+
+import fr.esigelec.quiz.model.Quiz;
 
 /**
  * 
@@ -11,6 +14,12 @@ import fr.esigelec.Quiz.model.Quiz;
 public interface QuizDAO {
 	
 	public void ajouterQuiz(Quiz quiz);
+	
+	public List<Quiz> getListeQuizzes();
+	
+	public Quiz getQuiz(int id);
+	
+	public void deleteQuiz(int id);
 	
 
 }
