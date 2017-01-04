@@ -1,15 +1,19 @@
-package fr.esigelec.Quiz.model;
+package fr.esigelec.quiz.model;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.JoinColumn;
+
 
 /**
  * 
@@ -18,29 +22,33 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name = "XXXXX")
+@Table(name = "Quiz")
 public class Quiz implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name = "SSO_ID", unique = true, nullable = false)
+	
+	@Column(name = "libelle", unique = true, nullable = false)
 	private String libelle;
 
-	@Column(name = "SSO_ID", unique = true, nullable = false)
+	@Column(name = "dateDebutQuiz", unique = true, nullable = false)
 	private Timestamp dateDebutQuiz;
 
-	@Column(name = "SSO_ID", unique = true, nullable = false)
+	@Column(name = "noQuestionCourant", unique = true, nullable = false)
 	private int noQuestionCourant;
 
-	@Column(name = "SSO_ID", unique = true, nullable = false)
+	@Column(name = "etape", unique = true, nullable = false)
 	private int etape;
 
-	@Column(name = "SSO_ID", unique = true, nullable = false)
+	@Column(name = "dateDebutQuestion", unique = true, nullable = false)
 	private Timestamp dateDebutQuestion;
 
-	@Column(name = "SSO_ID", unique = true, nullable = false)
+	 @ManyToMany(fetch = FetchType.LAZY)
+	    @JoinTable(name = "Questionduquizz", 
+	             joinColumns = { @JoinColumn(name = "idQuizz") }, 
+	             inverseJoinColumns = { @JoinColumn(name = "idQuestion") })
 	private ArrayList<Question> listeQuestion = new ArrayList<Question>();
 
 	public Quiz() {
