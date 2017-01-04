@@ -17,13 +17,17 @@ import javax.persistence.JoinColumn;
 
 /**
  * 
- * @author Guilaume
+ * @author Guillaume Sauvage
  *
  */
 
 @Entity
 @Table(name = "Quiz")
 public class Quiz implements Serializable {
+
+	
+	private static final long serialVersionUID = 1L;
+
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
