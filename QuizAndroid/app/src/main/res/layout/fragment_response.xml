@@ -5,9 +5,120 @@
     tools:context="fr.esigelec.quiz.ResponseFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:id="@+id/btnGrpTop">
+
+            <Button
+                android:text="A"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/btn1"
+                android:layout_weight="1" />
+
+            <Button
+                android:text="B"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/btn2"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/txtGrpTop"
+            android:visibility="invisible">
+
+            <TextView
+                android:text="TextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/txt1"
+                android:layout_weight="1"
+                android:textAlignment="center" />
+
+            <TextView
+                android:text="TextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/txt2"
+                android:layout_weight="1"
+                android:textAlignment="center" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:id="@+id/btnGrpBot">
+
+            <Button
+                android:text="C"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/btn3"
+                android:layout_weight="1" />
+
+            <Button
+                android:text="D"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/btn4"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+            android:id="@+id/txtGrpBot"
+            android:visibility="invisible">
+
+            <TextView
+                    android:text="TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txt3"
+                    android:layout_weight="1"
+                    android:textAlignment="center" />
+
+            <TextView
+                    android:text="TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txt4"
+                    android:layout_weight="1"
+                    android:textAlignment="center" />
+
+        </LinearLayout>
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/time"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:max="@android:integer/config_mediumAnimTime"
+            android:progress="@android:integer/config_shortAnimTime"
+            android:layout_weight="1" />
+    </LinearLayout>
+
 
 </FrameLayout>
