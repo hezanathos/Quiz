@@ -39,7 +39,7 @@ buildSrc/build
 target/
 
 # Eclipse artifacts, including WTP generated manifests
-.classpath
+
 
 spring-*/src/main/java/META-INF/MANIFEST.MF
 
