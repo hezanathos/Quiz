@@ -19,6 +19,6 @@ public interface QuestionDAO {
 	
 	public Question getQuestion(int id);
 	
-	public void deleteQuestion(int id);
+	public void supprimerQuestion(int id);
 
 }
