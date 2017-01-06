@@ -80,12 +80,13 @@
                 android:layout_height="match_parent"
                 android:id="@+id/btn4"
                 android:layout_weight="1" />
+
         </LinearLayout>
 
         <LinearLayout
                 android:orientation="horizontal"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
             android:id="@+id/txtGrpBot"
             android:visibility="invisible">
@@ -109,15 +110,44 @@
         </LinearLayout>
 
         <ProgressBar
-            style="?android:attr/progressBarStyleHorizontal"
+            style="@android:style/Widget.Material.ProgressBar.Horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/time"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            android:max="@android:integer/config_mediumAnimTime"
-            android:progress="@android:integer/config_shortAnimTime"
+            android:max="100"
+            android:progress="0"
             android:layout_weight="1" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <Button
+                android:text="Classement"
+                android:layout_height="81dp"
+                android:id="@+id/button"
+                android:background="@drawable/ic_arrow_outline_orange_right"
+                android:enabled="false"
+                android:textSize="18sp"
+                android:textColor="@android:color/background_light"
+                android:layout_weight="1"
+                android:layout_width="200dp" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </LinearLayout>
+
     </LinearLayout>
 
 

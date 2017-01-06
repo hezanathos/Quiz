@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <solid
+        android:color="#f57f17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <size
+        android:width="300dp"
+        android:height="300dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</shape>
