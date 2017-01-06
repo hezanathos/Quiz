@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ConnectionController {
 
 	@RequestMapping(value = "/android/connection", method = RequestMethod.POST)
-	public String connection(@RequestParam("mail") String mail, @RequestParam("mdp") String mdp) {
+	public String connection(@RequestParam("email") String email, @RequestParam("password") String password) {
 		String retourJson = "";
 			
 		//TODO mettre a jour avec les méthodes de PersonnesDAO

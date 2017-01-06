@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class InscriptionController {
 
 	@RequestMapping(value = "/android/inscription", method = RequestMethod.POST)
-	public String inscription(@RequestParam("nom") String nom, @RequestParam("prenom") String prenom,
-			@RequestParam("mail") String mail, @RequestParam("mdp") String mdp) {
+	public String inscription(@RequestParam("name") String name, @RequestParam("fullname") String fullname,
+			@RequestParam("email") String email, @RequestParam("password") String password) {
 		
 		String retourJson = "";
 		
