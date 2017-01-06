@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class ConnectionController {
 
-	@RequestMapping(value = "/android/", method = RequestMethod.POST)
+	@RequestMapping(value = "/android/connection", method = RequestMethod.POST)
 	public String connection(@RequestParam("mail") String mail, @RequestParam("mdp") String mdp) {
 		String retourJson = "";
 			
