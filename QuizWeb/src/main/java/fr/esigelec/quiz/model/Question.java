@@ -21,9 +21,6 @@ import javax.persistence.Table;
 public class Question implements Serializable {
 
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id
