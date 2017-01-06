@@ -1,6 +1,7 @@
 package fr.esigelec.quiz.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * 
@@ -13,33 +14,34 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
 @Entity
-@Table(name = "Question")
+@Table(name = "question")
 public class Question implements Serializable {
-
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	@Column(name = "libelle", unique = true, nullable = false)
 	private String libelle;
-	
-	
-	public Question(int id, String libelle) {
-		super();
-		this.id = id;
-		this.libelle = libelle;
-	}
+
+	@OneToMany
+	private ArrayList<Proposition> Listproposition = new ArrayList<Proposition>();
 
 	public Question() {
 		super();
-	
+	}
+
+	public Question(int id, String libelle, ArrayList<Proposition> listproposition) {
+		super();
+		this.id = id;
+		this.libelle = libelle;
+		Listproposition = listproposition;
 	}
 
 	public int getId() {
@@ -58,9 +60,21 @@ public class Question implements Serializable {
 		this.libelle = libelle;
 	}
 
+	public ArrayList<Proposition> getListproposition() {
+		return Listproposition;
+	}
+
+	public void setListproposition(ArrayList<Proposition> listproposition) {
+		Listproposition = listproposition;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 
-	
+	@Override
+	public String toString() {
+		return "Question [id=" + id + ", libelle=" + libelle + ", Listproposition=" + Listproposition + "]";
+	}
+
 }

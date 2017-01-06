@@ -22,7 +22,7 @@ import javax.persistence.JoinColumn;
  */
 
 @Entity
-@Table(name = "Quiz")
+@Table(name = "quiz")
 public class Quiz implements Serializable {
 
 	
@@ -50,7 +50,7 @@ public class Quiz implements Serializable {
 	private Timestamp dateDebutQuestion;
 
 	 @ManyToMany(fetch = FetchType.LAZY)
-	 @JoinTable(name = "Questionduquizz", 
+	 @JoinTable(name = "questionduquizz", 
 	             joinColumns = { @JoinColumn(name = "idQuizz") }, 
 	             inverseJoinColumns = { @JoinColumn(name = "idQuestion") })
 	private ArrayList<Question> listeQuestion = new ArrayList<Question>();
@@ -129,7 +129,7 @@ public class Quiz implements Serializable {
 
 	@Override
 	public String toString() {
-		return "QuizDTO [id=" + id + ", libelle=" + libelle + ", dateDebutQuiz=" + dateDebutQuiz
+		return "Quiz [id=" + id + ", libelle=" + libelle + ", dateDebutQuiz=" + dateDebutQuiz
 				+ ", noQuestionCourant=" + noQuestionCourant + ", etape=" + etape + ", dateDebutQuestion="
 				+ dateDebutQuestion + ", listeQuestion=" + listeQuestion + "]";
 	}
