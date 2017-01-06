@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.esigelec.quiz.model.Question;
-import fr.esigelec.quiz.model.Quiz;
 
 /**
  * 

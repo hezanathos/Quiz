@@ -54,9 +54,9 @@ public class QuizDAOImpl implements QuizDAO {
 	public void supprimerQuiz(int id) {
 		
 		Session session = this.sessionFactory.getCurrentSession();
-		Quiz p = (Quiz) session.load(Quiz.class, new Integer(id));
-		if(null != p){
-			session.delete(p);
+		Quiz q = (Quiz) session.load(Quiz.class, new Integer(id));
+		if(null != q){
+			session.delete(q);
 		}
 		
 	}
