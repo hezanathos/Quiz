@@ -7,9 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 /**
- * 
  * @author Guillaume Sauvage
- *
  */
 
 @Entity
