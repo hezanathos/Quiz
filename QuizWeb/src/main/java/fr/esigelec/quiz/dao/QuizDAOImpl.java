@@ -10,6 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fr.esigelec.quiz.model.Quiz;
 
+/**
+ * 
+ * @author Sahobau
+ * 
+ * */
+
 @Repository("QuizDAO") 
 public class QuizDAOImpl implements QuizDAO {
 	
