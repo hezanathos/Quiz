@@ -24,7 +24,7 @@ public class QuizDAOImpl implements QuizDAO {
 
 	@Override
 	public void ajouterQuiz(Quiz quiz) {
-		   sessionFactory.getCurrentSession().save(quiz);
+		   sessionFactory.getCurrentSession().saveOrUpdate(quiz);
 		
 	}
 

@@ -18,14 +18,13 @@ import fr.esigelec.quiz.model.Proposition;
 
 
 @Repository("PropositionDAO") 
-
 public class PropositionDAOImpl implements PropositionDAO {
 	@Autowired
 	 private SessionFactory sessionFactory;
 
 	@Override
 	public void ajouterProposition(Proposition proposition) {
-		   sessionFactory.getCurrentSession().save(proposition);		
+		   sessionFactory.getCurrentSession().saveOrUpdate(proposition);		
 		
 	}
 

@@ -20,7 +20,7 @@ public interface PersonneDAO {
 	
 	public void supprimerPersonne(int id);
 	
-	public boolean verifPeronne(String email,String motdePasse);
+	public boolean verifPersonne(String email,String motdePasse);
 	
 
 }

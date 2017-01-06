@@ -25,7 +25,7 @@ public class QuestionDAOImpl implements QuestionDAO{
 
 	@Override
 	public void ajouterQuestion(Question question) {
-		   sessionFactory.getCurrentSession().save(question);		
+		   sessionFactory.getCurrentSession().saveOrUpdate(question);		
 	}
 
 	@Override
