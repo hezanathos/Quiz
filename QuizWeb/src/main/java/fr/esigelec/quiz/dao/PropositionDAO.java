@@ -11,7 +11,7 @@ import fr.esigelec.quiz.model.Proposition;
  * */
 public interface PropositionDAO {
 	
-public void ajouterProposition(Proposition proposition);
+	public void ajouterProposition(Proposition proposition);
 	
 	public List<Proposition> getListePropositions();
 	
