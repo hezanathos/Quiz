@@ -1,5 +1,7 @@
 package fr.esigelec.quiz.model;
 
+import java.io.Serializable;
+
 /**
  * 
  * @author Guillaume SAUVAGE
@@ -16,7 +18,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Question")
-public class Question {
+public class Question implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
