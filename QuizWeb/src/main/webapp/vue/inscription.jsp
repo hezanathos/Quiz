@@ -14,12 +14,12 @@
 		<form action="" method="post">
 		
 			<label>Adresse mail</label>  
-    		<input type="text" name="mail" placeholder="nom@domain.com" required>
+    		<input type="text" name="courriel" placeholder="nom@domaine.com" required>
     		<br/>
     		
     		<label>Mot de passe</label>  
-    		<input type="password" name="password" placeholder="password" required>
-    		<input type="password" name="re_password" placeholder="re_password" required>
+    		<input type="motDePasse" name="motDePasse" placeholder="motDePasse" required>
+    		<input type="motDePasse" name="re_motDePasse" placeholder="re_motDePasse" required>
     		<br/>
     		
     		<label>Nom</label>  
