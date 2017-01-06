@@ -15,7 +15,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
 @Entity
 @Table(name = "personne")
 public class Personne implements Serializable {
@@ -25,26 +24,35 @@ public class Personne implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	@Column(name = "nom", unique = true, nullable = false)
 	private String nom;
-	
+
 	@Column(name = "prenom", unique = true, nullable = false)
 	private String prenom;
-	
+
 	@Column(name = "mail", unique = true, nullable = false)
 	private String mail;
-	
+
 	@Column(name = "mdp", unique = true, nullable = false)
 	private String mdp;
-	
+
 	@Column(name = "droits", unique = true, nullable = false)
 	private int droits;
 
-	
 	public Personne(int id, String nom, String prenom, String mail, String mdp, int droits) {
 		super();
 		this.id = id;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.mail = mail;
+		this.mdp = mdp;
+		this.droits = droits;
+	}
+
+	public Personne(String nom, String prenom, String mail, String mdp, int droits) {
+		super();
+
 		this.nom = nom;
 		this.prenom = prenom;
 		this.mail = mail;

@@ -37,7 +37,13 @@ public class Proposition implements Serializable {
 		this.libelle = libelle;
 		this.bonneReponse = bonneReponse;
 	}
-
+	
+	public Proposition(String libelle, int bonneReponse) {
+		super();
+	
+		this.libelle = libelle;
+		this.bonneReponse = bonneReponse;
+	}
 	public int getId() {
 		return id;
 	}

@@ -45,6 +45,13 @@ public class Question implements Serializable {
 		Listproposition = listproposition;
 	}
 
+	public Question(String libelle, ArrayList<Proposition> listproposition) {
+		super();
+
+		this.libelle = libelle;
+		Listproposition = listproposition;
+	}
+
 	public int getId() {
 		return id;
 	}
