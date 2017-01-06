@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,7 +31,7 @@ public class Question implements Serializable {
 	@Column(name = "libelle", unique = true, nullable = false)
 	private String libelle;
 
-	@OneToMany
+	@OneToMany(fetch = FetchType.EAGER)
 	private ArrayList<Proposition> Listproposition = new ArrayList<Proposition>();
 
 	public Question() {
