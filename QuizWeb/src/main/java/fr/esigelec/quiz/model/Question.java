@@ -20,38 +20,29 @@ import javax.persistence.Table;
 @Table(name = "Question")
 public class Question implements Serializable {
 
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name = "nom", unique = true, nullable = false)
-	private String nom;
+	@Column(name = "libelle", unique = true, nullable = false)
+	private String libelle;
 	
-	@Column(name = "prenom", unique = true, nullable = false)
-	private String prenom;
 	
-	@Column(name = "mail", unique = true, nullable = false)
-	private String mail;
-	
-	@Column(name = "mdp", unique = true, nullable = false)
-	private String mdp;
-	
-	@Column(name = "droits", unique = true, nullable = false)
-	private int droits;
-
-	
-	public Question(int id, String nom, String prenom, String mail, String mdp, int droits) {
+	public Question(int id, String libelle) {
 		super();
 		this.id = id;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.mail = mail;
-		this.mdp = mdp;
-		this.droits = droits;
+		this.libelle = libelle;
 	}
 
 	public Question() {
 		super();
+	
 	}
 
 	public int getId() {
@@ -62,50 +53,17 @@ public class Question implements Serializable {
 		this.id = id;
 	}
 
-	public String getNom() {
-		return nom;
+	public String getLibelle() {
+		return libelle;
 	}
 
-	public void setNom(String nom) {
-		this.nom = nom;
+	public void setLibelle(String libelle) {
+		this.libelle = libelle;
 	}
 
-	public String getPrenom() {
-		return prenom;
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
-	}
-
-	public String getMail() {
-		return mail;
-	}
-
-	public void setMail(String mail) {
-		this.mail = mail;
-	}
-
-	public String getMdp() {
-		return mdp;
-	}
-
-	public void setMdp(String mdp) {
-		this.mdp = mdp;
-	}
-
-	public int getDroits() {
-		return droits;
-	}
-
-	public void setDroits(int droits) {
-		this.droits = droits;
-	}
-
-	@Override
-	public String toString() {
-		return "Question [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", mail=" + mail + ", mdp=" + mdp
-				+ ", droits=" + droits + "]";
-	}
-
+	
 }
