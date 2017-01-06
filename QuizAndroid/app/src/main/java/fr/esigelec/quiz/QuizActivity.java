@@ -115,7 +115,7 @@ public class QuizActivity extends AppCompatActivity {
                     switch(status) {
                         case 0:
                             fList.add(ResponseFragment.newInstance(status,s));
-                            aNumber = message.getString("number");
+                            aNumber = message.getString("numero");
                             aQuestion = message.getString("question");
                             break;
                         case 1:

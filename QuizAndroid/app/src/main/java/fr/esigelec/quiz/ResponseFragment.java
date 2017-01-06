@@ -141,10 +141,10 @@ public class ResponseFragment extends Fragment {
             txt4 = (TextView) v.findViewById(R.id.txt4);
             if (mStatus != 0) {
                 //if we are not in the "play" time we display the stats
-                txt1.setText(mStat1 + "");
-                txt2.setText(mStat2 + "");
-                txt3.setText(mStat3 + "");
-                txt4.setText(mStat4 + "");
+                txt1.setText(mStat1 + "%");
+                txt2.setText(mStat2 + "%");
+                txt3.setText(mStat3 + "%");
+                txt4.setText(mStat4 + "%");
                 txtGrpTop.setVisibility(View.VISIBLE);
                 txtGrpBot.setVisibility(View.VISIBLE);
             }
@@ -186,7 +186,7 @@ public class ResponseFragment extends Fragment {
             }
             time = (ProgressBar) v.findViewById(R.id.time);
             if (mStatus == 0) {
-                long countdownTime = 30000 - mTimeRemaining;
+                long countdownTime = 30000 - (30000 - mTimeRemaining);
                 new CountDownTimer(countdownTime, 300) {
 
                     public void onTick(long millisUntilFinished) {

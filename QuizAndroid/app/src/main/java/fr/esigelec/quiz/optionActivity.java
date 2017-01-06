@@ -9,7 +9,7 @@ import android.widget.EditText;
 public class optionActivity extends AppCompatActivity {
 
     public static final String PREFS_NAME = "Option";
-    EditText adresseDuServeur;
+    private EditText adresseDuServeur;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

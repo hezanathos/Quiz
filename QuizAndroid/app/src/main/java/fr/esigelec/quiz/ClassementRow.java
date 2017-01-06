@@ -9,9 +9,9 @@ import org.json.JSONObject;
  */
 
 public class ClassementRow {
-    int pos;
-    String nom;
-    long points;
+    private int pos;
+    private String nom;
+    private long points;
 
     public ClassementRow(){
         pos = -1;

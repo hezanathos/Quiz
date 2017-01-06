@@ -1,0 +1,48 @@
+{
+  "status": 0,
+  "numero": 0,
+  "question": "Bla blalblabla blabla ?",
+  "prop1": "blabla",
+  "prop2": "blabla",
+  "prop3": "blabla",
+  "prop4": "blabla",
+  "timeRemaining": 27000
+}
+
+{
+  "status": 1,
+  "numero": 0,
+  "question": "Bla blalblabla blabla ?",
+  "prop1": "blabla",
+  "prop2": "blabla",
+  "prop3": "blabla",
+  "prop4": "blabla",
+  "stat1": 25,
+  "stat2": 25,
+  "stat3": 25,
+  "stat4": 25
+}
+
+{
+  "status": 2,
+  "numero": 0,
+  "question": "Bla blalblabla blabla ?",
+  "prop1": "blabla",
+  "prop2": "blabla",
+  "prop3": "blabla",
+  "prop4": "blabla",
+  "stat1": 25,
+  "stat2": 25,
+  "stat3": 25,
+  "stat4": 25,
+  "reponse": "prop3",
+  "classement": [{
+    "position": 1,
+    "nom": "tortuga",
+    "points": 10
+  }, {
+    "position": 2,
+    "nom": "poulopoulopoulo",
+    "points": 5
+  }]
+}
