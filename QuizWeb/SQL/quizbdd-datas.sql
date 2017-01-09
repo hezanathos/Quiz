@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 09 Janvier 2017 à 14:58
+-- Généré le :  Lun 09 Janvier 2017 �  14:58
 -- Version du serveur :  5.7.11
 -- Version de PHP :  7.0.4
 
@@ -24,11 +24,7 @@ SET time_zone = "+00:00";
 -- Contenu de la table `choisir`
 --
 
-INSERT INTO `choisir` (`date`, `idpersonne`, `idquiz`, `idproposition`) VALUES
-('2017-01-09 13:57:10', 4, 1, 1),
-('2017-01-09 13:57:10', 4, 1, 8),
-('2017-01-09 13:57:13', 4, 1, 1),
-('2017-01-09 13:57:13', 4, 1, 8);
+
 
 --
 -- Contenu de la table `personne`
@@ -46,6 +42,17 @@ INSERT INTO `personne` (`id`, `nom`, `prenom`, `mail`, `mdp`, `droits`) VALUES
 (9, 'Adams', 'Famille', 'famille.admas@scary.com', 'AdamsFamily', 1),
 (10, 'Docteur', 'Le', 'Le-Docteur@bbc.com', 'Daleksaremean12', 1);
 
+INSERT INTO `question` (`id`, `libelle`) VALUES
+(1, 'Comment s\'appelle le président américain?'),
+(3, 'Comment s\'appelle Louis la Brocante?'),
+(4, 'Comment s\'appelle Michel Drucker?'),
+(5, 'Comment s\'appelle le president français?');
+
+
+
+INSERT INTO `quiz` (`id`, `libelle`, `etat`, `datedebutquiz`, `noquestioncourant`, `etape`, `datedebutquestion`) VALUES
+(1, 'Quiz1', 0, '2017-01-09 13:51:49', 0, 0, '0000-00-00 00:00:00'),
+(2, 'Quiz1', 0, '2017-01-09 13:52:31', 0, 0, '0000-00-00 00:00:00');
 --
 -- Contenu de la table `proposition`
 --
@@ -73,11 +80,6 @@ INSERT INTO `proposition` (`id`, `libelle`, `bonnereponse`, `idquestion`) VALUES
 -- Contenu de la table `question`
 --
 
-INSERT INTO `question` (`id`, `libelle`) VALUES
-(1, 'Comment s\'appelle le président américain?'),
-(3, 'Comment s\'appelle Louis la Brocante?'),
-(4, 'Comment s\'appelle Michel Drucker?'),
-(5, 'Comment s\'appelle le president français?');
 
 --
 -- Contenu de la table `questionduquiz`
@@ -93,10 +95,15 @@ INSERT INTO `questionduquiz` (`idquiz`, `idquestion`) VALUES
 -- Contenu de la table `quiz`
 --
 
-INSERT INTO `quiz` (`id`, `libelle`, `etat`, `datedebutquiz`, `noquestioncourant`, `etape`, `datedebutquestion`) VALUES
-(1, 'Quiz1', 0, '2017-01-09 13:51:49', 0, 0, '0000-00-00 00:00:00'),
-(2, 'Quiz1', 0, '2017-01-09 13:52:31', 0, 0, '0000-00-00 00:00:00');
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+INSERT INTO `choisir` (`date`, `idpersonne`, `idquiz`, `idproposition`) VALUES
+('2017-01-09 13:57:10', 4, 1, 1),
+('2017-01-09 13:57:10', 4, 1, 8),
+('2017-01-09 13:57:13', 4, 1, 1),
+('2017-01-09 13:57:13', 4, 1, 8);
