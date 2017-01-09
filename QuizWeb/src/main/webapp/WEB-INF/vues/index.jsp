@@ -13,7 +13,7 @@
 	<body>
 		<p>BIENVENUE</p>
   		
-  		<form:form method="POST" action="connexion" commandName="formulaireConnexion">
+  		<form:form method="POST" action="connexion.do" commandName="formulaireConnexion">
       		<table>
        			<tr><th></th><th></th></tr>
        			<tr>

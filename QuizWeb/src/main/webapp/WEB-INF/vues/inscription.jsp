@@ -13,7 +13,7 @@
 	<body>
 		<p>INSCRIPTION</p>
   		
-  		<form:form method="POST" action="inscription" commandName="formulaireInscription">
+  		<form:form method="POST" action="inscription.do" commandName="formulaireInscription">
       		<table>
        			<tr><th></th><th></th></tr>
        			<tr>
