@@ -2,6 +2,7 @@ package fr.esigelec.quiz.model;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.List;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -48,7 +49,7 @@ public class Quiz implements Serializable {
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "questionduquizz", joinColumns = { @JoinColumn(name = "idQuizz") }, inverseJoinColumns = {
 			@JoinColumn(name = "idQuestion") })
-	private ArrayList<Question> listeQuestion = new ArrayList<Question>();
+	private List<Question> listeQuestion = new ArrayList<Question>();
 
 	public Quiz() {
 		super();
@@ -126,7 +127,7 @@ public class Quiz implements Serializable {
 		this.dateDebutQuestion = dateDebutQuestion;
 	}
 
-	public ArrayList<Question> getListeQuestion() {
+	public List<Question> getListeQuestion() {
 		return listeQuestion;
 	}
 
