@@ -43,11 +43,11 @@
 		<property name="dataSource" ref="dataSource"></property>
 		<property name="annotatedClasses">
 			<list>
-				<value>fr.esigelec.quiz.model.Choisir</value>
 				<value>fr.esigelec.quiz.model.Personne</value>
 				<value>fr.esigelec.quiz.model.Quiz</value>
 				<value>fr.esigelec.quiz.model.Question</value>
 				<value>fr.esigelec.quiz.model.Proposition</value>
+				<value>fr.esigelec.quiz.model.Choisir</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
