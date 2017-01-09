@@ -89,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `question` (
 CREATE TABLE IF NOT EXISTS `questionduquiz` (
   `idquiz` int(10) NOT NULL,
   `idquestion` int(10) NOT NULL,
-  PRIMARY KEY (`idquiz`),
+  PRIMARY KEY (`idquiz`,`idquestion`),
   KEY `idquiz` (`idquiz`),
   KEY `idquestion` (`idquestion`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
