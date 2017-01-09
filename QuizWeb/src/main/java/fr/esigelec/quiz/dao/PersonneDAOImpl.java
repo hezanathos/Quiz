@@ -20,7 +20,7 @@ import fr.esigelec.quiz.model.Proposition;
 @Repository("PersonneDAO") 
 public class PersonneDAOImpl implements PersonneDAO{
 	
-
+//hhk
 	 @Autowired
 	 private SessionFactory sessionFactory;
 
