@@ -24,7 +24,7 @@ public class UserController {
 	private PersonneDAOImpl service;
 
 	@RequestMapping(value = "/inscription", method = RequestMethod.POST)
-	public String inscription(@Valid @ModelAttribute(value="creation") final Personne p,
+	public String inscription(@Valid @ModelAttribute(value="personne") final Personne p,
 							final BindingResult pBindingResult, final ModelMap pModel){
 
 		if (!pBindingResult.hasErrors()) {
@@ -42,7 +42,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/connexion", method = RequestMethod.POST)
-	public String connexion(@Valid @ModelAttribute(value="creation") final String courriel, final String mdp,
+	public String connexion(@Valid @RequestParam String courriel, @RequestParam String mdp,
 						  final BindingResult pBindingResult, final ModelMap pModel){
 
 		if (!pBindingResult.hasErrors()) {
