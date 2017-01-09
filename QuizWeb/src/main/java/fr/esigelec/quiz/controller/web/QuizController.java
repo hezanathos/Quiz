@@ -18,19 +18,40 @@ import java.sql.Timestamp;
 
 @Controller
 public class QuizController {
-	
-	public void startQuiz(int idQuiz){
-		
-	}
+
+	@Autowired
+	private QuizDAOImpl service;
 
 	@RequestMapping(value = "/ajouterQuiz", method = RequestMethod.POST)
-	public void ajouterQuiz(HttpServletRequest request){
-		HttpSession session = request.getSession();
+	public String ajouterLeQuiz(@Valid @ModelAttribute(value="quiz") final Quiz q,
+							final BindingResult pBindingResult, final ModelMap pModel){
+
+		if (!pBindingResult.hasErrors()) {
+			service.ajouterQuiz(q);
+		}
+
+		return "jecpaskoi";
+		/*HttpSession session = request.getSession();
 		String courriel = (String) session.getAttribute("courriel");
 		String libelle = request.getParameter("libelle");
 		Timestamp dateDebutQuiz = (Timestamp) request.getParameter("dateDebutQuiz");
 		int noQuestionCourant = (Timestamp) request.getParameter("noQuestionCourant");
 
-		Quiz quiz = new Quiz(libelle, dateDebutQuiz, noQuestionCourant, etape, dateDebutQuestion, listeQuestion);
+		Quiz quiz = new Quiz(libelle, dateDebutQuiz, noQuestionCourant, etape, dateDebutQuestion, listeQuestion);*/
+
+	}
+
+	@RequestMapping(value = "/ajouterQuestion", method = RequestMethod.POST)
+	public String ajouterQuestion(@Valid @ModelAttribute(value="question") final Question question,
+								  final BindingResult pBindingResult, final ModelMap pModel){
+
+		if (!pBindingResult.hasErrors()) {
+			service.ajouterQuestion(question);
+		}
+	}
+
+	@RequestMapping(value = "/demarrerQuiz", method = RequestMethod.GET)
+	public void startQuiz(final ModelMap pModel){
+
 	}
 }
