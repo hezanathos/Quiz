@@ -11,6 +11,8 @@ import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Paint;
 import android.net.Uri;
@@ -18,6 +20,8 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.text.util.Linkify;
 import android.util.Log;
@@ -38,9 +42,10 @@ import java.util.List;
 /**
  * Android login screen Activity
  */
-public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
+public class LoginActivity extends Activity /*implements LoaderCallbacks<Cursor>*/ {
 
     private static final String DUMMY_CREDENTIALS = "user@test.com:hello";
+    public static final String PREFS_NAME = "Option";
 
     private UserLoginTask userLoginTask = null;
     private View loginFormView;
@@ -48,14 +53,18 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
     private AutoCompleteTextView emailTextView;
     private EditText passwordTextView;
     private TextView signUpTextView;
-
+    private String serverAdress;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
+
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        serverAdress = settings.getString("serverAdress","srvinfodev.esigelec.fr:8080/quiz");
+
         emailTextView = (AutoCompleteTextView) findViewById(R.id.email);
-        loadAutoComplete();
+        //loadAutoComplete();
 
         passwordTextView = (EditText) findViewById(R.id.password);
         passwordTextView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -93,11 +102,11 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             }
         });
     }
-
+/*
     private void loadAutoComplete() {
         getLoaderManager().initLoader(0, null, this);
     }
-
+*/
 
     /**
      * Validate Login form and authenticate.
@@ -189,7 +198,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         }
     }
 
-
+/*
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
         return new CursorLoader(this,

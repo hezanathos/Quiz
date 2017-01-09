@@ -30,7 +30,7 @@ import android.widget.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RegisterActivity extends Activity implements LoaderManager.LoaderCallbacks<Cursor> {
+public class RegisterActivity extends Activity /*implements LoaderManager.LoaderCallbacks<Cursor>*/ {
 
     private static final String DUMMY_CREDENTIALS = "user@test.com:hello";
 
@@ -47,7 +47,7 @@ public class RegisterActivity extends Activity implements LoaderManager.LoaderCa
         setContentView(R.layout.register);
 
         emailTextView = (AutoCompleteTextView) findViewById(R.id.email);
-        loadAutoComplete();
+        //loadAutoComplete();
 
         passwordTextView = (EditText) findViewById(R.id.password);
         passwordTextView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -86,7 +86,7 @@ public class RegisterActivity extends Activity implements LoaderManager.LoaderCa
             }
         });
     }
-
+/*
     private void loadAutoComplete() {
         getLoaderManager().initLoader(0, null, this);
     }
@@ -182,7 +182,7 @@ public class RegisterActivity extends Activity implements LoaderManager.LoaderCa
         }
     }
 
-
+/*
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
         return new CursorLoader(this,
