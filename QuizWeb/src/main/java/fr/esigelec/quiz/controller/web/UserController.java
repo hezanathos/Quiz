@@ -3,7 +3,11 @@ package fr.esigelec.quiz.controller.web;
 
 import fr.esigelec.quiz.dao.*;
 import fr.esigelec.quiz.model.Quiz;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.*;
 
