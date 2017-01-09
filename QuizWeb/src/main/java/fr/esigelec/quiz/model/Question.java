@@ -2,6 +2,7 @@ package fr.esigelec.quiz.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 
@@ -32,7 +33,7 @@ public class Question implements Serializable {
 	private String libelle;
 
 	@OneToMany(fetch = FetchType.EAGER)
-	private ArrayList<Proposition> Listproposition = new ArrayList<Proposition>();
+	private List<Proposition> Listproposition = new ArrayList<Proposition>();
 
 	public Question() {
 		super();
@@ -68,7 +69,7 @@ public class Question implements Serializable {
 		this.libelle = libelle;
 	}
 
-	public ArrayList<Proposition> getListproposition() {
+	public List<Proposition> getListproposition() {
 		return Listproposition;
 	}
 
