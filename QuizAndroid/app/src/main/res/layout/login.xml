@@ -31,7 +31,7 @@
     <LinearLayout
             android:id="@+id/ll2"
             android:layout_width="match_parent"
-            android:layout_height="313dp"
+            android:layout_height="395dp"
             android:gravity="center_vertical|center_horizontal">
         <ProgressBar android:id="@+id/login_progress" style="?android:attr/progressBarStyleLarge"
                      android:layout_width="wrap_content" android:layout_height="wrap_content"
@@ -73,19 +73,22 @@
         </ScrollView>
     </LinearLayout>
 
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:text="Options" android:id="@+id/optionTextView" android:autoLink="web"
+              android:textColor="#ffffffff" android:textSize="15dp"
+              android:layout_gravity="center_horizontal"/>
     <LinearLayout
             android:id="@+id/ll3"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_height="20dp"
             android:gravity="bottom|center_horizontal">
 
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Register"
-                android:id="@+id/signUpTextView"
-                android:autoLink="web"
-                android:textColor="#ffffffff" android:textSize="15dp"/>
     </LinearLayout>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Register"
+            android:id="@+id/signUpTextView"
+            android:autoLink="web"
+            android:textColor="#ffffffff" android:textSize="15dp"/>
 </LinearLayout>
