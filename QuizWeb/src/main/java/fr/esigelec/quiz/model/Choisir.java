@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -23,14 +24,17 @@ public class Choisir implements Serializable {
 	@Column(name = "date", unique = true, nullable = false)
 	private Timestamp date;
 
+	@Id
 	@ManyToOne
 	@JoinColumn(name="idpersonne")
 	private Personne personne;
 	
+	@Id
 	@ManyToOne
 	@JoinColumn(name="idquiz")
 	private Quiz quiz;
 	
+	@Id
 	@ManyToOne
 	@JoinColumn(name="idproposition")
 	private Proposition proposition;
