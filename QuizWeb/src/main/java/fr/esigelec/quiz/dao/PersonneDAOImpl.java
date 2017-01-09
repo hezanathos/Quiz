@@ -20,7 +20,7 @@ import fr.esigelec.quiz.model.Proposition;
 @Repository("PersonneDAO") 
 public class PersonneDAOImpl implements PersonneDAO{
 	
-//hhk
+
 	 @Autowired
 	 private SessionFactory sessionFactory;
 
@@ -109,7 +109,7 @@ public class PersonneDAOImpl implements PersonneDAO{
 			}
 
 	/**
-	 * @return null when 
+	 * @return null when personne don't exist
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
@@ -128,6 +128,11 @@ public class PersonneDAOImpl implements PersonneDAO{
 		return null;
 	}
 
+	
+	/**
+	 * @return true when Email is unique 
+	 * 			false when !=
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public Boolean verifEmailUnique(String email) {
@@ -139,7 +144,7 @@ public class PersonneDAOImpl implements PersonneDAO{
 			.setParameter(0, email)
 			.list();
 
-		if (personnes.size() > 0) {
+		if (personnes.size() == 1) {
 			
 		return true;
 		
