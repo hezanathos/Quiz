@@ -12,15 +12,19 @@ import fr.esigelec.quiz.model.Personne;
  * */
 public interface PersonneDAO {
 	
-	public void ajouterPersonne(Personne personne);
+	public int ajouterPersonne(Personne personne);
 	
 	public List<Personne> getListePersonnes();
 	
 	public Personne getPersonne(int id);
 	
+	public Personne getPersonneByEmail(String email);
+	
 	public void supprimerPersonne(int id);
 	
-	public boolean verifPersonne(String email,String motdePasse);
+	public int verifPersonne(String email,String motdePasse);
+	
+	public Boolean verifEmailUnique(String email);
 	
 
 }

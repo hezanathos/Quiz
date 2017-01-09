@@ -49,7 +49,8 @@ public class QuizDAOImpl implements QuizDAO {
 		
 				  return (Quiz) sessionFactory.getCurrentSession().get(Quiz.class, id);
 	}
-
+	
+/*
 	@Override
 	public void supprimerQuiz(int id) {
 		
@@ -60,5 +61,6 @@ public class QuizDAOImpl implements QuizDAO {
 		}
 		
 	}
+	*/
 
 }

@@ -19,7 +19,7 @@ public interface QuizDAO {
 	
 	public Quiz getQuiz(int id);
 	
-	public void supprimerQuiz(int id);
+//	public void supprimerQuiz(int id);
 	
 
 }

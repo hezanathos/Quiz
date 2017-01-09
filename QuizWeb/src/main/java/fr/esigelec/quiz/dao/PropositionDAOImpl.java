@@ -44,8 +44,8 @@ public class PropositionDAOImpl implements PropositionDAO {
 		  return (Proposition) sessionFactory.getCurrentSession().get(Proposition.class, id);
 	}
 
-	@Override
-	public void supprimerProposition(int id) {
+	/* @Override
+	 public void supprimerProposition(int id) {
 		
 		Session session = this.sessionFactory.getCurrentSession();
 		Proposition p = (Proposition) session.load(Proposition.class, new Integer(id));
@@ -53,5 +53,6 @@ public class PropositionDAOImpl implements PropositionDAO {
 			session.delete(p);	
 	}
 	}
+	*/
 
 }
