@@ -2,11 +2,14 @@ package fr.esigelec.quiz.controller.web;
 
 
 import fr.esigelec.quiz.dao.*;
+import fr.esigelec.quiz.model.Quiz;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.*;
 
 import fr.esigelec.quiz.model.Personne;
+
+import java.sql.Timestamp;
 
 /**
  * Created by Edouard on 04/01/2017.
@@ -26,7 +29,7 @@ public class UserController {
 		String courriel = request.getParameter("courriel");
 		Personne p = new Personne(1000,nom,prenom,courriel,motDePasse,0);
 		PersonneDAOImpl pdao = new PersonneDAOImpl();
-		pdao.addPersonne(p);
+		pdao.ajouterPersonne(p);
 		
 	}
 	
@@ -34,16 +37,20 @@ public class UserController {
 	public void connexion(HttpServletRequest request){
 		String motDePasse = request.getParameter("motDePasse");
 		String courriel = request.getParameter("courriel");
-		Personne p = new Personne();
-		p.setMail(courriel);
-		p.setMdp(motDePasse);
 		PersonneDAOImpl pdao = new PersonneDAOImpl();
 		Personne pTemp = pdao.getPersonne(courriel);
-		if(pTemp.getMdp().equals(p.getMdp())){
+		if(pdao.verifPersonne(courriel,motDePasse)){
 			HttpSession session = request.getSession();
 			session.setAttribute("courriel", pTemp.getMail());
 			session.setAttribute("nom", pTemp.getNom());
 			session.setAttribute("prenom", pTemp.getPrenom());
 		}
 	}
+
+	@RequestMapping(value = "/deconnexion", method = RequestMethod.GET)
+	public void deconnexion(HttpServletRequest request){
+		HttpSession session = request.getSession();
+		session.invalidate();
+	}
+
 }

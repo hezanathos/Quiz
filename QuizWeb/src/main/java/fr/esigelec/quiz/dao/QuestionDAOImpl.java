@@ -45,7 +45,7 @@ public class QuestionDAOImpl implements QuestionDAO{
 		  return (Question) sessionFactory.getCurrentSession().get(Question.class, id);
 
 	}
-
+/*
 	@Override
 	public void supprimerQuestion(int id) {
 		Session session = this.sessionFactory.getCurrentSession();
@@ -56,6 +56,7 @@ public class QuestionDAOImpl implements QuestionDAO{
 		
 		
 	}
+	*/
 	
 
 }

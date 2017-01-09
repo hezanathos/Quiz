@@ -25,8 +25,34 @@ public class PersonneDAOImpl implements PersonneDAO{
 	 private SessionFactory sessionFactory;
 
 	@Override
-	public void ajouterPersonne(Personne personne) {
-		   sessionFactory.getCurrentSession().saveOrUpdate(personne);		
+	/**
+	 * @return -1 when personne existe
+	 * 			0 when personne is null
+	 * 			1 when personne save 
+	 */
+	public int ajouterPersonne(Personne personne) {
+		
+		if(personne !=null){
+			
+			Boolean verifEmailUnique = verifEmailUnique(personne.getMail());
+			
+			if(verifEmailUnique.equals(true))
+			
+			{
+				return -1;
+			}
+			else
+			{
+				   sessionFactory.getCurrentSession().saveOrUpdate(personne);		
+				   return 1;
+
+			}
+
+			
+		}
+		return 0;
+		
+	
 		
 	}
 
@@ -57,22 +83,76 @@ public class PersonneDAOImpl implements PersonneDAO{
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public boolean verifPersonne(String email, String motDePasse) {
+	
+	/**
+	 * @return -1 pour utilsateur inexistant dans la bdd
+	 */
+	public int verifPersonne(String email, String motDePasse) {
 		
 		List<Personne> personnes = new ArrayList<Personne>();
 
 		personnes = sessionFactory.getCurrentSession()
 			.createQuery("from personne where mail=? and mdp=?")
 			.setParameter(0, email)
-			.setParameter(2, motDePasse)
+			.setParameter(1, motDePasse)
 			.list();
 
 		if (personnes.size() > 0) {
-			return true;
+			
+		return personnes.get(0).getId();
+		
 		} else {
-			return false;
+			
+			return -1;
 		}
 
 			}
+
+	/**
+	 * @return null when personne don't exist
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public Personne getPersonneByEmail(String email) {
+		List<Personne> personnes = new ArrayList<Personne>();
+
+		personnes = sessionFactory.getCurrentSession()
+			.createQuery("from personne where mail=?")
+			.setParameter(0, email)
+			.list();
+		
+		if(personnes.size()!=0){
+			return personnes.get(0);
+		}
+		
+		return null;
+	}
+
+	
+	/**
+	 * @return true when Email is unique 
+	 * 			false when !=
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public Boolean verifEmailUnique(String email) {
+
+		List<Personne> personnes = new ArrayList<Personne>();
+
+		personnes = sessionFactory.getCurrentSession()
+			.createQuery("from personne where mail=?")
+			.setParameter(0, email)
+			.list();
+
+		if (personnes.size() == 1) {
+			
+		return true;
+		
+		} else {
+			
+			return false;
+		}
+		
+	}
 
 }

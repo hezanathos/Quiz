@@ -17,6 +17,6 @@ public interface PropositionDAO {
 	
 	public Proposition getProposition(int id);
 	
-	public void supprimerProposition(int id);
+	// public void supprimerProposition(int id);
 
 }
