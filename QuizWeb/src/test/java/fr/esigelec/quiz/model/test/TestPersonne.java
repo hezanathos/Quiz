@@ -40,7 +40,11 @@ public class TestPersonne extends TestCase {
 	@Test
 	public void testSuppPersonneDAO() {
 		ApplicationContext context = new ClassPathXmlApplicationContext("dispatcher-servlet.xml");
+		Personne p31=new Personne("Sauvage","Guillaume","guillaumesauv@gmail.fr","mdp",0);
+		
 		PersonneDAO pDAO1 = (PersonneDAO) context.getBean("personneDAOImpl");
+		pDAO1.ajouterPersonne(p31);
+		
 		Personne p4 = pDAO1.getPersonneByEmail("guillaumesauv@gmail.fr");
 		pDAO1.supprimerPersonne(p4.getId());
 		Personne p5 = pDAO1.getPersonneByEmail("guillaumesauv@gmail.fr");
@@ -52,10 +56,36 @@ public class TestPersonne extends TestCase {
 		ApplicationContext context = new ClassPathXmlApplicationContext("dispatcher-servlet.xml");
 		PersonneDAO pDAO3 = (PersonneDAO) context.getBean("personneDAOImpl");
 		List<Personne> Pliste = new ArrayList<Personne>();
+		Personne p6=new Personne("Sauvage","Guillaume","guillaumesauv@gmail.fr","mdp",0);
+		Personne p7=new Personne("Lecoq","Alex","alex@gmail.fr","mdp",0);
+		Personne p8=new Personne("Dupond","Paul","dupond@gmail.fr","mdp",0);
+		pDAO3.ajouterPersonne(p6);
+		pDAO3.ajouterPersonne(p7);
+		pDAO3.ajouterPersonne(p8);
+		
 		Pliste = pDAO3.getListePersonnes();
 		for(Personne p : Pliste){
-			
-		}
+			assertNotNull(p);
+			}
 		
 		}
+	
+	@Test
+	public void testVerifPersonneDAO() {
+		ApplicationContext context = new ClassPathXmlApplicationContext("dispatcher-servlet.xml");
+		PersonneDAO pDAO4 = (PersonneDAO) context.getBean("personneDAOImpl");
+		int test;
+
+		
+		Personne p8=new Personne("Test","Paul","test@gmail.fr","mdp",0);
+		pDAO4.ajouterPersonne(p8);
+		Personne p9 = pDAO4.getPersonneByEmail("test@gmail.fr");
+		test = pDAO4.verifPersonne("test@gmail.fr", "mdp");
+		assertEquals(test, p9.getId());
+		
+		test = pDAO4.verifPersonne("test@gmail.fr", "bla");
+		assertEquals(test, -1);
+		
+		}
+	
 }
