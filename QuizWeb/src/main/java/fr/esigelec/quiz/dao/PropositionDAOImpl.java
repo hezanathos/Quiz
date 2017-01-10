@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.esigelec.quiz.model.Proposition;
@@ -18,6 +19,7 @@ import fr.esigelec.quiz.model.Proposition;
 
 
 @Repository("PropositionDAO") 
+@Transactional(propagation = Propagation.SUPPORTS)
 public class PropositionDAOImpl implements PropositionDAO {
 	@Autowired
 	 private SessionFactory sessionFactory;

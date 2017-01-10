@@ -1,13 +1,22 @@
 package fr.esigelec.quiz.controller.web;
 
+import fr.esigelec.quiz.dao.QuestionDAOImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 
+import fr.esigelec.quiz.dao.QuizDAOImpl;
+import fr.esigelec.quiz.model.Question;
 import fr.esigelec.quiz.model.Quiz;
+
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.sql.Timestamp;
 
 /**
@@ -21,6 +30,8 @@ public class QuizController {
 
 	@Autowired
 	private QuizDAOImpl service;
+	@Autowired
+    private QuestionDAOImpl service2;
 
 	@RequestMapping(value = "/ajouterQuiz", method = RequestMethod.POST)
 	public String ajouterLeQuiz(@Valid @ModelAttribute(value="quiz") final Quiz q,
@@ -46,8 +57,10 @@ public class QuizController {
 								  final BindingResult pBindingResult, final ModelMap pModel){
 
 		if (!pBindingResult.hasErrors()) {
-			service.ajouterQuestion(question);
+			service2.ajouterQuestion(question);
+
 		}
+        return "jecpaskoi";
 	}
 
 	@RequestMapping(value = "/demarrerQuiz", method = RequestMethod.GET)
