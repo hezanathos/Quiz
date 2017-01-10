@@ -2,7 +2,6 @@ package fr.esigelec.quiz.controller.web;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -22,8 +21,8 @@ public class QuestionController {
 	public QuestionController(){}
 	
 	@RequestMapping(value = "/ajouterQuestion", method = RequestMethod.POST)
-	public void ajouterQuestion(@Valid @ModelAttribute(value="ajouterquestion") final Question q,
-			final BindingResult pBindingResult, final ModelMap pModel){
+	public void ajouterQuestion( @ModelAttribute(value="ajouterquestion") final Question q,
+			 final ModelMap pModel){
 		
 		
 	}

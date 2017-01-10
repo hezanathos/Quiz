@@ -25,7 +25,7 @@
    </form:form>
    	<!-- 
     	<div class="questioncorps">Question : <input type="text"/></div>
-        <div class="bonereponse">La bonne réponse.<nput type="text" /></div>
+        <div class="bonereponse">La bonne réponse.<input type="text" /></div>
         <div class="proposition">Proposition N 1:<input type="text" /></div>
         <div class="proposition">Proposition N 2:<input type="text" /></div>
         <div class="proposition">Proposition N 3:<input type="text" /></div>
