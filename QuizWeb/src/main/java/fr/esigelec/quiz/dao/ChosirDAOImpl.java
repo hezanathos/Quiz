@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fr.esigelec.quiz.model.Choisir;
 
-@Repository("ChoisirDAO")
+@Repository("choisirDAO")
 @Transactional(propagation = Propagation.SUPPORTS)
 public class ChosirDAOImpl implements ChoisirDAO {
 

@@ -36,7 +36,7 @@ public class PersonneDAOImpl implements PersonneDAO {
 
 		if (personne != null) {
 
-			Boolean verifEmailUnique = verifEmailUnique(personne.getMail());
+			Boolean verifEmailUnique = verifEmailPresent(personne.getMail());
 
 			if (verifEmailUnique.equals(true))
 
@@ -59,6 +59,7 @@ public class PersonneDAOImpl implements PersonneDAO {
 		return 0;
 
 	}
+
 
 	@Override
 	@SuppressWarnings("unchecked")
@@ -137,7 +138,8 @@ public class PersonneDAOImpl implements PersonneDAO {
 	@Override
 	@SuppressWarnings("unchecked")
 	@Transactional(readOnly = true)
-	public Boolean verifEmailUnique(String email) {
+	public Boolean verifEmailPresent(String email) {
+		//
 
 		List<Personne> personnes = new ArrayList<Personne>();
 
