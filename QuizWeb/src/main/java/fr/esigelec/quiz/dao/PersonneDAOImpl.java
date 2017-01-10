@@ -133,8 +133,8 @@ public class PersonneDAOImpl implements PersonneDAO {
 	/**
 	 * @return true when Email is unique false when !=
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
+	@SuppressWarnings("unchecked")
 	@Transactional(readOnly = true)
 	public Boolean verifEmailUnique(String email) {
 

@@ -1,8 +1,8 @@
 package fr.esigelec.quiz.controller.web;
+import fr.esigelec.quiz.model.*;
 
 
 import fr.esigelec.quiz.dao.*;
-import fr.esigelec.quiz.model.Quiz;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,10 +10,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.*;
-
-import fr.esigelec.quiz.model.Personne;
-
-import java.sql.Timestamp;
+import javax.validation.Valid;
 
 /**
  * Created by Edouard on 04/01/2017.
@@ -47,12 +44,15 @@ public class UserController {
 	
 	@RequestMapping(value = "/connexion", method = RequestMethod.POST)
 	public String connexion(@Valid @ModelAttribute(value="connexion") final String courriel, final String mdp,
-						  final BindingResult pBindingResult, final ModelMap pModel){
+						  final BindingResult pBindingResult, final ModelMap pModel, HttpServletRequest request){
 
 		if (!pBindingResult.hasErrors()) {
 			Personne pTemp = service.getPersonneByEmail(courriel);
 			if(service.verifPersonne(courriel,mdp)!=(-1)){
-				
+				HttpSession session = request.getSession();
+				session.setAttribute("courriel", pTemp.getMail());
+				session.setAttribute("nom", pTemp.getNom());
+				session.setAttribute("prenom", pTemp.getPrenom());
 			}
 		}
 		/*String motDePasse = request.getParameter("motDePasse");
@@ -70,8 +70,8 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/deconnexion", method = RequestMethod.GET)
-	public String deconnexion(final ModelMap pModel){
-		HttpSession session = pModel.getSession();
+	public String deconnexion(HttpServletRequest request){
+		HttpSession session = request.getSession();
 		session.invalidate();
 
 		return "jecpaskoi";
