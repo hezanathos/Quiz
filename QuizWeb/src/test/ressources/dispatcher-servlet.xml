@@ -22,8 +22,8 @@
 
 	<!-- permet de rendre accessibles des fichiers statics (css, images, ...), 
 		sinon ils ne sont pas accessibles -->
- 	<mvc:annotation-driven />
-	<mvc:resources mapping="/resources/**" location="/WEB-INF/resources/" /> 
+<!-- 	<mvc:annotation-driven />
+	<mvc:resources mapping="/resources/**" location="/WEB-INF/resources/" /> -->
 
 
 	<!-- config BDD -->
@@ -67,7 +67,7 @@
 
 
 
-	 <bean id="messageSource"
+	<!-- <bean id="messageSource"
 		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<property name="basename" value="classpath:messages" />
 		<property name="defaultEncoding" value="ISO-8859-1" />
@@ -83,6 +83,6 @@
 		<property name="suffix">
 			<value>.jsp</value>
 		</property>
-	</bean> 
+	</bean> -->
 
 </beans>
