@@ -37,6 +37,7 @@ buildSrc/build
 /spring-*/build
 /src/asciidoc/build
 target/
+QuizWeb/lib
 
 # Eclipse artifacts, including WTP generated manifests
 
