@@ -37,8 +37,21 @@
 	  </c:forEach>
 	 </table>
 	</c:if>
+	
+	
+     <!-- 
+            <table>
+                <tr>
+                    <th>Libellé</th><th>Date</th><th>Supprimer</th><th>Editer</th><th>(Re)Lancer</th>
+                </tr>
+                <tr>
+                    <td>?</td> <td>?</td> <td>?</td> <td>?</td> <td>?</td>
+                </tr>
+            </table>
+      -->
+	
      </div>
-       
+     
         <div class="button?"><button>AJOUTER UN QUIZ</button></div>
     </div>
 
