@@ -79,6 +79,8 @@ public class PersonneDAOImpl implements PersonneDAO {
 	@Override
 
 	@Transactional(readOnly = true)
+
+
 	public void supprimerPersonne(int id) {
 		Session session = this.sessionFactory.getCurrentSession();
 		Personne p = (Personne) session.load(Personne.class, new Integer(id));
@@ -134,8 +136,7 @@ public class PersonneDAOImpl implements PersonneDAO {
 	/**
 	 * @return true when Email is unique false when !=
 	 */
-	@Override
-	@SuppressWarnings("unchecked")
+
 
 	@Transactional(readOnly = true)
 	public Boolean verifEmailUnique(String email) {
