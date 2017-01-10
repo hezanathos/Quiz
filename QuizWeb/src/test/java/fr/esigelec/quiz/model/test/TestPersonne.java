@@ -23,9 +23,9 @@ public class TestPersonne extends TestCase {
 	}
 	
 	public void testPersonneDAO() {
-		ApplicationContext context = new ClassPathXmlApplicationContext("WEB-INF/dispatcher-servlet.xml");
+		ApplicationContext context = new ClassPathXmlApplicationContext("dispatcher-servlet.xml");
 		Personne p2=new Personne("Sauvage","Guillaume","guillaumesauv@gmail.fr","mdp",0);
-		PersonneDAO pDAO1 = new PersonneDAOImpl();
+		PersonneDAO pDAO1 = (PersonneDAO) context.getBean("personneDAOImpl");
 		pDAO1.ajouterPersonne(p2);
 		Personne p3 = pDAO1.getPersonneByEmail("guillaumesauv@gmail.fr");
 		assertEquals(p3.getNom(),"Sauvage");
