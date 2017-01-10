@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import fr.esigelec.quiz.model.Proposition;
 
 /**
- * 
+ * :
  * @author Sahobau
  * 
  * */

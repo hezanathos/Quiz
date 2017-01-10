@@ -39,6 +39,7 @@ public class TestPersonne extends TestCase {
 	}
 	@Test
 	public void testSuppPersonneDAO() {
+		@SuppressWarnings("resource")
 		ApplicationContext context = new ClassPathXmlApplicationContext("dispatcher-servlet.xml");
 		Personne p31=new Personne("Sauvage","Guillaume","guillaumesauv@gmail.fr","mdp",0);
 		
@@ -53,6 +54,7 @@ public class TestPersonne extends TestCase {
 	
 	@Test
 	public void testGetListePersonneDAO() {
+		@SuppressWarnings("resource")
 		ApplicationContext context = new ClassPathXmlApplicationContext("dispatcher-servlet.xml");
 		PersonneDAO pDAO3 = (PersonneDAO) context.getBean("personneDAOImpl");
 		List<Personne> Pliste = new ArrayList<Personne>();
