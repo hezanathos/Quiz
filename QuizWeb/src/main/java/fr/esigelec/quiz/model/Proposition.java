@@ -14,7 +14,7 @@ import javax.persistence.Table;
  * @author Guillaume
  *
  */
-
+//ggg
 @Entity
 @Table(name = "proposition")
 public class Proposition implements Serializable {
