@@ -1,41 +1,93 @@
+************************************************
 {
   "status": 0,
   "numero": 0,
-  "question": "Bla blalblabla blabla ?",
-  "prop1": "blabla",
-  "prop2": "blabla",
-  "prop3": "blabla",
-  "prop4": "blabla",
+  "idquiz": 0,
+  "question": {
+      "id": 0,
+      "libelle":"Bla blalblabla blabla ?"
+     },
+  "propositions": [{
+      "id": 0,
+      "libelle":"blabla"
+    },
+    {
+      "id": 1,
+      "libelle":"blabla"
+    },
+    {
+      "id": 2,
+      "libelle":"blabla"
+    },
+     {
+      "id": 3,
+      "libelle":"blabla"
+    }],
   "timeRemaining": 27000
 }
-
+************************************************
 {
   "status": 1,
   "numero": 0,
-  "question": "Bla blalblabla blabla ?",
-  "prop1": "blabla",
-  "prop2": "blabla",
-  "prop3": "blabla",
-  "prop4": "blabla",
-  "stat1": 25,
-  "stat2": 25,
-  "stat3": 25,
-  "stat4": 25
+  "idquiz": 0,
+  "question": {
+      "id": 0,
+      "libelle":"Bla blalblabla blabla ?"
+     },
+  "propositions": [{
+      "id": 0,
+      "libelle":"blabla",
+      "stat": 25
+    },
+    {
+      "id": 1,
+      "libelle":"blabla",
+      "stat":25
+    },
+    {
+      "id": 2,
+      "libelle":"blabla",
+      "stat":25
+    },
+     {
+      "id": 3,
+      "libelle":"blabla",
+      "stat":25
+    }]
 }
-
+************************************************
 {
   "status": 2,
   "numero": 0,
-  "question": "Bla blalblabla blabla ?",
-  "prop1": "blabla",
-  "prop2": "blabla",
-  "prop3": "blabla",
-  "prop4": "blabla",
-  "stat1": 25,
-  "stat2": 25,
-  "stat3": 25,
-  "stat4": 25,
-  "reponse": "prop3",
+  "idquiz": 0,
+   "question": {
+      "id": 0,
+      "libelle":"Bla blalblabla blabla ?"
+     },
+  "propositions": [{
+      "id": 0,
+      "libelle":"blabla",
+      "stat": 25
+    },
+    {
+      "id": 1,
+      "libelle":"blabla",
+      "stat":25
+    },
+    {
+      "id": 2,
+      "libelle":"blabla",
+      "stat":25
+    },
+     {
+      "id": 3,
+      "libelle":"blabla",
+      "stat":25
+    }],
+  "reponse": {
+      "id": 2, 
+      "libelle" :"prop3"
+    },
   "classement": [{
     "position": 1,
     "nom": "tortuga",
