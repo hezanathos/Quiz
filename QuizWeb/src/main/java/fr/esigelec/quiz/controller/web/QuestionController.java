@@ -2,6 +2,7 @@ package fr.esigelec.quiz.controller.web;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import fr.esigelec.quiz.model.Personne;
+
 import fr.esigelec.quiz.model.Question;
 
 /**
