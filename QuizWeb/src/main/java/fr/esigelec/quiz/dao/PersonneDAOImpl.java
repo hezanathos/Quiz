@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.esigelec.quiz.model.Personne;
@@ -20,6 +21,7 @@ import fr.esigelec.quiz.model.Proposition;
  */
 
 @Repository("PersonneDAO")
+@Transactional(propagation = Propagation.SUPPORTS)
 public class PersonneDAOImpl implements PersonneDAO {
 
 	@Autowired
@@ -85,6 +87,7 @@ public class PersonneDAOImpl implements PersonneDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@Transactional(readOnly = true)
 
 	/**
 	 * @return -1 pour utilisateur inexistant dans la bdd
@@ -112,8 +115,9 @@ public class PersonneDAOImpl implements PersonneDAO {
 	/**
 	 * @return null when personne don't exist
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
+	@SuppressWarnings("unchecked")
+	@Transactional(readOnly = true)
 	public Personne getPersonneByEmail(String email) {
 		List<Personne> personnes = new ArrayList<Personne>();
 

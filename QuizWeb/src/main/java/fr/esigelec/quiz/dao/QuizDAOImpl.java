@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.esigelec.quiz.model.Quiz;
@@ -16,6 +17,7 @@ import fr.esigelec.quiz.model.Quiz;
  * */
 
 @Repository("QuizDAO") 
+@Transactional(propagation = Propagation.SUPPORTS)
 public class QuizDAOImpl implements QuizDAO {
 	
 	 @Autowired
