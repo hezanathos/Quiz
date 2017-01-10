@@ -5,7 +5,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import fr.esigelec.quiz.dao.PersonneDAO;
-import fr.esigelec.quiz.dao.PersonneDAOImpl;
 import fr.esigelec.quiz.model.Personne;
 import junit.framework.TestCase;
 
@@ -21,7 +20,7 @@ public class TestPersonne extends TestCase {
 		assertEquals(p1.getMdp(),"mdp");
 		assertEquals(p1.getDroits(),0);
 	}
-	
+	@Test
 	public void testPersonneDAO() {
 		ApplicationContext context = new ClassPathXmlApplicationContext("dispatcher-servlet.xml");
 		Personne p2=new Personne("Sauvage","Guillaume","guillaumesauv@gmail.fr","mdp",0);
@@ -35,4 +34,13 @@ public class TestPersonne extends TestCase {
 		assertEquals(p3.getDroits(),0);
 	
 	}
+	@Test
+	public void testSuppPersonneDAO() {
+		ApplicationContext context = new ClassPathXmlApplicationContext("dispatcher-servlet.xml");
+		PersonneDAO pDAO1 = (PersonneDAO) context.getBean("personneDAOImpl");
+		Personne p4 = pDAO1.getPersonneByEmail("guillaumesauv@gmail.fr");
+		pDAO1.supprimerPersonne(p4.getId());
+		Personne p5 = pDAO1.getPersonneByEmail("guillaumesauv@gmail.fr");
+		assertNull(p5);
+		}
 }
