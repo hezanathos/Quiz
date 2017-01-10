@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.esigelec.quiz.model.Personne;
-import fr.esigelec.quiz.model.Proposition;
 
 /**
  * 
@@ -20,7 +19,7 @@ import fr.esigelec.quiz.model.Proposition;
  * 
  */
 
-@Repository("PersonneDAO")
+@Repository("personneDAOImpl")
 @Transactional(propagation = Propagation.SUPPORTS)
 public class PersonneDAOImpl implements PersonneDAO {
 
@@ -32,6 +31,7 @@ public class PersonneDAOImpl implements PersonneDAO {
 	 * @return -1 when personne existe 0 when personne is null 1 when personne
 	 *         save
 	 */
+	@Transactional
 	public int ajouterPersonne(Personne personne) {
 
 		if (personne != null) {
@@ -77,7 +77,7 @@ public class PersonneDAOImpl implements PersonneDAO {
 	}
 
 	@Override
-	@Transactional(readOnly = true)
+	@Transactional
 	public void supprimerPersonne(int id) {
 		Session session = this.sessionFactory.getCurrentSession();
 		Personne p = (Personne) session.load(Personne.class, new Integer(id));
@@ -97,10 +97,8 @@ public class PersonneDAOImpl implements PersonneDAO {
 
 		List<Personne> personnes = new ArrayList<Personne>();
 
-		personnes = sessionFactory.getCurrentSession().createQuery("from personne where mail=? and mdp=?")
-				.setParameter(0, email)
-				.setParameter(1, motDePasse)
-				.list();
+		personnes = sessionFactory.getCurrentSession().createQuery("from Personne where mail=? and mdp=?")
+				.setParameter(0, email).setParameter(1, motDePasse).list();
 
 		if (personnes.size() > 0) {
 
@@ -122,7 +120,7 @@ public class PersonneDAOImpl implements PersonneDAO {
 	public Personne getPersonneByEmail(String email) {
 		List<Personne> personnes = new ArrayList<Personne>();
 
-		personnes = sessionFactory.getCurrentSession().createQuery("from personne where mail=?").setParameter(0, email)
+		personnes = sessionFactory.getCurrentSession().createQuery("from Personne where mail=?").setParameter(0, email)
 				.list();
 
 		if (personnes.size() != 0) {
@@ -135,14 +133,14 @@ public class PersonneDAOImpl implements PersonneDAO {
 	/**
 	 * @return true when Email is unique false when !=
 	 */
-	@Override
 	@SuppressWarnings("unchecked")
+	@Override
 	@Transactional(readOnly = true)
 	public Boolean verifEmailUnique(String email) {
 
 		List<Personne> personnes = new ArrayList<Personne>();
 
-		personnes = sessionFactory.getCurrentSession().createQuery("from personne where mail=?").setParameter(0, email)
+		personnes = sessionFactory.getCurrentSession().createQuery("from Personne where mail=?").setParameter(0, email)
 				.list();
 
 		if (personnes.size() == 1) {
