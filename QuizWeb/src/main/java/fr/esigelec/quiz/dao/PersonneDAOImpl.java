@@ -139,6 +139,7 @@ public class PersonneDAOImpl implements PersonneDAO {
 	@SuppressWarnings("unchecked")
 	@Transactional(readOnly = true)
 	public Boolean verifEmailPresent(String email) {
+		//
 
 		List<Personne> personnes = new ArrayList<Personne>();
 
