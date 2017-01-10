@@ -18,11 +18,11 @@
             <form:form class="login" action="#" method="post">
                 <div>
                     <label>ADRESS ENAMIL</label>
-                    <form:input path="courriel" type="text"/>
+                    <form:input path="mail" type="text"/>
                 </div>
                 <div>
                     <label>MOT DE PASSE</label>
-                    <form:input path="motDePasse" type="password"/>
+                    <form:input path="mdp" type="password"/>
                 </div>
                 <input type="submit" value="CONNEXION">
             </form:form>
