@@ -3,15 +3,20 @@ package fr.esigelec.quiz.model;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * 
  * @author Guillaume
  *
  */
+
+@Entity
+@Table(name = "proposition")
 public class Proposition implements Serializable {
 
 	private static final long serialVersionUID = 1L;
