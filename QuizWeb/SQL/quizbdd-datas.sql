@@ -32,15 +32,14 @@ SET time_zone = "+00:00";
 
 INSERT INTO `personne` (`id`, `nom`, `prenom`, `mail`, `mdp`, `droits`) VALUES
 (1, 'Admin', 'Admin', 'admin@tf8.com', 'adminTF8', 1000),
-(2, 'Admin', 'Admin', 'admin@tf8.com', 'adminTF8', 1000),
-(3, 'Animateur', '1', 'animateur-1@tf8.com', 'animateurTF8', 1000),
-(4, 'Test1', 'Prenom1', 'prenom-test1@gmail.com', 'estNul', 1),
-(5, 'Test2', 'PrenomNul', 'PrenomNul-Test2@orange.fr', 'mdpSecurise', 1),
-(6, 'NomMieux', 'Luc', 'luc.nommieux@fai.io', 'Original2015', 1),
-(7, 'Dell', 'Graham', 'graham-dell@groupe-esigelec.org', 'EsigeDell20202016', 1),
-(8, 'Dvd', 'Henry', 'henry.dvd@fai.com', 'faiNul', 1),
-(9, 'Adams', 'Famille', 'famille.admas@scary.com', 'AdamsFamily', 1),
-(10, 'Docteur', 'Le', 'Le-Docteur@bbc.com', 'Daleksaremean12', 1);
+(2, 'Animateur', '1', 'animateur-1@tf8.com', 'animateurTF8', 1000),
+(3, 'Test1', 'Prenom1', 'prenom-test1@gmail.com', 'estNul', 1),
+(4, 'Test2', 'PrenomNul', 'PrenomNul-Test2@orange.fr', 'mdpSecurise', 1),
+(5, 'NomMieux', 'Luc', 'luc.nommieux@fai.io', 'Original2015', 1),
+(6, 'Dell', 'Graham', 'graham-dell@groupe-esigelec.org', 'EsigeDell20202016', 1),
+(7, 'Dvd', 'Henry', 'henry.dvd@fai.com', 'faiNul', 1),
+(8, 'Adams', 'Famille', 'famille.admas@scary.com', 'AdamsFamily', 1),
+(9, 'Docteur', 'Le', 'Le-Docteur@bbc.com', 'Daleksaremean12', 1);
 
 INSERT INTO `question` (`id`, `libelle`) VALUES
 (1, 'Comment s\'appelle le président américain?'),
