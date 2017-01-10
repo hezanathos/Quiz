@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * Created by Edouard on 04/01/2017.
@@ -29,19 +30,19 @@ import java.sql.Timestamp;
 public class QuizController {
 
 	@Autowired
-	private QuizDAOImpl service;
+	private QuizDAOImpl serviceQuizDAO;
 	@Autowired
-    private QuestionDAOImpl service2;
+    private QuestionDAOImpl serviceQuestionDAO;
 
 	@RequestMapping(value = "/ajouterQuiz", method = RequestMethod.POST)
 	public String ajouterLeQuiz(@Valid @ModelAttribute(value="quiz") final Quiz q,
 							final BindingResult pBindingResult, final ModelMap pModel){
 
 		if (!pBindingResult.hasErrors()) {
-			service.ajouterQuiz(q);
+			serviceQuizDAO.ajouterQuiz(q);
 		}
 
-		return "jecpaskoi";
+		return "ajouterquestionadmin";
 		/*HttpSession session = request.getSession();
 		String courriel = (String) session.getAttribute("courriel");
 		String libelle = request.getParameter("libelle");
@@ -57,14 +58,25 @@ public class QuizController {
 								  final BindingResult pBindingResult, final ModelMap pModel){
 
 		if (!pBindingResult.hasErrors()) {
-			service2.ajouterQuestion(question);
+			serviceQuestionDAO.ajouterQuestion(question);
 
 		}
-        return "jecpaskoi";
+        return "ajouterquestionadmin";
 	}
+	
+	@RequestMapping(value = "/repondreQuestion", method = RequestMethod.GET)
+	public String repondreQuestion(HttpServletRequest request){
 
-	@RequestMapping(value = "/demarrerQuiz", method = RequestMethod.GET)
-	public void startQuiz(final ModelMap pModel){
-
+		int idProposition = (int)request.getAttribute("idProposition");
+		int idQuestion = (int)request.getAttribute("idQuestion");
+		
+		
+		List<Question> propositions = serviceQuestionDAO.getListePropositions(idQuestion);
+		
+		if(propositions.getProposition().getBonneReponse() == 0){
+			return "question";
+		}else{
+	        return "questionBR";
+		}
 	}
 }

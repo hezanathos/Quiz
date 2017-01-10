@@ -39,7 +39,7 @@ public class UserController {
 		PersonneDAOImpl pdao = new PersonneDAOImpl();
 		pdao.ajouterPersonne(p);*/
 
-		return "jecpaskoi";
+		return "index";
 	}
 	
 	@RequestMapping(value = "/connexion", method = RequestMethod.POST)
@@ -66,7 +66,7 @@ public class UserController {
 			session.setAttribute("prenom", pTemp.getPrenom());
 		}*/
 
-		return "jecpaskoi";
+		return "index";
 	}
 
 	@RequestMapping(value = "/deconnexion", method = RequestMethod.GET)
@@ -74,7 +74,7 @@ public class UserController {
 		HttpSession session = request.getSession();
 		session.invalidate();
 
-		return "jecpaskoi";
+		return "index";
 	}
 
 }
