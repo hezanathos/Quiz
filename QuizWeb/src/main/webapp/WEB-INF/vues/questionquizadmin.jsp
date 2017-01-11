@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +15,8 @@
     </div>
 
     <div class="mainbody">
-      <div class="label"><label>Libellé: </label><input type="text" placeholder="**********"></div>
+    <form:form>
+      <div class="label"><label>Libellé: </label><form:input type="text" placeholder="**********" path="libelle"/></div>
       <button>AJOUTER UNE QUESTION</button>
       <div class="table">
           <table>
@@ -26,9 +29,10 @@
           </table>
 
       </div>
+        <input type = "submit" value = "??"/>
         <button>CREER</button><button>ANNULER</button>
     </div>
-
+</form:form>
     <div class="footer">
 
     </div>
