@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 import java.sql.Timestamp;
 
 /**
@@ -26,6 +25,7 @@ import java.sql.Timestamp;
  */
 
 @Controller
+@RequestMapping("Quiz")
 public class QuizController {
 
 	@Autowired
@@ -34,14 +34,12 @@ public class QuizController {
     private QuestionDAOImpl service2;
 
 	@RequestMapping(value = "/ajouterQuiz", method = RequestMethod.POST)
-	public String ajouterLeQuiz(@Valid @ModelAttribute(value="quiz") final Quiz q,
-							final BindingResult pBindingResult, final ModelMap pModel){
+	public String ajouterLeQuiz(@ModelAttribute(value="quiz") final Quiz q,
+							 final ModelMap pModel){
 
-		if (!pBindingResult.hasErrors()) {
-			service.ajouterQuiz(q);
-		}
+		
 
-		return "jecpaskoi";
+		return "animateur";
 		/*HttpSession session = request.getSession();
 		String courriel = (String) session.getAttribute("courriel");
 		String libelle = request.getParameter("libelle");
@@ -53,18 +51,23 @@ public class QuizController {
 	}
 
 	@RequestMapping(value = "/ajouterQuestion", method = RequestMethod.POST)
-	public String ajouterQuestion(@Valid @ModelAttribute(value="question") final Question question,
-								  final BindingResult pBindingResult, final ModelMap pModel){
+	public String ajouterQuestion(@ModelAttribute(value="question") final Question question,
+								 final ModelMap pModel){
 
-		if (!pBindingResult.hasErrors()) {
-			service2.ajouterQuestion(question);
-
-		}
-        return "jecpaskoi";
+		
+        return "ajouterquestionadmin";
 	}
 
 	@RequestMapping(value = "/demarrerQuiz", method = RequestMethod.GET)
 	public void startQuiz(final ModelMap pModel){
 
+	}
+	@RequestMapping(value = "/index")
+	public String accueilclient() {
+		return "index";
+	}
+	@RequestMapping(value="/indexadmin")
+	public String accueiladmin(){
+		return "indexadmin";
 	}
 }
