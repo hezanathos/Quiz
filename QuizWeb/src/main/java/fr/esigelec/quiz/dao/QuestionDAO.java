@@ -2,6 +2,7 @@ package fr.esigelec.quiz.dao;
 
 import java.util.List;
 
+import fr.esigelec.quiz.model.Proposition;
 import fr.esigelec.quiz.model.Question;
 import fr.esigelec.quiz.model.Quiz;
 
@@ -18,6 +19,8 @@ public interface QuestionDAO {
 	public List<Question> getListeQuestions();
 	
 	public Question getQuestion(int id);
+
+	public List<Proposition> getListePropositions(int idQuestion);
 	
 	// public void supprimerQuestion(int id);
 
