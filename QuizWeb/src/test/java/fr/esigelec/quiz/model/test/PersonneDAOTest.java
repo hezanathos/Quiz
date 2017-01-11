@@ -11,7 +11,7 @@ import fr.esigelec.quiz.dao.PersonneDAO;
 import fr.esigelec.quiz.model.Personne;
 import junit.framework.TestCase;
 
-public class TestPersonne extends TestCase {
+public class PersonneDAOTest extends TestCase {
 
 	
 	@Test
