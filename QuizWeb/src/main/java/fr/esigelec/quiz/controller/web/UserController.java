@@ -72,8 +72,8 @@ public class UserController {
 		 */
 		return "redirect:/inscription";
 
-	}
 
+	}
 	@RequestMapping(value = "/connexion.do", method = RequestMethod.POST)
 	public String connexion(@RequestParam("mail") String mail, @RequestParam("mdp") String mdp, Model model) {
 
@@ -96,7 +96,7 @@ public class UserController {
 		session.setAttribute("nom", pTemp.getNom());
 		session.setAttribute("prenom", pTemp.getPrenom());
 	}*/
-		
+
 	}
 
 
@@ -105,6 +105,6 @@ public class UserController {
 		HttpSession session = request.getSession();
 		session.invalidate();
 
-		return "jecpaskoi";
+		return "index";
 	}
 }
