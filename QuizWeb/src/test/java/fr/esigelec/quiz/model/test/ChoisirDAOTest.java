@@ -37,8 +37,8 @@ public class ChoisirDAOTest {
 		
 		listeQuestion.add(new Question("libelle",new ArrayList<Proposition>() 
 		{{ 
-			add(new Proposition(44,"libellePropo1",1));
-			add(new Proposition(45,"libellePropo2",2));
+			add(new Proposition("libellePropo1",1));
+			add(new Proposition("libellePropo2",2));
 		}}
 			
 		));
@@ -55,10 +55,9 @@ public class ChoisirDAOTest {
 		
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 		
-		PropositionDAO pdao = (PropositionDAO) context.getBean("propositionDAOImpl");
-		Proposition prop = pdao.getProposition(44);
 		
-		Choisir choix = new Choisir(timestamp,personne2, quiz, prop);
+		
+		Choisir choix = new Choisir(timestamp,personne2, quiz, listeQuestion.get(0).getListproposition().get(0));
 		
 		ChoisirDAO cdao = (ChoisirDAO) context.getBean("choisirDAOImpl");
 		
