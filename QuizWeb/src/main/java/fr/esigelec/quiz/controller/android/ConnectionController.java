@@ -1,17 +1,18 @@
 package fr.esigelec.quiz.controller.android;
 
+import org.springframework.stereotype.Controller;
 /**
  * @author Simon
  */
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import fr.esigelec.quiz.dao.PersonneDAOImpl;
 import fr.esigelec.quiz.model.Personne;
 
-@Controller
+@RestController
 public class ConnectionController {
 
 	@RequestMapping(value = "/android/connexion", method = RequestMethod.POST)
@@ -20,6 +21,7 @@ public class ConnectionController {
 		PersonneDAOImpl pDao = new PersonneDAOImpl();
 		Personne p;
 		
+		System.out.println(email + " " + password);
 		//On test si l'utilisateur existe dans la base de données
 		if(pDao.verifPersonne(email, password) != -1){
 			//Si l'utilisateur existe on récupére son id
@@ -28,6 +30,7 @@ public class ConnectionController {
 		} else {
 			retourJson = "{'status':'KO', 'message':'utilisateur inconnu'}";
 		}
+		
 		
 		return retourJson;
 	}
