@@ -26,25 +26,7 @@
                 </div>
                 <input type="submit" value="CONNEXION">
             </form:form>
-            
-            <!-- 
-             <form class="login" action="#" method="post">
-                <div>
-                    <label>ADRESS ENAMIL</label>
-                    <input type="text"/>
-                </div>
-                <div>
-                    <label>MOT DE PASSE</label>
-                    <input  type="password"/>
-                </div>
-                <input type="submit" value="CONNEXION">
-            </form>
-            
-            
-            
-            
-            
-             -->
+         
         </div>
 
         <div class="footer">

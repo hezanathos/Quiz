@@ -66,6 +66,7 @@ public class UserController {
 		return "jecpaskoi";
 	}
 
+
 	@RequestMapping(value = "/deconnexion", method = RequestMethod.GET)
 	public String deconnexion(HttpServletRequest request){
 		HttpSession session = request.getSession();
