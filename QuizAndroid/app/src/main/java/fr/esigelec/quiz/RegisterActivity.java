@@ -9,6 +9,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Paint;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -23,6 +24,11 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import okhttp3.*;
+
+import java.io.IOException;
+
+import static fr.esigelec.quiz.LoginActivity.PREFS_NAME;
 
 public class RegisterActivity extends Activity{
 
@@ -34,14 +40,26 @@ public class RegisterActivity extends Activity{
     private AutoCompleteTextView emailTextView;
     private EditText passwordTextView;
     private TextView signUpTextView;
+    private String serverAdress;
+    private TextView nameTextView;
+    private TextView fullnameTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register);
 
+
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        serverAdress = settings.getString("serverAdress","srvinfodev.esigelec.fr:8080/quiz");
+
         emailTextView = (AutoCompleteTextView) findViewById(R.id.email);
         //loadAutoComplete();
+
+        fullnameTextView = (EditText) findViewById(R.id.surname);
+        //loadAutoComplete()
+       nameTextView = (EditText) findViewById(R.id.name);
+        //loadAutoComplete()
 
         passwordTextView = (EditText) findViewById(R.id.password);
         passwordTextView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -92,9 +110,14 @@ public class RegisterActivity extends Activity{
 
         emailTextView.setError(null);
         passwordTextView.setError(null);
+        nameTextView.setError(null);
+        fullnameTextView.setError(null);
 
         String email = emailTextView.getText().toString();
         String password = passwordTextView.getText().toString();
+        String name = nameTextView.getText().toString();
+        String fullname = fullnameTextView.getText().toString();
+
 
         boolean cancelLogin = false;
         View focusView = null;
@@ -115,13 +138,25 @@ public class RegisterActivity extends Activity{
             cancelLogin = true;
         }
 
+        if (TextUtils.isEmpty(name)) {
+            nameTextView.setError(getString(R.string.error_field_required));
+            focusView = nameTextView;
+            cancelLogin = true;
+        }
+
+        if (TextUtils.isEmpty(fullname)) {
+            fullnameTextView.setError(getString(R.string.error_field_required));
+            focusView = fullnameTextView;
+            cancelLogin = true;
+        }
+
         if (cancelLogin) {
             // error in login
             focusView.requestFocus();
         } else {
             // show progress spinner, and start background task to login
             showProgress(true);
-            userLoginTask = new UserLoginTask(email, password);
+            userLoginTask = new UserLoginTask(email, password, name, fullname);
             userLoginTask.execute((Void) null);
         }
     }
@@ -180,11 +215,15 @@ public class RegisterActivity extends Activity{
 
         private final String emailStr;
         private final String passwordStr;
+        private final String nameStr;
+        private final String fullnameStr;
 
 
-        UserLoginTask(String email, String password) {
+        UserLoginTask(String email, String password, String name, String fullname) {
             emailStr = email;
             passwordStr = password;
+            nameStr = name;
+            fullnameStr = fullname;
         }
 
         @Override
@@ -192,10 +231,32 @@ public class RegisterActivity extends Activity{
            //this is where you should write your authentication code
             // or call external service
             // following try-catch just simulates network access
-            if(emailStr.equals("@a")&&passwordStr.equals("1234"))
-            {
-               return true;
+
+            OkHttpClient client = new OkHttpClient();
+
+            RequestBody formBody = new FormBody.Builder()
+                    .add("name", nameStr)
+                    .add("fullname", fullnameStr)
+                    .add("email", emailStr)
+                    .add("password", passwordStr)
+                    .build();
+
+            Request request = new Request.Builder()
+                    .url(serverAdress+"/android/inscription")
+                    .post(formBody)
+                    .build();
+
+            try{
+                Response response = client.newCall(request).execute();
+
+                System.out.println("\nResponse =>  " + response + " <= end of response \n");
+
+                //Ici code d'utilisation de la reponse
+
+            } catch (IOException e) {
+                e.printStackTrace();
             }
+
 
             try {
                 Thread.sleep(2000);

@@ -223,6 +223,15 @@ public class LoginActivity extends Activity {
             // or call external service
             // following try-catch just simulates network access
 
+            /*
+                Temporary connexion to access the Home view
+            */
+             if(emailStr.equals("@a")&&passwordStr.equals("1234"))
+            {
+                return true;
+            }
+
+
             OkHttpClient client = new OkHttpClient();
 
             RequestBody formBody = new FormBody.Builder()
@@ -246,10 +255,6 @@ public class LoginActivity extends Activity {
                 e.printStackTrace();
             }
 
-            if(emailStr.equals("@a")&&passwordStr.equals("1234"))
-            {
-                return true;
-            }
 
             try {
                 Thread.sleep(2000);
