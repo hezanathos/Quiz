@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
-public class optionActivity extends AppCompatActivity {
+public class OptionActivity extends AppCompatActivity {
 
     public static final String PREFS_NAME = "Option";
     private EditText adresseDuServeur;

@@ -1,93 +1,81 @@
-************************************************
-{
+** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** {
   "status": 0,
   "numero": 0,
   "idquiz": 0,
   "question": {
-      "id": 0,
-      "libelle":"Bla blalblabla blabla ?"
-     },
+    "id": 0,
+    "libelle": "Bla blalblabla blabla ?"
+  },
   "propositions": [{
-      "id": 0,
-      "libelle":"blabla"
-    },
-    {
-      "id": 1,
-      "libelle":"blabla"
-    },
-    {
-      "id": 2,
-      "libelle":"blabla"
-    },
-     {
-      "id": 3,
-      "libelle":"blabla"
-    }],
+    "id": 0,
+    "libelle": "blabla"
+  }, {
+    "id": 1,
+    "libelle": "blabla"
+  }, {
+    "id": 2,
+    "libelle": "blabla"
+  }, {
+    "id": 3,
+    "libelle": "blabla"
+  }],
   "timeRemaining": 27000
-}
-************************************************
-{
+} **
+** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** {
   "status": 1,
   "numero": 0,
   "idquiz": 0,
   "question": {
-      "id": 0,
-      "libelle":"Bla blalblabla blabla ?"
-     },
+    "id": 0,
+    "libelle": "Bla blalblabla blabla ?"
+  },
   "propositions": [{
-      "id": 0,
-      "libelle":"blabla",
-      "stat": 25
-    },
-    {
-      "id": 1,
-      "libelle":"blabla",
-      "stat":25
-    },
-    {
-      "id": 2,
-      "libelle":"blabla",
-      "stat":25
-    },
-     {
-      "id": 3,
-      "libelle":"blabla",
-      "stat":25
-    }]
-}
-************************************************
-{
+    "id": 0,
+    "libelle": "blabla",
+    "stat": 25
+  }, {
+    "id": 1,
+    "libelle": "blabla",
+    "stat": 25
+  }, {
+    "id": 2,
+    "libelle": "blabla",
+    "stat": 25
+  }, {
+    "id": 3,
+    "libelle": "blabla",
+    "stat": 25
+  }]
+} **
+** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** {
   "status": 2,
   "numero": 0,
   "idquiz": 0,
-   "question": {
-      "id": 0,
-      "libelle":"Bla blalblabla blabla ?"
-     },
+  "question": {
+    "id": 0,
+    "libelle": "Bla blalblabla blabla ?"
+  },
   "propositions": [{
-      "id": 0,
-      "libelle":"blabla",
-      "stat": 25
-    },
-    {
-      "id": 1,
-      "libelle":"blabla",
-      "stat":25
-    },
-    {
-      "id": 2,
-      "libelle":"blabla",
-      "stat":25
-    },
-     {
-      "id": 3,
-      "libelle":"blabla",
-      "stat":25
-    }],
+    "id": 0,
+    "libelle": "blabla",
+    "stat": 25
+  }, {
+    "id": 1,
+    "libelle": "blabla",
+    "stat": 25
+  }, {
+    "id": 2,
+    "libelle": "blabla",
+    "stat": 25
+  }, {
+    "id": 3,
+    "libelle": "blabla",
+    "stat": 25
+  }],
   "reponse": {
-      "id": 2, 
-      "libelle" :"prop3"
-    },
+    "id": 2,
+    "libelle": "prop3"
+  },
   "classement": [{
     "position": 1,
     "nom": "tortuga",
@@ -97,4 +85,9 @@
     "nom": "poulopoulopoulo",
     "points": 5
   }]
+} **
+** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** {
+  "idperson": 1,
+  "idquiz": 1,
+  "idproposition": 1
 }

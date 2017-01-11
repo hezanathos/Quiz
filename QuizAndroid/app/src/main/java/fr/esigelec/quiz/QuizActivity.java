@@ -37,6 +37,9 @@ public class QuizActivity extends AppCompatActivity {
     private TextView qQuestion;
     private String aNumber;
     private String aQuestion;
+    private String aQuiz;
+    private String aQuestionId;
+    private Global g = Global.getInstance();
 
 
     @Override
@@ -93,7 +96,7 @@ public class QuizActivity extends AppCompatActivity {
             //we get the server address from the SharedPreferences or use default value
             SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
             String webSocketAdress = settings.getString("serverAdress","srvinfodev.esigelec.fr:8080/quiz");
-            uri = new URI("ws://"+webSocketAdress);
+            uri = new URI("ws://"+webSocketAdress+"/choisir");
         } catch (URISyntaxException e) {
             e.printStackTrace();
             return;
@@ -112,11 +115,13 @@ public class QuizActivity extends AppCompatActivity {
                     final JSONObject message = new JSONObject(s);
                     final List<Fragment> fList = new ArrayList<>();
                     final int status = message.getInt("status");
+                    aNumber = message.getString("numero");
+                    aQuestion = message.getJSONObject("question").getString("libelle");
+                    aQuestionId = message.getJSONObject("question").getString("id");
+                    aQuiz = message.getString("idquiz");
                     switch(status) {
                         case 0:
                             fList.add(ResponseFragment.newInstance(status,s));
-                            aNumber = message.getString("numero");
-                            aQuestion = message.getString("question");
                             break;
                         case 1:
                             fList.add(ResponseFragment.newInstance(status,s));
@@ -164,5 +169,17 @@ public class QuizActivity extends AppCompatActivity {
     // public method to send text via WebSocket
     public void WebSocketSendText(String s){
         mWebSocketClient.send(s);
+    }
+    public void WebSocketSendReponce(int idProp){
+        try {
+        JSONObject reponce = new JSONObject();
+            reponce.accumulate("idperson", g.getIdpersonne());
+            reponce.accumulate("idquiz", aQuiz);
+            reponce.accumulate("idquestion", aQuestionId);
+            reponce.accumulate("idproposition", idProp);
+            mWebSocketClient.send(reponce.toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -226,16 +226,16 @@ public class ResponseFragment extends Fragment {
          public void onClick(View v) {
              switch(v.getId()){
                  case R.id.btn1:
-                     send("prop1");
+                     send(1);
                      break;
                  case R.id.btn2:
-                     send("prop2");
+                     send(2);
                      break;
                  case R.id.btn3:
-                     send("prop3");
+                     send(3);
                      break;
                  case R.id.btn4:
-                     send("prop4");
+                     send(4);
                      break;
                  default:
                      break;
@@ -244,9 +244,9 @@ public class ResponseFragment extends Fragment {
              btnGrpBot.setEnabled(false);
          }
 
-         //shortener for the method WebSocketSendText
-         private void send(String s){
-             ((QuizActivity)getActivity()).WebSocketSendText(s);
+         //shortener for the method WebSocketSendReponce
+         private void send(int idProp){
+             ((QuizActivity)getActivity()).WebSocketSendReponce(idProp);
          }
      }
 }
