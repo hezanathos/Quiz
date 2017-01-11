@@ -61,7 +61,7 @@ public class UserController {
 		}
 		else if(service.ajouterPersonne(p) == -1)
 		{
-			model.addAttribute("erreurPersonneExiste","Email déjà utilisé");
+			model.addAttribute("erreurPersonneExiste","Email dï¿½jï¿½ utilisï¿½");
 			return "inscription";
 		}
 		/*String nom = request.getParameter("nom");
