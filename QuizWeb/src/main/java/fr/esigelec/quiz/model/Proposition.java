@@ -35,6 +35,7 @@ public class Proposition implements Serializable {
 		super();
 
 	}
+	
 
 	public Proposition(int id, String libelle, int bonneReponse) {
 		super();
@@ -65,7 +66,7 @@ public class Proposition implements Serializable {
 		this.libelle = libelle;
 	}
 
-	public int getBonneReponse() {
+	public int isBonneReponse() {
 		return bonneReponse;
 	}
 
