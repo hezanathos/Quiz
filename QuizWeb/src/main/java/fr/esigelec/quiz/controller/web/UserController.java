@@ -5,6 +5,7 @@ import fr.esigelec.quiz.model.*;
 import fr.esigelec.quiz.dao.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -22,7 +23,8 @@ import javax.servlet.http.*;
 public class UserController {
 
 	@Autowired
-	private PersonneDAOImpl service;
+	@Qualifier("personneDAOImpl")
+	private PersonneDAO service;
 
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String accueilConnexion(Model model) {
