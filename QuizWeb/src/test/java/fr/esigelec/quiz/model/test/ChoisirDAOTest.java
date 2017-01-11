@@ -35,17 +35,11 @@ public class ChoisirDAOTest {
 		Timestamp timestampDatedebutQuestion = Timestamp.valueOf("2007-09-23 10:15:10.0");
 		ArrayList<Question> listeQuestion = new ArrayList<Question>();
 		
-		listeQuestion.add(new Question("libelle",new ArrayList<Proposition>() 
-		{{ 
-			add(new Proposition("libellePropo1",1));
-			add(new Proposition("libellePropo2",2));
-		}}
-			
-		));
+		listeQuestion.add(new Question("libelle"));
+		listeQuestion.add(new Question("libelle2"));
 
 	Quiz quiz = new Quiz("libelle",1,timestampDatedebutQuiz,1,1,timestampDatedebutQuestion,listeQuestion);
-		
-		//**********************
+	
 		QuizDAO qdao = (QuizDAO) context.getBean("quizDAOImpl");
 		qdao.ajouterQuiz(quiz);
 		@SuppressWarnings("unused")
@@ -55,9 +49,9 @@ public class ChoisirDAOTest {
 		
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 		
+		Proposition prop = new Proposition("libelleprop", 1, listeQuestion.get(0));
 		
-		
-		Choisir choix = new Choisir(timestamp,personne2, quiz, listeQuestion.get(0).getListproposition().get(0));
+		Choisir choix = new Choisir(timestamp,personne2, quiz, prop );
 		
 		ChoisirDAO cdao = (ChoisirDAO) context.getBean("choisirDAOImpl");
 		

@@ -31,13 +31,8 @@ public class QuizDAOTest {
 		Timestamp timestampDatedebutQuestion = Timestamp.valueOf("2007-09-23 10:15:10.0");
 		ArrayList<Question> listeQuestion = new ArrayList<Question>();
 		
-		listeQuestion.add(new Question("libelle",new ArrayList<Proposition>() 
-		{{ 
-			add(new Proposition("libellePropo1",1));
-			add(new Proposition("libellePropo2",2));
-		}}
-			
-		));
+		listeQuestion.add(new Question("libelle"));
+		listeQuestion.add(new Question("libelle2"));
 
 	Quiz quiz = new Quiz("libelle",1,timestampDatedebutQuiz,1,1,timestampDatedebutQuestion,listeQuestion); 
 	
@@ -59,15 +54,10 @@ public class QuizDAOTest {
 		Timestamp timestampDatedebutQuestion = Timestamp.valueOf("2007-09-23 10:15:10.0");
 		ArrayList<Question> listeQuestion = new ArrayList<Question>();
 		
-		listeQuestion.add(new Question("libelle",new ArrayList<Proposition>() 
-		{{ 
-			add(new Proposition("libellePropo1",1));
-			add(new Proposition("libellePropo2",2));
-		}}
-			
-		));
+		listeQuestion.add(new Question("libelle"));
+		listeQuestion.add(new Question("libelle2"));
 
-	Quiz quiz = new Quiz("libelle",1,timestampDatedebutQuiz,1,1,timestampDatedebutQuestion,listeQuestion);
+	Quiz quiz = new Quiz("libelleQ",1,timestampDatedebutQuiz,1,1,timestampDatedebutQuestion,listeQuestion);
 		
 		//**********************
 		QuizDAO qdao = (QuizDAO) context.getBean("quizDAOImpl");
@@ -75,19 +65,10 @@ public class QuizDAOTest {
 		@SuppressWarnings("unused")
 		Quiz quizget=qdao.getQuiz(1);
 		
-		assertEquals(quiz.getLibelle(),"libelle");
+		assertEquals(quiz.getLibelle(),"libelleQ");
 
 	
 	}
 
-	@Test
-	public void testGetListeQuizzes() {
-		//fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetQuiz() {
-		//fail("Not yet implemented");
-	}
 
 }
