@@ -3,6 +3,8 @@ package fr.esigelec.quiz.model.test;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.constraints.AssertTrue;
+
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -90,4 +92,16 @@ public class PersonneDAOTest extends TestCase {
 		
 		}
 	
+	@Test 
+	public void testVerifMailPresent(){
+		ApplicationContext context = new ClassPathXmlApplicationContext("dispatcher-servlet.xml");
+		Personne p10 = new Personne("Test","Paul","present@gmail.fr","mdp",0);
+		PersonneDAO pDAO5 = (PersonneDAO) context.getBean("personneDAOImpl");
+		pDAO5.ajouterPersonne(p10);
+		
+		assertTrue(pDAO5.verifEmailPresent("present@gmail.fr"));
+		assertFalse(pDAO5.verifEmailPresent("paspresent@gmail.fr"));
+	}
+	
 }
+
