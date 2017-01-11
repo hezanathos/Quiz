@@ -10,6 +10,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import fr.esigelec.quiz.model.Proposition;
 import fr.esigelec.quiz.model.Question;
@@ -40,11 +43,18 @@ public class AndroidQuizController {
 	 * @param json in format {"idperson":1, "idquiz": 1,"idquestion" : 1, "idproposition": 1}
 	 * @throws Exception
 	 */
-	@MessageMapping("/choisir")
+	@MessageMapping("/android")
 	@SendTo("/topic/questions")
 	public void getAnswer(String json) throws Exception {
 		//TODO: save answer to BDD
+		JsonElement jsonElement = new JsonParser().parse(json);
+		JsonObject jsonObject = jsonElement.getAsJsonObject();
+		int idPerson = jsonObject.getAsJsonObject("idperson").getAsInt();
+		int idQuiz = jsonObject.getAsJsonObject("idquiz").getAsInt();
+		int idQuestion = jsonObject.getAsJsonObject("idquestion").getAsInt();
+		int idproposition = jsonObject.getAsJsonObject("idproposition").getAsInt();
 		
+			
 	}
 	
 	/**
