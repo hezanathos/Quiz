@@ -20,9 +20,9 @@ public interface ChoisirDAO {
 	
 	public void supprimerChoix(int id);
 	
-//	public int getNbBonnesReponses(int idQuiz,int idQuestion);
+	public int getNbBonnesReponses(int idQuiz,int idQuestion);
 	
-	//public int getNbReponses(int idQuiz, int idQuestion);
+	public int getNbReponses(int idQuiz, int idQuestion);
 
-	//public int getNbBonnesReponseDunParticipantAuQuiz(int idQuiz, int idParticipant);
+	public int getNbBonnesReponseDunParticipantAuQuiz(int idQuiz, int idParticipant);
 }
