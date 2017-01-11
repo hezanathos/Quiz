@@ -1,14 +1,11 @@
 package fr.esigelec.quiz.controller.web;
 
-import fr.esigelec.quiz.dao.ChosirDAOImpl;
-import fr.esigelec.quiz.dao.PersonneDAOImpl;
-import fr.esigelec.quiz.dao.QuestionDAOImpl;
+import fr.esigelec.quiz.dao.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 
-import fr.esigelec.quiz.dao.QuizDAOImpl;
 import fr.esigelec.quiz.model.Choisir;
 import fr.esigelec.quiz.model.Proposition;
 import fr.esigelec.quiz.model.Question;
@@ -36,13 +33,13 @@ import java.util.List;
 public class QuizController {
 
 	@Autowired
-	private QuizDAOImpl serviceQuizDAO;
+	private QuizDAO serviceQuizDAO;
 	@Autowired
-    private QuestionDAOImpl serviceQuestionDAO;
+    private QuestionDAO serviceQuestionDAO;
 	@Autowired
-	private PersonneDAOImpl servicePersonneDAO;
+	private PersonneDAO servicePersonneDAO;
 	@Autowired
-	private ChosirDAOImpl serviceChoisirDAO;
+	private ChoisirDAO serviceChoisirDAO;
 
 	@RequestMapping(value = "/ajouterQuiz", method = RequestMethod.POST)
 	public String ajouterLeQuiz(@ModelAttribute(value="quiz") final Quiz q,
