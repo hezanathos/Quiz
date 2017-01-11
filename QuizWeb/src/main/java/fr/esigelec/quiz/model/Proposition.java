@@ -65,7 +65,7 @@ public class Proposition implements Serializable {
 		this.libelle = libelle;
 	}
 
-	public int getBonneReponse() {
+	public int isBonneReponse() {
 		return bonneReponse;
 	}
 
