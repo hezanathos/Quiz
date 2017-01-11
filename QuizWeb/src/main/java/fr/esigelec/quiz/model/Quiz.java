@@ -54,7 +54,7 @@ public class Quiz implements Serializable {
 	private Timestamp dateDebutQuestion;
 
 	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "questionduquizz", joinColumns = { @JoinColumn(name = "idQuizz") }, inverseJoinColumns = {
+	@JoinTable(name = "questionduquiz", joinColumns = { @JoinColumn(name = "idQuiz") }, inverseJoinColumns = {
 			@JoinColumn(name = "idQuestion") })
 	@Cascade(CascadeType.SAVE_UPDATE)
 	private List<Question> listeQuestion = new ArrayList<Question>();
