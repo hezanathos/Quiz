@@ -56,4 +56,22 @@ public class ChoisirDAOImpl implements ChoisirDAO {
 
 	}
 
+	@Override
+	public int getNbBonnesReponses(int idQuiz, int idQuestion) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getNbReponses(int idQuiz, int idQuestion) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getNbBonnesReponseDunParticipantAuQuiz(int idQuiz, int idParticipant) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

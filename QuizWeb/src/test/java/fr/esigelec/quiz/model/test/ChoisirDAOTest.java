@@ -52,9 +52,9 @@ public class ChoisirDAOTest {
 		
 		
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-		Quiz quiz = new Quiz();
+		//Quiz quiz = new Quiz();
 		
-		Choisir choix = new Choisir(timestamp,personne2, quiz, p);
+	//	Choisir choix = new Choisir(timestamp,personne2, quiz, p);
 
 	}
 
