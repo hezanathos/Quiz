@@ -2,6 +2,7 @@ package fr.esigelec.quiz.controller.android;
 
 /**
  * @author Simon
+
  */
 
 import org.springframework.web.bind.annotation.RequestMapping;
