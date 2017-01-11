@@ -100,7 +100,7 @@ public class LoginActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Log.i("LoginActivity", "Option Activity activated.");
-                LoginActivity.this.startActivity(new Intent(LoginActivity.this, OptionActivity2.class));
+                LoginActivity.this.startActivity(new Intent(LoginActivity.this, OptionActivity.class));
             }
         });
     }
