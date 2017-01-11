@@ -18,11 +18,11 @@
        			<tr><th></th><th></th></tr>
        			<tr>
            			<td><form:label path="mail" >Adresse mail :</form:label></td>
-           			<td><form:input path="mail" placeholder="nom@domain.com" required/></td>
+           			<td><form:input path="mail" placeholder="nom@domain.com"/></td>
        			</tr>
      			<tr>
            			<td><form:label path="mdp" >Mot de passe :</form:label></td>
-           			<td><form:input type="password" path="mdp" placeholder="password" required/></td>
+           			<td><form:input type="password" path="mdp" placeholder="password"/></td>
        			</tr>
           		<tr>
          			<td colspan="2" class="submit"><input type="submit" value="Connexion"/></td>
