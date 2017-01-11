@@ -30,6 +30,9 @@ public class Proposition implements Serializable {
 	
 	@Column(name = "bonneReponse", unique = true, nullable = false)
 	private int bonneReponse;
+	
+	@Column(name = "idQuetion", unique = true, nullable = false)
+	private int idQuetion;
 
 	public Proposition() {
 		super();
@@ -37,22 +40,35 @@ public class Proposition implements Serializable {
 	}
 	
 
-	public Proposition(int id, String libelle, int bonneReponse) {
+	public Proposition(int id, String libelle, int bonneReponse , int idQuestion) {
 		super();
 		this.id = id;
 		this.libelle = libelle;
+		this.idQuetion = idQuestion;
 		this.bonneReponse = bonneReponse;
+		
 	}
 	
-	public Proposition(String libelle, int bonneReponse) {
+	public Proposition(String libelle, int bonneReponse, int idQuestion) {
 		super();
 	
 		this.libelle = libelle;
+		this.idQuetion = idQuestion;
 		this.bonneReponse = bonneReponse;
 	}
 	public int getId() {
 		return id;
 	}
+
+	public int getIdQuetion() {
+		return idQuetion;
+	}
+
+
+	public void setIdQuetion(int idQuetion) {
+		this.idQuetion = idQuetion;
+	}
+
 
 	public void setId(int id) {
 		this.id = id;
