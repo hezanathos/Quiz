@@ -18,14 +18,14 @@
        			<tr><th></th><th></th></tr>
        			<tr>
       				<%-- génère un label avec un for="courriel"  --%>
-           			<td><form:label path="courriel" >Adresse mail :</form:label></td>
-          			<%-- génère un input avec id="courriel", name="courriel" et value=l'email de la personne reçue via le modèle --%>
-           			<td><form:input path="courriel" placeholder="nom@domaine.com" required/></td>
+           			<td><form:label path="mail" >Adresse mail :</form:label></td>
+          			<%-- génère un input avec id="mail", name="mail" et value=l'email de la personne reçue via le modèle --%>
+           			<td><form:input path="mail" placeholder="nom@domaine.com" required/></td>
        			</tr>
      			<tr>
-           			<td><form:label path="motDePasse" >Mot de passe :</form:label></td>
-           			<td><form:input type="password" path="motDePasse" placeholder="motDePasse" required/></td>
-           			<td><form:input type="password" path="re_motDePasse" placeholder="re_motDePasse" required/></td>
+           			<td><form:label path="mdp" >Mot de passe :</form:label></td>
+           			<td><form:input type="password" path="mdp" placeholder="motDePasse" required/></td>
+           			<td><form:input type="password" path="re_mdp" placeholder="re_motDePasse" required/></td>
        			</tr>
        			<tr>
            			<td><form:label path="nom" >Nom :</form:label></td>

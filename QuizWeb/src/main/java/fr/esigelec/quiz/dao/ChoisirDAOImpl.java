@@ -17,7 +17,7 @@ import fr.esigelec.quiz.model.Choisir;
 
 @Repository("choisirDAOImpl")
 @Transactional(propagation = Propagation.SUPPORTS)
-public class ChosirDAOImpl implements ChoisirDAO {
+public class ChoisirDAOImpl implements ChoisirDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;
