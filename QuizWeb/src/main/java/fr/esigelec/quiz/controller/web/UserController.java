@@ -1,5 +1,5 @@
 package fr.esigelec.quiz.controller.web;
-import fr.esigelec.quiz.model.*;
+/*import fr.esigelec.quiz.model.*;
 
 
 import fr.esigelec.quiz.dao.*;
@@ -18,7 +18,7 @@ import javax.servlet.http.*;
  * @author - Edouard PETIT Matthieu Munhoven
  */
 
-@Controller
+/*@Controller
 public class UserController {
 	
 	@Autowired
@@ -63,14 +63,14 @@ public class UserController {
 		{
 			model.addAttribute("erreurPersonneExiste","Email déjà utilisé");
 			return "inscription";
-		}
+		}*/
 		/*String nom = request.getParameter("nom");
 		String motDePasse = request.getParameter("motDePasse");
 		String prenom = request.getParameter("prenom");
 		String courriel = request.getParameter("courriel");
 		Personne p = new Personne(1000,nom,prenom,courriel,motDePasse,0);
 		PersonneDAOImpl pdao = new PersonneDAOImpl();
-		pdao.ajouterPersonne(p);*/
+		pdao.ajouterPersonne(p);*//*
 		return "inscription";
 
 	}
@@ -88,7 +88,7 @@ public class UserController {
 		{
 			model.addAttribute("erreurUtilisateurInconnu", "Utilisateur inconnu");
 			return "index";
-		}
+		}*/
 	/*String motDePasse = request.getParameter("motDePasse");
 	String courriel = request.getParameter("courriel");
 	PersonneDAOImpl pdao = new PersonneDAOImpl();
@@ -100,7 +100,7 @@ public class UserController {
 		session.setAttribute("prenom", pTemp.getPrenom());
 	}*/
 		
-	}
+	/*}
 
 
 	@RequestMapping(value = "/deconnexion", method = RequestMethod.GET)
@@ -111,4 +111,4 @@ public class UserController {
 		return "jecpaskoi";
 	}
 
-}
+}*/
