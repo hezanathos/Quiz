@@ -35,6 +35,7 @@ public class Proposition implements Serializable {
 		super();
 
 	}
+	
 
 	public Proposition(int id, String libelle, int bonneReponse) {
 		super();
