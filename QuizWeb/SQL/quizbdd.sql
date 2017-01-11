@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `proposition` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `libelle` text NOT NULL,
   `bonnereponse` int(11) NOT NULL,
-  `idquestion` int(10) ,
+  `idquestion` int(10) NOT NULL ,
   PRIMARY KEY (`id`),
   KEY `fkquestion` (`idquestion`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
