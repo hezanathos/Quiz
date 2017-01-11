@@ -31,7 +31,7 @@
     <LinearLayout
             android:id="@+id/ll2"
             android:layout_width="match_parent"
-            android:layout_height="395dp"
+            android:layout_height="384dp"
             android:gravity="center_vertical|center_horizontal">
         <ProgressBar android:id="@+id/login_progress" style="?android:attr/progressBarStyleLarge"
                      android:layout_width="wrap_content" android:layout_height="wrap_content"
@@ -80,8 +80,8 @@
     <LinearLayout
             android:id="@+id/ll3"
             android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:gravity="bottom|center_horizontal">
+            android:layout_height="23dp"
+            android:gravity="bottom|center_horizontal" android:orientation="horizontal">
 
     </LinearLayout>
     <TextView

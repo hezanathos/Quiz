@@ -24,6 +24,11 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import okhttp3.*;
+
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 
 /**
@@ -47,7 +52,6 @@ public class LoginActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-
 
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
         serverAdress = settings.getString("serverAdress","srvinfodev.esigelec.fr:8080/quiz");
@@ -103,6 +107,9 @@ public class LoginActivity extends Activity {
                 LoginActivity.this.startActivity(new Intent(LoginActivity.this, OptionActivity.class));
             }
         });
+
+
+
     }
 
 
@@ -215,6 +222,29 @@ public class LoginActivity extends Activity {
             //this is where you should write your authentication code
             // or call external service
             // following try-catch just simulates network access
+
+            OkHttpClient client = new OkHttpClient();
+
+            RequestBody formBody = new FormBody.Builder()
+                    .add("email", emailStr)
+                    .add("password", passwordStr)
+                    .build();
+
+            Request request = new Request.Builder()
+                    .url(serverAdress+"/android/connexion")
+                    .post(formBody)
+                    .build();
+
+            try{
+                Response response = client.newCall(request).execute();
+
+                System.out.println("\nResponse =>  " + response + " <= end of response \n");
+
+                //Ici code d'utilisation de la reponse
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
             if(emailStr.equals("@a")&&passwordStr.equals("1234"))
             {
