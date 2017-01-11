@@ -1,6 +1,6 @@
 package fr.esigelec.quiz.controller.web;
 
-import fr.esigelec.quiz.dao.QuestionDAOImpl;
+/*import fr.esigelec.quiz.dao.QuestionDAOImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -18,14 +18,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
 
-/**
- * Created by Edouard on 04/01/2017.
- * 
- * @author - Edouard PETIT Matthieu Munhoven
- */
-
 @Controller
-@RequestMapping("Quiz")
+@RequestMapping("/Quiz")
 public class QuizController {
 
 	@Autowired
@@ -40,13 +34,13 @@ public class QuizController {
 		
 
 		return "animateur";
-		/*HttpSession session = request.getSession();
+		HttpSession session = request.getSession();
 		String courriel = (String) session.getAttribute("courriel");
 		String libelle = request.getParameter("libelle");
 		Timestamp dateDebutQuiz = (Timestamp) request.getParameter("dateDebutQuiz");
 		int noQuestionCourant = (Timestamp) request.getParameter("noQuestionCourant");
 
-		Quiz quiz = new Quiz(libelle, dateDebutQuiz, noQuestionCourant, etape, dateDebutQuestion, listeQuestion);*/
+		Quiz quiz = new Quiz(libelle, dateDebutQuiz, noQuestionCourant, etape, dateDebutQuestion, listeQuestion);
 
 	}
 
@@ -70,4 +64,4 @@ public class QuizController {
 	public String accueiladmin(){
 		return "indexadmin";
 	}
-}
+}*/
