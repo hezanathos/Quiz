@@ -13,6 +13,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 import javax.persistence.JoinColumn;
 
 /**
@@ -52,6 +56,7 @@ public class Quiz implements Serializable {
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "questionduquizz", joinColumns = { @JoinColumn(name = "idQuizz") }, inverseJoinColumns = {
 			@JoinColumn(name = "idQuestion") })
+	@Cascade(CascadeType.SAVE_UPDATE)
 	private List<Question> listeQuestion = new ArrayList<Question>();
 
 	public Quiz() {

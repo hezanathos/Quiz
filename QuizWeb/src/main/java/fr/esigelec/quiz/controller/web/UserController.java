@@ -59,7 +59,7 @@ public class UserController {
 
 			return "redirect:/index";
 		} else if (service.ajouterPersonne(p) == -1) {
-			model.addAttribute("erreurPersonneExiste", "Email déjà utilisé");
+			model.addAttribute("erreurPersonneExiste", "Email dï¿½jï¿½ utilisï¿½");
 			return "inscription";
 		}
 		/*
@@ -86,14 +86,25 @@ public class UserController {
 			model.addAttribute("erreurUtilisateurInconnu", "Utilisateur inconnu");
 			return "index";
 		}
-		/*
-		 * String motDePasse = request.getParameter("motDePasse"); String
-		 * courriel = request.getParameter("courriel"); PersonneDAOImpl pdao =
-		 * new PersonneDAOImpl(); Personne pTemp = pdao.getPersonne(courriel);
-		 * if(pdao.verifPersonne(courriel,motDePasse)){ HttpSession session =
-		 * request.getSession(); session.setAttribute("courriel",
-		 * pTemp.getMail()); session.setAttribute("nom", pTemp.getNom());
-		 * session.setAttribute("prenom", pTemp.getPrenom()); }
-		 */
+	/*String motDePasse = request.getParameter("motDePasse");
+	String courriel = request.getParameter("courriel");
+	PersonneDAOImpl pdao = new PersonneDAOImpl();
+	Personne pTemp = pdao.getPersonne(courriel);
+	if(pdao.verifPersonne(courriel,motDePasse)){
+		HttpSession session = request.getSession();
+		session.setAttribute("courriel", pTemp.getMail());
+		session.setAttribute("nom", pTemp.getNom());
+		session.setAttribute("prenom", pTemp.getPrenom());
+	}*/
+		
+	}
+
+
+	@RequestMapping(value = "/deconnexion", method = RequestMethod.GET)
+	public String deconnexion(HttpServletRequest request){
+		HttpSession session = request.getSession();
+		session.invalidate();
+
+		return "jecpaskoi";
 	}
 }
