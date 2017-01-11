@@ -14,6 +14,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import org.java_websocket.WebSocket;
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
 import org.json.JSONException;
@@ -23,6 +24,12 @@ import java.net.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import rx.functions.Action1;
+import ua.naiksoftware.stomp.LifecycleEvent;
+import ua.naiksoftware.stomp.Stomp;
+import ua.naiksoftware.stomp.client.StompClient;
+import ua.naiksoftware.stomp.client.StompMessage;
+
 /**
  * Created by gpillet on 06/01/2017.
  *
@@ -30,6 +37,7 @@ import java.util.List;
  */
 public class QuizActivity extends AppCompatActivity {
     public static final String PREFS_NAME = "Option";
+    public static final String STOMP_TAG = "StompClient";
 
     private ViewPager mPager;
     private PagerAdapter mPagerAdapter;
@@ -50,8 +58,7 @@ public class QuizActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_quiz);
-        // connect to the WebSocket
-        connectWebSocket();
+
         // Initialise the fragment list for the pager with a default fragment while we wait
         // for the server to send us data
         List<Fragment> fList = new ArrayList<>();
@@ -87,21 +94,114 @@ public class QuizActivity extends AppCompatActivity {
         }
     }
 
-    private WebSocketClient mWebSocketClient;
-
+    private StompClient mStompClient;
+    //private WebSocketClient mWebSocketClient;
     // Method to connect to the websocket and define the action listener
     private void connectWebSocket() {
-        URI uri;
-        try {
-            //we get the server address from the SharedPreferences or use default value
-            SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-            String webSocketAdress = settings.getString("serverAdress","srvinfodev.esigelec.fr:8080/quiz");
-            uri = new URI("ws://"+webSocketAdress+"/choisir");
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-            return;
-        }
+        //we get the server address from the SharedPreferences or use default value
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        String webSocketAdress = settings.getString("serverAdress", "srvinfodev.esigelec.fr:8080/quiz");
+        String uri = "ws://" + webSocketAdress + "/app/choisir/websocket";
+        mStompClient = Stomp.over(WebSocket.class, uri);
+        mStompClient.connect();
 
+        mStompClient.lifecycle().subscribe(new Action1<LifecycleEvent>() {
+            @Override
+            public void call(LifecycleEvent lifecycleEvent) {
+                switch (lifecycleEvent.getType()) {
+
+                    case OPENED:
+                        Log.d(STOMP_TAG, "Stomp connection opened");
+                        break;
+
+                    case ERROR:
+                        Log.e(STOMP_TAG, "Error", lifecycleEvent.getException());
+                        break;
+
+                    case CLOSED:
+                        Log.d(STOMP_TAG, "Stomp connection closed");
+                        break;
+                }
+            }
+        });
+        mStompClient.topic("/topic/questions").subscribe(new Action1<StompMessage>() {
+            @Override
+            public void call(StompMessage stompMessage) {
+                String s = stompMessage.getPayload();
+                Log.d(STOMP_TAG, s);
+                try {
+                    final JSONObject message = new JSONObject(s);
+                    final List<Fragment> fList = new ArrayList<>();
+                    final int status = message.getInt("status");
+                    aNumber = message.getString("numero");
+                    aQuestion = message.getJSONObject("question").getString("libelle");
+                    aQuestionId = message.getJSONObject("question").getString("id");
+                    aQuiz = message.getString("idquiz");
+                    switch (status) {
+                        case 0:
+                            fList.add(ResponseFragment.newInstance(status, s));
+                            break;
+                        case 1:
+                            fList.add(ResponseFragment.newInstance(status, s));
+                            break;
+                        case 2:
+                            fList.add(ResponseFragment.newInstance(status, s));
+                            fList.add(StatFragment.newInstance(message.getJSONArray("classement").toString()));
+                            break;
+                        default:
+                            break;
+                    }
+
+                    final String number = aNumber;
+                    final String question = aQuestion;
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (status == 0) {
+                                qNumber.setText(number);
+                                qQuestion.setText(question);
+                            }
+                            mPager = (ViewPager) findViewById(R.id.pager);
+                            mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager(), fList);
+                            mPager.setAdapter(mPagerAdapter);
+                        }
+                    });
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+    }
+
+    public void WebSocketSendReponce(int idProp){
+        try {
+            JSONObject reponce = new JSONObject();
+            reponce.accumulate("idperson", g.getIdpersonne());
+            reponce.accumulate("idquiz", aQuiz);
+            reponce.accumulate("idquestion", aQuestionId);
+            reponce.accumulate("idproposition", idProp);
+            mStompClient.send("/app/choisir",reponce.toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        connectWebSocket();
+    }
+
+    @Override
+    protected void onStop() {
+        if (mStompClient.isConnected()){
+            mStompClient.disconnect();
+        }
+        super.onStop();
+    }
+
+    /*
         mWebSocketClient = new WebSocketClient(uri) {
             @Override
             public void onOpen(ServerHandshake serverHandshake) {
@@ -182,4 +282,5 @@ public class QuizActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+    */
 }
