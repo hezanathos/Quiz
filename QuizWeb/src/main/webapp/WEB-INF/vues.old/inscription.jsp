@@ -8,6 +8,9 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    	<link rel="stylesheet" href="../styles/out/index.css">
+    	<link rel="stylesheet" href="../styles/out/register.css">
 		<title>Inscription</title>
 	</head>
 	<body>

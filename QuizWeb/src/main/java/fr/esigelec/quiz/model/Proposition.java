@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -31,8 +33,9 @@ public class Proposition implements Serializable {
 	@Column(name = "bonneReponse", unique = true, nullable = false)
 	private int bonneReponse;
 	
-	@Column(name = "idQuetion", unique = true, nullable = false)
-	private int idQuetion;
+	@ManyToOne
+	@JoinColumn(name="idquestion")
+	private Question question;
 
 	public Proposition() {
 		super();
@@ -40,33 +43,33 @@ public class Proposition implements Serializable {
 	}
 	
 
-	public Proposition(int id, String libelle, int bonneReponse , int idQuestion) {
+	public Proposition(int id, String libelle, int bonneReponse , Question question) {
 		super();
 		this.id = id;
 		this.libelle = libelle;
-		this.idQuetion = idQuestion;
+		this.question = question;
 		this.bonneReponse = bonneReponse;
 		
 	}
 	
-	public Proposition(String libelle, int bonneReponse, int idQuestion) {
+	public Proposition(String libelle, int bonneReponse, Question question) {
 		super();
 	
 		this.libelle = libelle;
-		this.idQuetion = idQuestion;
+		this.question = question;
 		this.bonneReponse = bonneReponse;
 	}
 	public int getId() {
 		return id;
 	}
 
-	public int getIdQuetion() {
-		return idQuetion;
+	public Question getQuestion() {
+		return question;
 	}
 
 
-	public void setIdQuetion(int idQuetion) {
-		this.idQuetion = idQuetion;
+	public void setQuestion(Question question) {
+		this.question = question;
 	}
 
 
