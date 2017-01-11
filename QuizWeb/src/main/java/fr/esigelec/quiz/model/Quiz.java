@@ -33,6 +33,9 @@ public class Quiz implements Serializable {
 
 	@Column(name = "libelle", unique = true, nullable = false)
 	private String libelle;
+	
+	@Column(name = "etat", unique = true, nullable = false)
+	private int etat;
 
 	@Column(name = "dateDebutQuiz", unique = true, nullable = false)
 	private Timestamp dateDebutQuiz;
@@ -55,11 +58,12 @@ public class Quiz implements Serializable {
 		super();
 	}
 
-	public Quiz(int id, String libelle, Timestamp dateDebutQuiz, int noQuestionCourant, int etape,
+	public Quiz(int id, String libelle,int etat ,Timestamp dateDebutQuiz, int noQuestionCourant, int etape,
 			Timestamp dateDebutQuestion, ArrayList<Question> listeQuestion) {
 		super();
 		this.id = id;
 		this.libelle = libelle;
+		this.etat = etat;
 		this.dateDebutQuiz = dateDebutQuiz;
 		this.noQuestionCourant = noQuestionCourant;
 		this.etape = etape;
@@ -67,11 +71,12 @@ public class Quiz implements Serializable {
 		this.listeQuestion = listeQuestion;
 	}
 
-	public Quiz(String libelle, Timestamp dateDebutQuiz, int noQuestionCourant, int etape, Timestamp dateDebutQuestion,
+	public Quiz(String libelle, int etat,  Timestamp dateDebutQuiz, int noQuestionCourant, int etape, Timestamp dateDebutQuestion,
 			ArrayList<Question> listeQuestion) {
 		super();
 
 		this.libelle = libelle;
+		this.etat = etat;
 		this.dateDebutQuiz = dateDebutQuiz;
 		this.noQuestionCourant = noQuestionCourant;
 		this.etape = etape;
@@ -89,6 +94,14 @@ public class Quiz implements Serializable {
 
 	public String getLibelle() {
 		return libelle;
+	}
+
+	public int getEtat() {
+		return etat;
+	}
+
+	public void setEtat(int etat) {
+		this.etat = etat;
 	}
 
 	public void setLibelle(String libelle) {
