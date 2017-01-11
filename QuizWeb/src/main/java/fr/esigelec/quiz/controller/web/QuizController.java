@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -35,13 +34,11 @@ public class QuizController {
     private QuestionDAOImpl serviceQuestionDAO;
 
 	@RequestMapping(value = "/ajouterQuiz", method = RequestMethod.POST)
-	public String ajouterLeQuiz(@Valid @ModelAttribute(value="quiz") final Quiz q,
-							final BindingResult pBindingResult, final ModelMap pModel){
-
+	public String ajouterLeQuiz(@ModelAttribute(value="quiz") final Quiz q,
+							 final ModelMap pModel){
 		if (!pBindingResult.hasErrors()) {
 			serviceQuizDAO.ajouterQuiz(q);
 		}
-
 		return "ajouterquestionadmin";
 		/*HttpSession session = request.getSession();
 		String courriel = (String) session.getAttribute("courriel");
@@ -54,8 +51,8 @@ public class QuizController {
 	}
 
 	@RequestMapping(value = "/ajouterQuestion", method = RequestMethod.POST)
-	public String ajouterQuestion(@Valid @ModelAttribute(value="question") final Question question,
-								  final BindingResult pBindingResult, final ModelMap pModel){
+	public String ajouterQuestion(@ModelAttribute(value="question") final Question question,
+								 final ModelMap pModel){
 
 		if (!pBindingResult.hasErrors()) {
 			serviceQuestionDAO.ajouterQuestion(question);

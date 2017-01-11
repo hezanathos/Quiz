@@ -18,6 +18,8 @@ public interface QuestionDAO {
 	public List<Question> getListeQuestions();
 	
 	public Question getQuestion(int id);
+
+	public List<Proposition> getListePropositions(int idQuestion);
 	
 	// public void supprimerQuestion(int id);
 	

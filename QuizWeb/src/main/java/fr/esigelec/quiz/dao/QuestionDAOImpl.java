@@ -1,5 +1,6 @@
 package fr.esigelec.quiz.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -9,6 +10,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import fr.esigelec.quiz.model.Personne;
+import fr.esigelec.quiz.model.Proposition;
 import fr.esigelec.quiz.model.Question;
 
 /**
@@ -59,6 +62,20 @@ public class QuestionDAOImpl implements QuestionDAO{
 		
 	}
 	*/
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Proposition> getListePropositions(int idQuestion) {
+		
+		List<Proposition> personnes = new ArrayList<Proposition>();
+
+		personnes = (List<Proposition>)sessionFactory.getCurrentSession()
+				.createQuery("from Proposition where id=?")
+				.setParameter(0, idQuestion)
+				.list();
+		
+		return personnes;
+	}
 	
 
 }
