@@ -1,5 +1,7 @@
 package fr.esigelec.quiz.controller.web;
 
+import fr.esigelec.quiz.dao.ChosirDAOImpl;
+import fr.esigelec.quiz.dao.PersonneDAOImpl;
 import fr.esigelec.quiz.dao.QuestionDAOImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -7,6 +9,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 
 import fr.esigelec.quiz.dao.QuizDAOImpl;
+import fr.esigelec.quiz.model.Choisir;
+import fr.esigelec.quiz.model.Proposition;
 import fr.esigelec.quiz.model.Question;
 import fr.esigelec.quiz.model.Quiz;
 
@@ -32,13 +36,15 @@ public class QuizController {
 	private QuizDAOImpl serviceQuizDAO;
 	@Autowired
     private QuestionDAOImpl serviceQuestionDAO;
+	@Autowired
+	private PersonneDAOImpl servicePersonneDAO;
+	@Autowired
+	private ChosirDAOImpl serviceChoisirDAO;
 
 	@RequestMapping(value = "/ajouterQuiz", method = RequestMethod.POST)
 	public String ajouterLeQuiz(@ModelAttribute(value="quiz") final Quiz q,
 							 final ModelMap pModel){
-		if (!pBindingResult.hasErrors()) {
 			serviceQuizDAO.ajouterQuiz(q);
-		}
 		return "ajouterquestionadmin";
 		/*HttpSession session = request.getSession();
 		String courriel = (String) session.getAttribute("courriel");
@@ -54,26 +60,35 @@ public class QuizController {
 	public String ajouterQuestion(@ModelAttribute(value="question") final Question question,
 								 final ModelMap pModel){
 
-		if (!pBindingResult.hasErrors()) {
 			serviceQuestionDAO.ajouterQuestion(question);
-
-		}
         return "ajouterquestionadmin";
 	}
 	
 	@RequestMapping(value = "/repondreQuestion", method = RequestMethod.GET)
-	public String repondreQuestion(HttpServletRequest request){
+	public String repondreQuestion(@ModelAttribute(value="choisir") final Choisir choisir,
+			 final ModelMap pModel){
+		serviceChoisirDAO.ajouterChoix(choisir);
+		return "index";
+	}
+	
+	@RequestMapping(value = "/demarrerQuiz", method = RequestMethod.GET)
+	public String demarrerQuiz(HttpServletRequest request,  ModelMap modelMap, HttpSession session){
 
-		int idProposition = (int)request.getAttribute("idProposition");
-		int idQuestion = (int)request.getAttribute("idQuestion");
-		
-		
-		List<Question> propositions = serviceQuestionDAO.getListePropositions(idQuestion);
-		
-		if(propositions.getProposition().getBonneReponse() == 0){
-			return "question";
-		}else{
-	        return "questionBR";
+		int idQuiz = Integer.parseInt(request.getParameter("idQuiz"));
+		//session = request.getSession();
+		if(servicePersonneDAO.getPersonneByEmail(session.getAttribute("courriel").toString()).getDroits() == 0) {
+			modelMap.addAttribute("idQuiz", idQuiz);
+			return "quiz";
 		}
+		
+		return "index";
+		
+	}
+	
+	@RequestMapping(value = "/afficherStats", method = RequestMethod.GET)
+	public String afficherStats(HttpServletRequest request){
+		
+		int idQuiz = Integer.parseInt(request.getParameter("idQuiz"));
+		Quiz quizz = serviceQuizDAO.getQuiz(idQuiz);
 	}
 }
