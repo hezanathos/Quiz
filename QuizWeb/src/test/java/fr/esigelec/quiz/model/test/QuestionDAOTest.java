@@ -44,7 +44,7 @@ public class QuestionDAOTest extends TestCase {
 	}
 
 	@Test
-	public void testPersonneDAO() {
+	public void testQuestionDAO() {
 		ApplicationContext context = new ClassPathXmlApplicationContext("dispatcher-servlet.xml");
 		Proposition p1 = new Proposition("gris", 0);
 		Proposition p2 = new Proposition("blanc", 1);
@@ -61,8 +61,10 @@ public class QuestionDAOTest extends TestCase {
 		
 		QuestionDAO qDAO1 = (QuestionDAO) context.getBean("questionDAOImpl");
 		int formerSize = pDAO.getListePropositions().size();
+		int formersize = qDAO1.getListeQuestions().size();
+		
 		qDAO1.ajouterQuestion(q2);
-		assertTrue( qDAO1.getListeQuestions().contains((q2)));
+		assertTrue( qDAO1.getListeQuestions().size()> formersize ) ;
 		for (Question question : qDAO1.getListeQuestions()) {
 		if (question.getLibelle().equals("Quelle est la couleur du cheval blanc d'henri IV"))	flag =1;
 		} 
@@ -73,7 +75,15 @@ public class QuestionDAOTest extends TestCase {
 		
 		assertTrue( pDAO.getListePropositions().size()>formerSize);
 		
-	
+	    assertEquals(qDAO1.getListePropositions(q2.getId()).size(),4);
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 	
 }

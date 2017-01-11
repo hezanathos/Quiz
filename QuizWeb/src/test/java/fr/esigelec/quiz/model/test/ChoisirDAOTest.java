@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.List;
+
 
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -12,7 +12,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import fr.esigelec.quiz.dao.ChoisirDAO;
 import fr.esigelec.quiz.dao.PersonneDAO;
-import fr.esigelec.quiz.dao.PropositionDAO;
+
 import fr.esigelec.quiz.dao.QuizDAO;
 import fr.esigelec.quiz.model.Choisir;
 import fr.esigelec.quiz.model.Personne;

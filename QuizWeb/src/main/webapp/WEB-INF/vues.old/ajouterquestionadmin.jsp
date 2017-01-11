@@ -17,11 +17,11 @@
 
     <div class="mainbody">
     <form:form method="post" action="ajouterQuestion">
-        <div class="questioncorps">Question : <form:input type="text" path="question"/></div>
-        <div class="bonnereponse">La bonne réponse.<form:input type="text" path="bonnereponse"/></div>
-        <div class="proposition">Proposition N 1:<form:input type="text" path="pro1"/></div>
-        <div class="proposition">Proposition N 2:<form:input type="text" path="pro2"/></div>
-        <div class="proposition">Proposition N 3:<form:input type="text" path="pro3"/></div>
+        <div class="questioncorps">Question : <form:input type="text" path=""/></div>
+        <div class="bonereponse">La bonne réponse.<form:input type="text" path=""/></div>
+        <div class="proposition">Proposition N 1:<form:input type="text" path=""/></div>
+        <div class="proposition">Proposition N 2:<form:input type="text" path=""/></div>
+        <div class="proposition">Proposition N 3:<form:input type="text" path=""/></div>
         <div class="button"><button>AJOUTER</button><button>RETABLIR</button><button>ANNULER</button></div>
    </form:form>
 
