@@ -1,0 +1,90 @@
+.home-content {
+    width: 900px;
+    margin: 0 auto;
+    .home-content-header {
+        * {
+            display: inline;
+        }
+        padding-top: 40px;
+    }
+    .home-content-list {
+        text-align: center;
+        * {
+            display: inline-block;
+            vertical-align: bottom;
+            box-sizing: border-box;
+            text-align: left;
+        }
+        .title {
+            font-weight: bold;
+        }
+        .actions {
+            float: right;
+        }
+        .home-content-list-item {
+            box-sizing: border-box;
+            width: 95%;
+            background-color: #ffffff;
+            margin: 15px;
+            border-radius: 3px;
+            padding: 20px;
+        }
+    }
+    
+    .active-quiz {
+        width: 95%;
+        background-color: white;
+        border-radius: 5px;
+        margin-top: 15px;
+        padding: 30px;
+        .header-aquiz {
+            text-align: center;
+            padding: 10px;
+            font-weight: 100;  
+            font-size: 2em;
+        }
+        .part-aquiz {
+            text-align: center;
+            padding: 10px;
+            font-weight: 100;  
+            b {
+                font-size: 2em;
+            }
+            
+        }
+        .content-aquiz {
+            text-align: center;
+            .participate {
+                font-size: 2em;
+                background-color: #9eceff;
+                padding: 15px;
+                display: inline-block;
+                border-radius: 5px;
+                padding-left: 15px !important;
+                padding-right: 15px !important;
+            }
+            .participate:hover {
+                background-color: #88baed;
+                cursor: pointer;
+                
+            }
+        }
+    }
+    .incoming-quiz {
+        background-color: white;
+        width: 95%;
+        background-color: white;
+        border-radius: 5px;
+        margin-top: 15px;
+        padding: 30px;
+        * {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .date {
+            float: right;
+            color: #555;
+            font-style: italic;
+        }
+    }
+}

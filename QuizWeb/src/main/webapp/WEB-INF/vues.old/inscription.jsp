@@ -17,9 +17,7 @@
       		<table>
        			<tr><th></th><th></th></tr>
        			<tr>
-      				<%-- génère un label avec un for="courriel"  --%>
            			<td><form:label path="mail" >Adresse mail :</form:label></td>
-          			<%-- génère un input avec id="mail", name="mail" et value=l'email de la personne reçue via le modèle --%>
            			<td><form:input path="mail" placeholder="nom@domaine.com" required/></td>
        			</tr>
      			<tr>
