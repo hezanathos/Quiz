@@ -1,0 +1,46 @@
+.create-quiz-content {
+    .create-quiz-content-header {
+        * {
+            display: inline;
+        }
+        padding-bottom: 10px;
+    }
+    width: 900px;
+    margin: 0 auto;
+    padding-top: 20px;
+    .lbl-quiz {
+        width: 100%;
+    }
+    .select-question {
+        * {
+            display: inline-block;
+        }
+        select {
+            background: transparent;
+            padding: 20px;
+            font-size: 16px;
+            line-height: 1;
+            border: 0;
+            border-radius: 0;
+            option {}
+        }
+    }
+    ul {
+        li {
+            list-style: none;
+            background-color: white;
+            padding: 10px;
+            margin-bottom: 5px;
+            border-radius: 5px;
+            span {
+                float: right;
+                color: red;
+                font-weight: bold;
+            }
+            span:hover {
+                cursor: pointer;
+                color: #c30000;
+            }
+        }
+    }
+}

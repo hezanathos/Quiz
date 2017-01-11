@@ -1,0 +1,22 @@
+.add-question-content {
+    .add-question-content-header {
+        * {
+            display: inline;
+        }
+        padding-bottom: 10px;
+    }
+    width: 900px;
+    margin: 0 auto;
+    padding-top: 20px;
+    .lbl-question {
+        width: 100%;
+    }
+    ul {
+        list-style: none;
+        li {
+            * {
+                display: inline-block;
+            }
+        }
+    }
+}

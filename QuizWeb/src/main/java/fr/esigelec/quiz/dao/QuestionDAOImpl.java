@@ -70,7 +70,7 @@ public class QuestionDAOImpl implements QuestionDAO{
 		List<Proposition> personnes = new ArrayList<Proposition>();
 
 		personnes = (List<Proposition>)sessionFactory.getCurrentSession()
-				.createQuery("from Proposition where id=?")
+				.createQuery("from Proposition where idQuestion =?")
 				.setParameter(0, idQuestion)
 				.list();
 		

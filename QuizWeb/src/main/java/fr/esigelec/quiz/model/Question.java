@@ -1,4 +1,4 @@
-package fr.esigelec.quiz.model;
+	package fr.esigelec.quiz.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -35,26 +35,24 @@ public class Question implements Serializable {
 	@Column(name = "libelle", unique = true, nullable = false)
 	private String libelle;
 
-	@OneToMany(fetch = FetchType.EAGER)
-	@Cascade(CascadeType.SAVE_UPDATE)
-	private List<Proposition> Listproposition = new ArrayList<Proposition>();
+	
 
 	public Question() {
 		super();
 	}
 
-	public Question(int id, String libelle, List<Proposition> listproposition) {
+	public Question(int id, String libelle) {
 		super();
 		this.id = id;
 		this.libelle = libelle;
-		Listproposition = listproposition;
+	
 	}
 
-	public Question(String libelle, List<Proposition> lp) {
+	public Question(String libelle) {
 		super();
 
 		this.libelle = libelle;
-		Listproposition = lp;
+	
 	}
 
 	public int getId() {
@@ -73,13 +71,6 @@ public class Question implements Serializable {
 		this.libelle = libelle;
 	}
 
-	public List<Proposition> getListproposition() {
-		return Listproposition;
-	}
-
-	public void setListproposition(ArrayList<Proposition> listproposition) {
-		Listproposition = listproposition;
-	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
@@ -87,7 +78,7 @@ public class Question implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Question [id=" + id + ", libelle=" + libelle + ", Listproposition=" + Listproposition + "]";
+		return "Question [id=" + id + ", libelle=" + libelle + "]";
 	}
 
 }
