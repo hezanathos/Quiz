@@ -19,6 +19,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 @Entity
 @Table(name = "question")
 public class Question implements Serializable {
@@ -33,6 +36,7 @@ public class Question implements Serializable {
 	private String libelle;
 
 	@OneToMany(fetch = FetchType.EAGER)
+	@Cascade(CascadeType.SAVE_UPDATE)
 	private List<Proposition> Listproposition = new ArrayList<Proposition>();
 
 	public Question() {

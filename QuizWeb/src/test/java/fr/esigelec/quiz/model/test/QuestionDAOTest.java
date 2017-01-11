@@ -30,7 +30,7 @@ public class QuestionDAOTest extends TestCase {
 		Proposition p1 = new Proposition("gris", 0);
 		Proposition p2 = new Proposition("blanc", 1);
 		Proposition p3 = new Proposition("Obi Wan Kenobi", 0);
-		Proposition p4 = new Proposition("la réponse 4", 0);
+		Proposition p4 = new Proposition("la rï¿½ponse 4", 0);
 		List<Proposition> lp = new ArrayList<Proposition>();
 		lp.add(p1);
 		lp.add(p2);
@@ -49,7 +49,7 @@ public class QuestionDAOTest extends TestCase {
 		Proposition p1 = new Proposition("gris", 0);
 		Proposition p2 = new Proposition("blanc", 1);
 		Proposition p3 = new Proposition("Obi Wan Kenobi", 0);
-		Proposition p4 = new Proposition("la réponse 4", 0);
+		Proposition p4 = new Proposition("la rï¿½ponse 4", 0);
 		List<Proposition> lp = new ArrayList<Proposition>();
 		PropositionDAO pDAO = (PropositionDAO) context.getBean("propositionDAOImpl");
 		lp.add(p1);
