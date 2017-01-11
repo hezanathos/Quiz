@@ -25,6 +25,10 @@ public class UserController {
 	@Autowired
 	private PersonneDAOImpl service;
 	
+	/**
+	 * handler qui permet d'afficher la page de connexion avec le formulaire. Le formulaire
+	 * sera rempli avec les données de la Personne créée ici
+	 */
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String accueilConnexion(Model model) {
 		Personne p = new Personne();
@@ -34,6 +38,10 @@ public class UserController {
 		return "index";
 	}
 	
+	/**
+	 * handler qui permet d'afficher la page d'inscription avec le formulaire. Le formulaire
+	 * sera rempli avec les données de la Personne créée ici
+	 */
 	@RequestMapping(value = "/inscription", method = RequestMethod.GET)
 	public String accueilInscription(Model model) {
 		Personne p = new Personne();
@@ -45,6 +53,9 @@ public class UserController {
 		return "inscription";
 	}
 	
+	/**
+	 * handler permettant d'ajouter une personne en BDD 
+	 */
 	@RequestMapping(value = "/inscription.do", method = RequestMethod.POST)
 	public String inscription(@RequestParam("mail") String mail, @RequestParam("mdp") String mdp,
 			@RequestParam("nom") String nom, @RequestParam("prenom") String prenom,Model model){
@@ -75,6 +86,9 @@ public class UserController {
 		pdao.ajouterPersonne(p);*/
 	}
 	
+	/**
+	 * handler permettant de faire la connexion d'une personne 
+	 */
 	@RequestMapping(value = "/connexion.do", method = RequestMethod.POST)
 	public String connexion(@RequestParam("mail") String mail, @RequestParam("mdp") String mdp,Model model){
 
