@@ -10,7 +10,9 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import fr.esigelec.quiz.dao.ChoisirDAO;
 import fr.esigelec.quiz.dao.PersonneDAO;
+import fr.esigelec.quiz.dao.PropositionDAO;
 import fr.esigelec.quiz.dao.QuizDAO;
 import fr.esigelec.quiz.model.Choisir;
 import fr.esigelec.quiz.model.Personne;
@@ -35,8 +37,8 @@ public class ChoisirDAOTest {
 		
 		listeQuestion.add(new Question("libelle",new ArrayList<Proposition>() 
 		{{ 
-			add(new Proposition("libellePropo1",1));
-			add(new Proposition("libellePropo2",2));
+			add(new Proposition(44,"libellePropo1",1));
+			add(new Proposition(45,"libellePropo2",2));
 		}}
 			
 		));
@@ -52,9 +54,17 @@ public class ChoisirDAOTest {
 		
 		
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-		Quiz quiz = new Quiz();
 		
-		Choisir choix = new Choisir(timestamp,personne2, quiz, p);
+		PropositionDAO pdao = (PropositionDAO) context.getBean("propositionDAOImpl");
+		Proposition prop = pdao.getProposition(44);
+		
+		Choisir choix = new Choisir(timestamp,personne2, quiz, prop);
+		
+		ChoisirDAO cdao = (ChoisirDAO) context.getBean("choisirDAOImpl");
+		
+		cdao.ajouterChoix(choix);
+		Choisir c = cdao.getChoix(0);
+		assertEquals(c.getPersonne(),personne2);
 
 	}
 
