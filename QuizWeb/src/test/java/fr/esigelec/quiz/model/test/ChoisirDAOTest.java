@@ -11,6 +11,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import fr.esigelec.quiz.dao.PersonneDAO;
+import fr.esigelec.quiz.dao.QuizDAO;
 import fr.esigelec.quiz.model.Choisir;
 import fr.esigelec.quiz.model.Personne;
 import fr.esigelec.quiz.model.Proposition;
@@ -28,22 +29,32 @@ public class ChoisirDAOTest {
 		pDAO1.ajouterPersonne(personne1);
 		Personne personne2 = pDAO1.getPersonneByEmail("blajgh@gmail.fr");
 				
+		Timestamp timestampDatedebutQuiz = Timestamp.valueOf("2007-09-23 10:10:10.0");
+		Timestamp timestampDatedebutQuestion = Timestamp.valueOf("2007-09-23 10:15:10.0");
+		ArrayList<Question> listeQuestion = new ArrayList<Question>();
 		
-		Proposition p1 = new Proposition("gris", 0);
-		Proposition p2 = new Proposition("blanc", 1);
-		Proposition p3 = new Proposition("Obi Wan Kenobi", 0);
-		Proposition p4 = new Proposition("la r�ponse 4", 0);
-		List<Proposition> lp = new ArrayList<Proposition>();
-		lp.add(p1);
-		lp.add(p2);
-		lp.add(p3);
-		lp.add(p4);
-		Question q1 = new Question("Quelle est la couleur du cheval blanc d'henri IV", lp);
+		listeQuestion.add(new Question("libelle",new ArrayList<Proposition>() 
+		{{ 
+			add(new Proposition("libellePropo1",1));
+			add(new Proposition("libellePropo2",2));
+		}}
+			
+		));
+
+	Quiz quiz = new Quiz("libelle",1,timestampDatedebutQuiz,1,1,timestampDatedebutQuestion,listeQuestion);
+		
+		//**********************
+		QuizDAO qdao = (QuizDAO) context.getBean("quizDAOImpl");
+		qdao.ajouterQuiz(quiz);
+		@SuppressWarnings("unused")
+		Quiz quizget=qdao.getQuiz(1);
+		
+		
 		
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 		Quiz quiz = new Quiz();
 		
-		Choisir choix = new Choisir(timestamp,personne2, quiz, p1);
+		Choisir choix = new Choisir(timestamp,personne2, quiz, p);
 
 	}
 
