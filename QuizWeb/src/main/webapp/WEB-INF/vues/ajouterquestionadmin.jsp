@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!-- TODO -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +16,7 @@
     </div>
 
     <div class="mainbody">
-    <form:form>
+    <form:form method="post" action="ajouterQuestion">
         <div class="questioncorps">Question : <form:input type="text" path=""/></div>
         <div class="bonereponse">La bonne réponse.<form:input type="text" path=""/></div>
         <div class="proposition">Proposition N 1:<form:input type="text" path=""/></div>
