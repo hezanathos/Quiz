@@ -10,7 +10,9 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import fr.esigelec.quiz.dao.ChoisirDAO;
 import fr.esigelec.quiz.dao.PersonneDAO;
+import fr.esigelec.quiz.dao.PropositionDAO;
 import fr.esigelec.quiz.dao.QuizDAO;
 import fr.esigelec.quiz.model.Choisir;
 import fr.esigelec.quiz.model.Personne;
@@ -52,9 +54,16 @@ public class ChoisirDAOTest {
 		
 		
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-		Quiz quiz = new Quiz();
 		
-		Choisir choix = new Choisir(timestamp,personne2, quiz, p);
+		
+		
+		Choisir choix = new Choisir(timestamp,personne2, quiz, listeQuestion.get(0).getListproposition().get(0));
+		
+		ChoisirDAO cdao = (ChoisirDAO) context.getBean("choisirDAOImpl");
+		
+		cdao.ajouterChoix(choix);
+		Choisir c = cdao.getChoix(0);
+		assertEquals(c.getPersonne(),personne2);
 
 	}
 
