@@ -1,5 +1,5 @@
 <!-- Steven ZANOU -->
-<!-- JSP contenant le formulaire de connexion -->
+<!-- JSP contenant le formulaire de la connexion -->
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
