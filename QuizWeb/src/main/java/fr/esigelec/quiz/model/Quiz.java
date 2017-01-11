@@ -13,6 +13,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 import javax.persistence.JoinColumn;
 
 /**
@@ -33,6 +37,9 @@ public class Quiz implements Serializable {
 
 	@Column(name = "libelle", unique = true, nullable = false)
 	private String libelle;
+	
+	@Column(name = "etat", unique = true, nullable = false)
+	private int etat;
 
 	@Column(name = "dateDebutQuiz", unique = true, nullable = false)
 	private Timestamp dateDebutQuiz;
@@ -49,17 +56,19 @@ public class Quiz implements Serializable {
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "questionduquizz", joinColumns = { @JoinColumn(name = "idQuizz") }, inverseJoinColumns = {
 			@JoinColumn(name = "idQuestion") })
+	@Cascade(CascadeType.SAVE_UPDATE)
 	private List<Question> listeQuestion = new ArrayList<Question>();
 
 	public Quiz() {
 		super();
 	}
 
-	public Quiz(int id, String libelle, Timestamp dateDebutQuiz, int noQuestionCourant, int etape,
+	public Quiz(int id, String libelle,int etat ,Timestamp dateDebutQuiz, int noQuestionCourant, int etape,
 			Timestamp dateDebutQuestion, ArrayList<Question> listeQuestion) {
 		super();
 		this.id = id;
 		this.libelle = libelle;
+		this.etat = etat;
 		this.dateDebutQuiz = dateDebutQuiz;
 		this.noQuestionCourant = noQuestionCourant;
 		this.etape = etape;
@@ -67,11 +76,12 @@ public class Quiz implements Serializable {
 		this.listeQuestion = listeQuestion;
 	}
 
-	public Quiz(String libelle, Timestamp dateDebutQuiz, int noQuestionCourant, int etape, Timestamp dateDebutQuestion,
+	public Quiz(String libelle, int etat,  Timestamp dateDebutQuiz, int noQuestionCourant, int etape, Timestamp dateDebutQuestion,
 			ArrayList<Question> listeQuestion) {
 		super();
 
 		this.libelle = libelle;
+		this.etat = etat;
 		this.dateDebutQuiz = dateDebutQuiz;
 		this.noQuestionCourant = noQuestionCourant;
 		this.etape = etape;
@@ -89,6 +99,14 @@ public class Quiz implements Serializable {
 
 	public String getLibelle() {
 		return libelle;
+	}
+
+	public int getEtat() {
+		return etat;
+	}
+
+	public void setEtat(int etat) {
+		this.etat = etat;
 	}
 
 	public void setLibelle(String libelle) {

@@ -18,7 +18,7 @@ import fr.esigelec.quiz.model.Proposition;
  * */
 
 
-@Repository("PropositionDAO") 
+@Repository("propositionDAOImpl") 
 @Transactional(propagation = Propagation.SUPPORTS)
 public class PropositionDAOImpl implements PropositionDAO {
 	@Autowired
