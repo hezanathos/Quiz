@@ -25,6 +25,7 @@ import java.sql.Timestamp;
  */
 
 @Controller
+@RequestMapping("Quiz")
 public class QuizController {
 
 	@Autowired
@@ -38,7 +39,7 @@ public class QuizController {
 
 		
 
-		return "jecpaskoi";
+		return "animateur";
 		/*HttpSession session = request.getSession();
 		String courriel = (String) session.getAttribute("courriel");
 		String libelle = request.getParameter("libelle");
@@ -54,11 +55,19 @@ public class QuizController {
 								 final ModelMap pModel){
 
 		
-        return "jecpaskoi";
+        return "ajouterquestionadmin";
 	}
 
 	@RequestMapping(value = "/demarrerQuiz", method = RequestMethod.GET)
 	public void startQuiz(final ModelMap pModel){
 
+	}
+	@RequestMapping(value = "/index")
+	public String accueilclient() {
+		return "index";
+	}
+	@RequestMapping(value="/indexadmin")
+	public String accueiladmin(){
+		return "indexadmin";
 	}
 }
