@@ -21,7 +21,7 @@ import fr.esigelec.quiz.model.Question;
  * */
 
 
-@Repository("QuestionDAO") 
+@Repository("questionDAOImpl") 
 @Transactional(propagation = Propagation.SUPPORTS)
 public class QuestionDAOImpl implements QuestionDAO{
 	
