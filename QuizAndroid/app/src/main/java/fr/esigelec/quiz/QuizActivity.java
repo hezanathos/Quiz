@@ -188,17 +188,17 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
+    protected void onResume() {
+        super.onResume();
         connectWebSocket();
     }
 
     @Override
-    protected void onStop() {
+    protected void onPause() {
         if (mStompClient.isConnected()){
             mStompClient.disconnect();
         }
-        super.onStop();
+        super.onPause();
     }
 
     /*
