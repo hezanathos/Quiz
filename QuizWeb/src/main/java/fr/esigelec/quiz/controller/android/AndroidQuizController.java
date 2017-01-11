@@ -11,14 +11,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
-import fr.esigelec.quiz.model.Choisir;
 import fr.esigelec.quiz.model.Proposition;
 import fr.esigelec.quiz.model.Question;
 
 /**
  * 
  * @author wangxi
- *
+ * 	Quiz controller for android
+ * @see https://spring.io/guides/gs/messaging-stomp-websocket/
  */
 
 @Controller
@@ -26,19 +26,33 @@ public class AndroidQuizController {
 
 	private SimpMessagingTemplate template;
 
+	/**
+	 * 
+	 * @param template
+	 */
 	@Autowired
 	public AndroidQuizController(SimpMessagingTemplate template) {
 		this.template = template;
 	}
 
+	/**
+	 *  Receive the reponse sended from Andorid
+	 * @param json in format {"idperson":1, "idquiz": 1,"idquestion" : 1, "idproposition": 1}
+	 * @throws Exception
+	 */
 	@MessageMapping("/choisir")
 	@SendTo("/topic/questions")
 	public void getAnswer(String json) throws Exception {
-		// {"idperson":1, "idquiz": 1, "idproposition": 1}
+		//TODO: save answer to BDD
 		
 	}
-
-	// send new question to broker
+	
+	/**
+	 * send new question to broker
+	 * @param question the question we are on, send to broker
+	 * @param idQuiz	the id of the Quiz we are on
+	 * @throws JsonProcessingException
+	 */
 	public void sendQuestion(Question question, int idQuiz) throws JsonProcessingException {
 		ObjectMapper mapper = new ObjectMapper();
 		ObjectNode objectNode = mapper.createObjectNode();
@@ -69,6 +83,12 @@ public class AndroidQuizController {
 		this.template.convertAndSend("/topic/questions", json);
 	}
 
+	/**
+	 *  Send the question status to broker
+	 * @param question the question we are on
+	 * @param idQuiz the id of the quiz which we are on
+	 * @throws JsonProcessingException
+	 */
 	public void sendStatus(Question question, int idQuiz) throws JsonProcessingException {
 		ObjectMapper mapper = new ObjectMapper();
 		ObjectNode objectNode = mapper.createObjectNode();
@@ -95,6 +115,12 @@ public class AndroidQuizController {
 		this.template.convertAndSend("/topic/questions", json);
 	}
 
+	/**
+	 * Send the question result to broker
+	 * @param question the question we are on
+	 * @param idQuiz the id of the Quiz we are on
+	 * @throws JsonProcessingException
+	 */
 	public void sendResult(Question question, int idQuiz) throws JsonProcessingException {
 		ObjectMapper mapper = new ObjectMapper();
 		ObjectNode objectNode = mapper.createObjectNode();
