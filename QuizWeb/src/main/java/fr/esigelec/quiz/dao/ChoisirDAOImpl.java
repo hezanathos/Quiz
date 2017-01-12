@@ -89,16 +89,46 @@ public class ChoisirDAOImpl implements ChoisirDAO {
 		return nbBonnesResponses;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public int getNbReponses(int idQuiz, int idQuestion) {
-		// TODO Auto-generated method stub
-		return 0;
+		List<Choisir> listeDesChoix = new ArrayList<Choisir>();
+
+		listeDesChoix = (List<Choisir>) sessionFactory.getCurrentSession()
+				.createQuery("from Choisir where idquiz=?") 
+				.setParameter(0, idQuiz);
+		
+		return listeDesChoix.size();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public int getNbBonnesReponseDunParticipantAuQuiz(int idQuiz, int idParticipant) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		int nbBonnesResponses=0;
+		
+		List<Choisir> listeDesChoix = new ArrayList<Choisir>();
+
+		listeDesChoix = (List<Choisir>) sessionFactory.getCurrentSession()
+				.createQuery("from Choisir where idquiz=? and idpersonne=?") 
+				.setParameter(0, idQuiz)
+				.setParameter(1, idParticipant);
+		
+		
+			for(Choisir chx : listeDesChoix ){
+			
+			
+			if(chx.getProposition().isBonneReponse()==1)
+			{
+				nbBonnesResponses++;
+			}
+			else{
+				//nothing
+			}
+			
+		}
+		
+		return nbBonnesResponses;
 	}
 
 }
