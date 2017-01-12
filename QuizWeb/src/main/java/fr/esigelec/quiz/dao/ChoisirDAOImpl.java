@@ -61,12 +61,7 @@ public class ChoisirDAOImpl implements ChoisirDAO {
 
 	}
 
-<<<<<<< HEAD
-	@Override
-	public int getNbBonnesReponses(int idQuiz, int idQuestion) {
-		// TODO Auto-generated method stub
-		return 0;
-=======
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public int getNbBonnesReponses(int idQuiz, int idQuestion) {
@@ -92,7 +87,6 @@ public class ChoisirDAOImpl implements ChoisirDAO {
 		
 		
 		return nbBonnesResponses;
->>>>>>> branch 'master' of https://github.com/hezanathos/Quiz.git
 	}
 
 	@Override
