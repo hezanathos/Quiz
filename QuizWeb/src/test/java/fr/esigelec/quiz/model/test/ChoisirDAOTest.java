@@ -113,11 +113,31 @@ public class ChoisirDAOTest {
 		Personne p1= new Personne ("LESIEU","Rock","lesieurock@der.fr","mdp1",1000);
 		Personne p2= new Personne ("ROUX","Richard","rouxrichard@der.fr","mdp2",0);
 		
+		PersonneDAO personneDAO= (PersonneDAO) context.getBean("personneDAOImpl");
+		personneDAO.ajouterPersonne(p1);
+		personneDAO.ajouterPersonne(p2);
+		p1=personneDAO.getPersonneByEmail("lesieurock@der.fr");
+		p2=personneDAO.getPersonneByEmail("rouxrichard@der.fr");
+		
+		
+
+		
 		Quiz quiz1 = new Quiz("libelleQuiz1",1,Timestamp.valueOf("2007-09-23 09:10:10.0"),1,1,Timestamp.valueOf("2007-09-23 09:16:10.0"),listeQuestion1);
 		Quiz quiz2 = new Quiz("libelleQuiz2",1,Timestamp.valueOf("2007-09-23 10:10:10.0"),1,1,Timestamp.valueOf("2007-09-23 10:16:10.0"),listeQuestion2);
 
+		QuizDAO quizDAO=(QuizDAO) context.getBean("quizDAOImpl");
+		quizDAO.ajouterQuiz(quiz1);
+		quizDAO.ajouterQuiz(quiz2);
+		
+		
+		
+		
 		Proposition prop1 = new Proposition("libelleprop1", 1, listeQuestion1.get(0));
 		Proposition prop2 = new Proposition("libelleprop2", 1, listeQuestion2.get(0));
+		
+		PropositionDAO propositionDAO= (PropositionDAO) context.getBean("propositionDAOImpl");
+		propositionDAO.ajouterProposition(prop1);
+		propositionDAO.ajouterProposition(prop2);
 
 		
 		Choisir chx1= new Choisir(timestampDate1,p1,quiz1,prop1);
@@ -128,13 +148,14 @@ public class ChoisirDAOTest {
 		cdao.ajouterChoix(chx1);
 		cdao.ajouterChoix(chx2);
 		
+		
 		int nbbonnesRp=cdao.getNbBonnesReponses(quiz1.getId(), listeQuestion1.get(0).getId());
 		
 		if(nbbonnesRp==1){
 			assertEquals(nbbonnesRp,1);
 			
 		}else{
-			fail("Test not good");
+			fail("Test not good"+nbbonnesRp);
 		}
 
 
