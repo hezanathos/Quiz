@@ -64,7 +64,7 @@ public class Quiz implements Serializable {
 	}
 
 	public Quiz(int id, String libelle,int etat ,Timestamp dateDebutQuiz, int noQuestionCourant, int etape,
-			Timestamp dateDebutQuestion, ArrayList<Question> listeQuestion) {
+			Timestamp dateDebutQuestion,List<Question> listeQuestion) {
 		super();
 		this.id = id;
 		this.libelle = libelle;
@@ -77,7 +77,7 @@ public class Quiz implements Serializable {
 	}
 
 	public Quiz(String libelle, int etat,  Timestamp dateDebutQuiz, int noQuestionCourant, int etape, Timestamp dateDebutQuestion,
-			ArrayList<Question> listeQuestion) {
+			List<Question> listeQuestion) {
 		super();
 
 		this.libelle = libelle;

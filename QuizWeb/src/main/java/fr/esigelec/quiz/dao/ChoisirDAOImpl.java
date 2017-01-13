@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.esigelec.quiz.model.Choisir;
+import fr.esigelec.quiz.model.Personne;
 
 
 /**
@@ -180,6 +181,13 @@ public class ChoisirDAOImpl implements ChoisirDAO {
 		}
 		
 		return nbBonnesResponses;
+	}
+
+
+	@Override
+	public List<Personne> getParticipantsQuiz(int idQuiz) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
