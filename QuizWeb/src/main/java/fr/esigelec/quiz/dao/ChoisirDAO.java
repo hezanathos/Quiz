@@ -11,7 +11,7 @@ import fr.esigelec.quiz.model.Choisir;
  * */
 
 
- //Interface ChosirDAO
+ // Interface ChosirDAO
 
 
 public interface ChoisirDAO {

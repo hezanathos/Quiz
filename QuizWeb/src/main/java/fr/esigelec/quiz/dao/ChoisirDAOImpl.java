@@ -61,7 +61,7 @@ public class ChoisirDAOImpl implements ChoisirDAO {
 	}
 
 	/**
-	 * méthode pour récupérer une liste de choix 
+	 * méthode pour récupérer une liste des choix 
 	 * @return la liste des choix dans la bdd
 	 */
 	@SuppressWarnings("unchecked")
