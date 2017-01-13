@@ -28,8 +28,8 @@
                     <form:input type="text" placeholder="Nom" required path="nom"/>
                     <form:input type="text" placeholder="Votre adresse-email" required path="courriel"/>
                     <form:input type="password" placeholder="Votre mot de passe" required path="mdp"/>
-                    <form:input type="password" placeholder="Confirmer le mot de passe" required path="mdp"/>
-                    <input type="submit" value="S'inscrire">
+                    <input type="password" placeholder="Confirmer le mot de passe" required />
+                    <input type="submit" value="S'inscrire"> 
                 </form:form>
                 <a>J'ai déjà un compte</a>
             </div>
