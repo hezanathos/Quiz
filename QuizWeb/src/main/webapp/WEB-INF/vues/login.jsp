@@ -9,8 +9,8 @@
     <meta charset="utf-8">
     <title>quiz - login</title>
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-    <link rel="stylesheet" href="../styles/out/index.css">
-    <link rel="stylesheet" href="../styles/out/login.css">
+    <link rel="stylesheet" href="../styles/compiled/index.css">
+    <link rel="stylesheet" href="../styles/compiled/login.css">
 
 </head>
 
@@ -25,12 +25,13 @@
             <div class="content">
                 <h1>Connexion</h1>
                 <form:form method="POST" action="connexion.do" commandName="formulaireConnexion">
-                    <form:input type="text" placeholder="Votre identifiant" path="" required/>
-                    <form:input type="password" placeholder="Votre mot de passe"path="" required/>
+                	
+                    <form:input type="text" placeholder="Votre identifiant" path="mail"/>
+                    <form:input type="password" placeholder="Votre mot de passe" path="mdp"/>
                     <input type="submit" value="Se connecter">
                 </form:form>
                 <br>
-                <a>Je n'ai pas de compte</a>
+                <a href="inscription">Je n'ai pas de compte</a>
             </div>
         </div>
     </div>

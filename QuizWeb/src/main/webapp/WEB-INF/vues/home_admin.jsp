@@ -27,7 +27,23 @@
             <h2>Quiz créés</h2>
             <h4><a>Créer un quiz</a></h4>
         </div>
-        <div class="home-content-list">
+       	<div class="home-content-list">
+       
+        <c:if test="${!empty quiz}">
+			  <c:forEach items="${quiz}" var="quizunique">
+			  
+				  <div class="home-content-list-item">
+	                <div class="title"><c:out value="${quizunique.getLibelle}"/></div>
+	                <div class="actions">
+	                    <a>Lancer</a>
+	                    <a>Modifier</a>
+	                    <a>Supprimer</a>
+	                </div>
+	           	 </div>
+			  
+			  </c:forEach>
+			</c:if>
+  <!--
             <div class="home-content-list-item">
                 <div class="title">Ceci est un quiz de ouf</div>
                 <div class="actions">
@@ -35,28 +51,8 @@
                     <a>Modifier</a>
                     <a>Supprimer</a>
                 </div>
-            </div><div class="home-content-list-item">
-                <div class="title">Ceci est un quiz de ouf</div>
-                <div class="actions">
-                    <a>Lancer</a>
-                    <a>Modifier</a>
-                    <a>Supprimer</a>
-                </div>
-            </div><div class="home-content-list-item">
-                <div class="title">Ceci est un quiz de ouf</div>
-                <div class="actions">
-                    <a>Lancer</a>
-                    <a>Modifier</a>
-                    <a>Supprimer</a>
-                </div>
-            </div><div class="home-content-list-item">
-                <div class="title">Ceci est un quiz de ouf</div>
-                <div class="actions">
-                    <a>Lancer</a>
-                    <a>Modifier</a>
-                    <a>Supprimer</a>
-                </div>
-            </div><div class="home-content-list-item">
+            </div>
+            <div class="home-content-list-item">
                 <div class="title">Ceci est un quiz de ouf</div>
                 <div class="actions">
                     <a>Lancer</a>
@@ -64,7 +60,31 @@
                     <a>Supprimer</a>
                 </div>
             </div>
-            
+            <div class="home-content-list-item">
+                <div class="title">Ceci est un quiz de ouf</div>
+                <div class="actions">
+                    <a>Lancer</a>
+                    <a>Modifier</a>
+                    <a>Supprimer</a>
+                </div>
+            </div>
+            <div class="home-content-list-item">
+                <div class="title">Ceci est un quiz de ouf</div>
+                <div class="actions">
+                    <a>Lancer</a>
+                    <a>Modifier</a>
+                    <a>Supprimer</a>
+                </div>
+            </div>
+            <div class="home-content-list-item">
+                <div class="title">Ceci est un quiz de ouf</div>
+                <div class="actions">
+                    <a>Lancer</a>
+                    <a>Modifier</a>
+                    <a>Supprimer</a>
+                </div>
+            </div>
+              -->
         </div>
     </div>
 </body>

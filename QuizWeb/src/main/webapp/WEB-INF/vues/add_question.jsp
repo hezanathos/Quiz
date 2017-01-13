@@ -28,25 +28,25 @@
             <h4><a>Rétablir</a></h4>
         </div>
 
-        <form>
-            <input class="lbl-question" type="text" placeholder="Intitulé de la question">
+        <form:form>
+            <form:input class="lbl-question" type="text" path="" placeholder="Intitulé de la question"/>
             <ul>
                 <li>
-                    <input type="text" placeholder="Bonne réponse">
+                    <form:input type="text" placeholder="Bonne réponse" path=""/>
                 </li>
                 <li>
-                    <input type="text" placeholder="Proposition #2">
+                    <form:input type="text" placeholder="Proposition #2" path=""/>
                 </li>
                 <li>
-                    <input type="text" placeholder="Proposition #3">
+                    <form:input type="text" placeholder="Proposition #3" path=""/>
                 </li>
                 <li>
-                    <input type="text" placeholder="Proposition #4">
+                    <form:input type="text" placeholder="Proposition #4" path=""/>
                 </li>
                 
             </ul>
             <input type="submit" value="Valider">
-        </form>
+        </form:form>
     </div>
 </body>
 

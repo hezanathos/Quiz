@@ -29,8 +29,8 @@ public class UserController {
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String accueilConnexion(Model model) {
 		Personne p = new Personne();
-		p.setMail("inconnu"); // pour l'exemple
-		p.setMdp("inconnu");
+		p.setMail(""); // pour l'exemple
+		p.setMdp("");
 		model.addAttribute("formulaireConnexion", p);
 		return "index";
 	}
@@ -38,10 +38,10 @@ public class UserController {
 	@RequestMapping(value = "/inscription", method = RequestMethod.GET)
 	public String accueilInscription(Model model) {
 		Personne p = new Personne();
-		p.setMail("inconnu"); // pour l'exemple
-		p.setMdp("inconnu");
-		p.setNom("inconnu");
-		p.setPrenom("inconnu");
+		p.setMail(""); // pour l'exemple
+		p.setMdp("");
+		p.setNom("");
+		p.setPrenom("");
 		model.addAttribute("formulaireInscription", p);
 		return "inscription";
 	}
@@ -82,7 +82,6 @@ public class UserController {
 		Personne pTemp = service.getPersonneByEmail(mail);
 		if (service.verifPersonne(mail, mdp) != (-1)) {// On verifie si la
 														// personne existe
-
 			return "quiz";
 		} else {
 			model.addAttribute("erreurUtilisateurInconnu", "Utilisateur inconnu");
