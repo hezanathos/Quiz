@@ -186,8 +186,15 @@ public class ChoisirDAOImpl implements ChoisirDAO {
 
 	@Override
 	public List<Personne> getParticipantsQuiz(int idQuiz) {
-		// TODO Auto-generated method stub
+		
 		return null;
+	}
+
+
+	@Override
+	public int getNbChoixDunProposition(int idProposition) {
+		
+		return 0;
 	}
 
 }
