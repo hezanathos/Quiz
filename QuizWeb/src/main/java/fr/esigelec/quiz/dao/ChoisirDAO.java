@@ -3,6 +3,7 @@ package fr.esigelec.quiz.dao;
 import java.util.List;
 
 import fr.esigelec.quiz.model.Choisir;
+import fr.esigelec.quiz.model.Personne;
 
 /**
  * 
@@ -29,4 +30,6 @@ public interface ChoisirDAO {
 	public int getNbReponses(int idQuiz, int idQuestion);
 
 	public int getNbBonnesReponseDunParticipantAuQuiz(int idQuiz, int idParticipant);
+	
+	public List<Personne> getParticipantsQuiz(int idQuiz);
 }

@@ -27,6 +27,5 @@ public interface PersonneDAO {
 	public int verifPersonne(String email,String motdePasse);
 	
 	public Boolean verifEmailPresent(String email);
-	
 
 }

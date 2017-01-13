@@ -7,6 +7,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 
 import fr.esigelec.quiz.model.Choisir;
+import fr.esigelec.quiz.model.Personne;
 import fr.esigelec.quiz.model.Proposition;
 import fr.esigelec.quiz.model.Question;
 import fr.esigelec.quiz.model.Quiz;
@@ -20,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -67,7 +69,7 @@ public class QuizController {
 	public String repondreQuestion(@ModelAttribute(value="choisir") final Choisir choisir,
 			 final ModelMap pModel){
 		serviceChoisirDAO.ajouterChoix(choisir);
-		return "index";
+		return "ingame";
 	}
 	
 	@RequestMapping(value = "/demarrerQuiz", method = RequestMethod.GET)
@@ -80,7 +82,7 @@ public class QuizController {
 			return "quiz";
 		}
 		
-		return "index";
+		return "ingame";
 		
 	}
 	
@@ -92,7 +94,16 @@ public class QuizController {
 		int nbBonnesReponses = serviceChoisirDAO.getNbBonnesReponses(idQuiz, idQuestion);
 		modelMap.addAttribute("nbReponses", nbReponses);
 		modelMap.addAttribute("nbBonnesReponses", nbBonnesReponses);
-		return "index";
+		
+		List<Personne> participants = serviceChoisirDAO.getParticipantsQuiz(idQuiz);
+		HashMap classement = new HashMap<String,Integer>();
+		for(int i=0; i< participants.size();i++){
+			classement.put(participants.get(i).getNom(), serviceChoisirDAO.getNbBonnesReponseDunParticipantAuQuiz(idQuiz, participants.get(i).getId()));
+		}
+		
+		modelMap.addAttribute("stats", classement);
+		
+		return "stats";
 	}
 
 

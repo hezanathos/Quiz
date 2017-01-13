@@ -83,7 +83,7 @@ public class UserController {
 		if (service.verifPersonne(mail, mdp) != (-1)) {// On verifie si la
 														// personne existe
 
-			return "redirect:/quiz";
+			return "quiz";
 		} else {
 			model.addAttribute("erreurUtilisateurInconnu", "Utilisateur inconnu");
 			return "index";

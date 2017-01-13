@@ -22,7 +22,5 @@ public interface QuestionDAO {
 	public List<Proposition> getListePropositions(int idQuestion);
 	
 	// public void supprimerQuestion(int id);
-	
-	public List<Proposition> getListePropositions(int idQuestion);
 
 }
