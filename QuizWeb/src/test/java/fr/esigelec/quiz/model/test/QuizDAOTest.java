@@ -29,7 +29,7 @@ public class QuizDAOTest {
 	public void testsQuiz() {
 		Timestamp timestampDatedebutQuiz = Timestamp.valueOf("2007-09-23 10:10:10.0");
 		Timestamp timestampDatedebutQuestion = Timestamp.valueOf("2007-09-23 10:15:10.0");
-		ArrayList<Question> listeQuestion = new ArrayList<Question>();
+		List<Question> listeQuestion = new ArrayList<Question>();
 		
 		listeQuestion.add(new Question("libelle"));
 		listeQuestion.add(new Question("libelle2"));
