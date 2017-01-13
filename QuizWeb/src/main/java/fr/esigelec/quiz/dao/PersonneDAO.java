@@ -10,6 +10,8 @@ import fr.esigelec.quiz.model.Personne;
  * @author Sahobau
  * 
  * */
+
+//Interface PersonneDAO
 public interface PersonneDAO {
 	
 	public int ajouterPersonne(Personne personne);

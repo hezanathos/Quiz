@@ -21,7 +21,7 @@ import fr.esigelec.quiz.model.Choisir;
 /**
  * 
  * Classe d'implementation des méthodes contenues dans ChosirDAO
- *s
+ *
  */
 
 @Repository("choisirDAOImpl")
