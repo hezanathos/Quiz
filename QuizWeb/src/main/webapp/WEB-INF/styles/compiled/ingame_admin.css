@@ -1,0 +1,100 @@
+.ingame-content {
+  margin: 0 auto;
+  width: 900px; }
+  .ingame-content .admin-controles {
+    text-align: center;
+    margin-bottom: 20px; }
+    .ingame-content .admin-controles * {
+      padding: 20px; }
+  .ingame-content .pending-question {
+    display: none; }
+  .ingame-content .results .results-question {
+    text-align: center; }
+    .ingame-content .results .results-question * {
+      display: inline-block; }
+    .ingame-content .results .results-question .stat {
+      text-align: center; }
+      .ingame-content .results .results-question .stat * {
+        display: block; }
+  .ingame-content .results .global-results .list-leaderboard {
+    margin: 0 auto;
+    padding: 30px;
+    width: 250px; }
+    .ingame-content .results .global-results .list-leaderboard .item * {
+      display: inline-block;
+      vertical-align: middle; }
+    .ingame-content .results .global-results .list-leaderboard .item .index {
+      font-weight: bolder;
+      font-size: 2em;
+      width: 40px; }
+    .ingame-content .results .global-results .list-leaderboard .item .nick {
+      font-size: 1.5em;
+      font-weight: 100; }
+    .ingame-content .results .global-results .list-leaderboard .item .g-score {
+      float: right;
+      font-size: 2em; }
+  .ingame-content .question {
+    margin: 20px auto;
+    width: 90%; }
+    .ingame-content .question .lbl-question {
+      font-family: 'PT Sans', sans-serif !important;
+      font-size: 3em;
+      font-weight: 100;
+      margin-bottom: 20px; }
+  .ingame-content .chrono {
+    text-align: center; }
+    .ingame-content .chrono #secondes {
+      font-size: 4em;
+      font-weight: bold; }
+    .ingame-content .chrono #ms {
+      font-size: 3em;
+      color: #777;
+      font-weight: 100; }
+    .ingame-content .chrono .bar {
+      border-radius: 10px;
+      margin-top: 15px;
+      background-color: #e5e5e5;
+      height: 6px;
+      width: 100%; }
+      .ingame-content .chrono .bar #inner-bar {
+        border-radius: 10px;
+        background-color: #66c4ff;
+        height: 100%;
+        width: 23%; }
+  .ingame-content .bread {
+    text-align: center;
+    padding: 20px;
+    font-weight: 100;
+    font-size: 2em;
+    color: #666;
+    margin-top: 25px; }
+  .ingame-content .answers .row .prop {
+    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: middle;
+    background-color: white;
+    text-align: center;
+    padding: 20px;
+    width: 300px;
+    margin: 20px;
+    border-radius: 5px;
+    font-size: 1.5em;
+    position: relative; }
+    .ingame-content .answers .row .prop .score {
+      height: 3px;
+      width: 100%;
+      background-color: transparent;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      border-radius: 0px 0px 5px 5px; }
+      .ingame-content .answers .row .prop .score .inner-score {
+        background-color: #66c4ff;
+        width: 40%;
+        height: 100%;
+        border-radius: 0px 0px 0px 5px; }
+  .ingame-content .answers .row .prop:hover {
+    background-color: #add0ff;
+    cursor: pointer; }
+
+/*# sourceMappingURL=ingame_admin.css.map */
