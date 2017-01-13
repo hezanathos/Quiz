@@ -16,9 +16,13 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.esigelec.quiz.model.Choisir;
-import fr.esigelec.quiz.model.Personne;
-import fr.esigelec.quiz.model.Question;
-import fr.esigelec.quiz.model.Quiz;
+
+
+/**
+ * 
+ * Classe d'implementation des méthodes contenues dans ChosirDAO
+ *s
+ */
 
 @Repository("choisirDAOImpl")
 @Transactional(propagation = Propagation.SUPPORTS)
@@ -27,6 +31,13 @@ public class ChoisirDAOImpl implements ChoisirDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 
+	
+	/**
+	 * méthode Ajouter un choix
+	 * 
+	 * @param choix , représente le choix à enregistrer
+	 * 
+	 */
 	@Override
 	public void ajouterChoix(Choisir choix) {
 
@@ -36,12 +47,23 @@ public class ChoisirDAOImpl implements ChoisirDAO {
 
 	}
 
+	
+	/**
+	 * méthode pour récupérer un choix 
+	 * @param id, représente l'identitifiant du choix à récupérer 
+	 * @return le choix désirer
+	 */
+	
 	@Override
 	@Transactional(readOnly = true)
 	public Choisir getChoix(int id) {
 		return (Choisir) sessionFactory.getCurrentSession().get(Choisir.class, id);
 	}
 
+	/**
+	 * méthode pour récupérer une liste de choix 
+	 * @return la liste des choix dans la bdd
+	 */
 	@SuppressWarnings("unchecked")
 	@Transactional(readOnly = true)
 	@Override
@@ -49,6 +71,11 @@ public class ChoisirDAOImpl implements ChoisirDAO {
 		return (List<Choisir>) sessionFactory.getCurrentSession().createCriteria(Choisir.class).list();
 	}
 
+	
+	/**
+	 * méthode de suppression d'un choix
+	 * @param id, représente l'identifiant du choix à supprimer 
+	 */
 	@Override
 	@Transactional(readOnly = true)
 	public void supprimerChoix(int id) {
@@ -61,12 +88,15 @@ public class ChoisirDAOImpl implements ChoisirDAO {
 
 	}
 
-<<<<<<< HEAD
-	@Override
-	public int getNbBonnesReponses(int idQuiz, int idQuestion) {
-		// TODO Auto-generated method stub
-		return 0;
-=======
+	/**
+	 * Méthode de récupération du nombre de bonnes réponses à une question d'un quiz
+	 * 
+	 * @param idQuiz, représente l'identifiant du Quiz dans lequel se trouve la question
+	 * @param idQuestion, représente l'idention de la question dont on veut le nombre de bonnes réponses
+	 * 
+	 * @return le nombre de bonnes réponses correspondant à la question d'un quiz précis 
+	 */
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public int getNbBonnesReponses(int idQuiz, int idQuestion) {
@@ -92,19 +122,64 @@ public class ChoisirDAOImpl implements ChoisirDAO {
 		
 		
 		return nbBonnesResponses;
->>>>>>> branch 'master' of https://github.com/hezanathos/Quiz.git
 	}
 
+	
+	/**
+	 * méthode de récupération du nombre de réponses d'une question d'un Quiz 
+	 * @param idQuiz, représente l'identifiant du Quiz dans lequel se trouve la question
+	 * @param idQuestion, représente l'idention de la question dont on veut le nombre de bonnes réponses
+	 * @return le nombre de réponses à la question d'un quiz précis 
+	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public int getNbReponses(int idQuiz, int idQuestion) {
-		// TODO Auto-generated method stub
-		return 0;
+		List<Choisir> listeDesChoix = new ArrayList<Choisir>();
+
+		listeDesChoix = (List<Choisir>) sessionFactory.getCurrentSession()
+				.createQuery("from Choisir where idquiz=?") 
+				.setParameter(0, idQuiz);
+		
+		return listeDesChoix.size();
 	}
 
+	
+	/**
+	 * méthode de récupération du nombre de bonnes réponses d'un participant  dans un Quiz
+	 * @param idQuiz, représente l'identifiant du Quiz 
+	 * @param idParticipant, représente l'identifiant de l'utilisateur pour lequel on cherche le nombre de bonnes réponses	
+	 * @return le nombre de bonnes réponses du participant. 
+	 */
+	
+	
+	@SuppressWarnings("unchecked")
 	@Override
 	public int getNbBonnesReponseDunParticipantAuQuiz(int idQuiz, int idParticipant) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		int nbBonnesResponses=0;
+		
+		List<Choisir> listeDesChoix = new ArrayList<Choisir>();
+
+		listeDesChoix = (List<Choisir>) sessionFactory.getCurrentSession()
+				.createQuery("from Choisir where idquiz=? and idpersonne=?") 
+				.setParameter(0, idQuiz)
+				.setParameter(1, idParticipant);
+		
+		
+			for(Choisir chx : listeDesChoix ){
+			
+			
+			if(chx.getProposition().isBonneReponse()==1)
+			{
+				nbBonnesResponses++;
+			}
+			else{
+				//nothing
+			}
+			
+		}
+		
+		return nbBonnesResponses;
 	}
 
 }
