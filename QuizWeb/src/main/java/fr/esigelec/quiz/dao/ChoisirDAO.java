@@ -10,6 +10,12 @@ import fr.esigelec.quiz.model.Choisir;
  * 
  * */
 
+/**
+ * 
+ * Interface ChosirDAO
+ *
+ */
+
 public interface ChoisirDAO {
 	
 	public void ajouterChoix(Choisir choix);
