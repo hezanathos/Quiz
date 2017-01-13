@@ -247,9 +247,9 @@ public class LoginActivity extends Activity {
             try{
                 Response response = client.newCall(request).execute();
 
-                System.out.println("\nResponse =>  " + response + " <= end of response \n");
+                System.out.println("\nResponse header =>  " + response + " => response body => "+response.body().string()+ " <= end of response \n");
 
-                //Ici code d'utilisation de la reponse
+                response.close();
 
             } catch (IOException e) {
                 e.printStackTrace();
