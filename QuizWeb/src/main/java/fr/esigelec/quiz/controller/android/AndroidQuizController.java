@@ -23,6 +23,8 @@ import fr.esigelec.quiz.dao.PersonneDAO;
 import fr.esigelec.quiz.dao.PersonneDAOImpl;
 import fr.esigelec.quiz.dao.PropositionDAO;
 import fr.esigelec.quiz.dao.PropositionDAOImpl;
+import fr.esigelec.quiz.dao.QuestionDAO;
+import fr.esigelec.quiz.dao.QuestionDAOImpl;
 import fr.esigelec.quiz.dao.QuizDAO;
 import fr.esigelec.quiz.dao.QuizDAOImpl;
 import fr.esigelec.quiz.model.Choisir;
@@ -33,7 +35,8 @@ import fr.esigelec.quiz.model.Quiz;
 
 /**
  * 
- * @author wangxi Quiz controller for android
+ * @author wangxi 
+ * Quiz controller for android
  * @see https://spring.io/guides/gs/messaging-stomp-websocket/
  */
 
@@ -94,8 +97,11 @@ public class AndroidQuizController {
 	 *            the id of the Quiz we are on
 	 * @throws JsonProcessingException
 	 */
-	public void sendQuestion(Question question, int idQuiz, ArrayList<Proposition> propositions)
+	public void sendQuestion(Question question, int idQuiz)
 			throws JsonProcessingException {
+		QuestionDAO questionDAO = new QuestionDAOImpl();
+		ArrayList<Proposition> propositions = (ArrayList<Proposition>) questionDAO.getListePropositions(question.getId());
+		
 		ObjectMapper mapper = new ObjectMapper();
 		ObjectNode objectNode = mapper.createObjectNode();
 		ObjectNode questionNode = mapper.createObjectNode();
@@ -134,8 +140,12 @@ public class AndroidQuizController {
 	 *            the id of the quiz which we are on
 	 * @throws JsonProcessingException
 	 */
-	public void sendStatus(Question question, int idQuiz, ArrayList<Proposition> propositions, int[] stats)
+	public void sendStatus(Question question, int idQuiz)
 			throws JsonProcessingException {
+
+		ChoisirDAO choisirDAO = new ChoisirDAOImpl();
+		QuestionDAO questionDAO = new QuestionDAOImpl();
+		
 		ObjectMapper mapper = new ObjectMapper();
 		ObjectNode objectNode = mapper.createObjectNode();
 		ObjectNode questionNode = mapper.createObjectNode();
@@ -149,10 +159,14 @@ public class AndroidQuizController {
 		questionNode.put("libelle", question.getLibelle());
 		objectNode.set("question", questionNode);
 
+		ArrayList<Proposition> propositions = (ArrayList<Proposition>) questionDAO.getListePropositions(question.getId());
+		
 		for (int i = 0; i < 4; i++) {
 			Proposition propositionTemp = propositions.get(i);
+			int idPropositionTemp = propositionTemp.getId();
+			int stat = choisirDAO.getNbChoixDunProposition(idPropositionTemp);
 			propositionArray.add(mapper.createObjectNode().put("id", propositionTemp.getId())
-					.put("libelle", propositionTemp.getLibelle()).put("stat", stats[i]));
+					.put("libelle", propositionTemp.getLibelle()).put("stat", stat));
 		}
 		objectNode.set("propositions", propositionArray);
 		String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(objectNode);
@@ -169,8 +183,12 @@ public class AndroidQuizController {
 	 *            the id of the Quiz we are on
 	 * @throws JsonProcessingException
 	 */
-	public void sendResult(Question question, int idQuiz, ArrayList<Proposition> propositions, int[] stats)
+	public void sendResult(Question question, int idQuiz)
 			throws JsonProcessingException {
+		ChoisirDAO choisirDAO = new ChoisirDAOImpl();
+		QuestionDAO questionDAO = new QuestionDAOImpl();
+		ArrayList<Proposition> propositions = (ArrayList<Proposition>) questionDAO.getListePropositions(question.getId());
+		
 		ObjectMapper mapper = new ObjectMapper();
 		ObjectNode objectNode = mapper.createObjectNode();
 		ObjectNode questionNode = mapper.createObjectNode();
@@ -185,14 +203,18 @@ public class AndroidQuizController {
 		questionNode.put("libelle", question.getLibelle());
 		objectNode.set("question", questionNode);
 
+		
+		
 		for (int i = 0; i < 4; i++) {
 			Proposition propositionTemp = propositions.get(i);
 			if( propositionTemp.isBonneReponse() == 1){
 				reponseNode.put("id", propositionTemp.getId());
 				reponseNode.put("libelle", propositionTemp.getLibelle());
 			}
+			int idPropositionTemp = propositionTemp.getId();
+			int stat = choisirDAO.getNbChoixDunProposition(idPropositionTemp);
 			propositionArray.add(mapper.createObjectNode().put("id", propositionTemp.getId())
-					.put("libelle", propositionTemp.getLibelle()).put("stat", stats[i]));
+					.put("libelle", propositionTemp.getLibelle()).put("stat", stat));
 		}
 		objectNode.set("propositions", propositionArray);
 
