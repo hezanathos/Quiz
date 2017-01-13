@@ -183,11 +183,15 @@ public class ChoisirDAOImpl implements ChoisirDAO {
 		return nbBonnesResponses;
 	}
 
-
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Personne> getParticipantsQuiz(int idQuiz) {
-		
-		return null;
+		List<Personne> listeDesParticipants = new ArrayList<Personne>();
+
+		listeDesParticipants = (List<Personne>) sessionFactory.getCurrentSession()
+				.createQuery("from Choisir where idquiz=?").setParameter(0, idQuiz);
+
+		return listeDesParticipants;
 	}
 
 
@@ -195,7 +199,7 @@ public class ChoisirDAOImpl implements ChoisirDAO {
 	public int getNbChoixDunProposition(int idProposition) {
 		
 		
-	@SuppressWarnings("unchecked")
+		@SuppressWarnings("unchecked")
 	List<Choisir> qqch = (List<Choisir>) sessionFactory.getCurrentSession()
 	.createQuery("from Choisir where  idproposition=?") 
 	.setParameter(0, idProposition);
@@ -203,4 +207,7 @@ public class ChoisirDAOImpl implements ChoisirDAO {
 		return qqch.size();
 	}
 
+	
+	
+	
 }
