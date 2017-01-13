@@ -27,8 +27,8 @@
             <h2>Créer un quiz</h2>
             <h4><a>Annuler</a></h4>
         </div>
-        <form:form method = "post" action="">
-            <form:input class="lbl-quiz" type="text" placeholder="Nom du quiz" path="nomdequiz" />
+        <form:form method = "post" action="" commandName="quiz">
+            <form:input class="lbl-quiz" type="text" placeholder="Nom du quiz" path="libelle" />
             <div class="select-question">
                 <select>
                     <option>Quelle est la taille de truc ?</option>
