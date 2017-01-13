@@ -76,14 +76,26 @@ public class QuizController {
 	public String demarrerQuiz(HttpServletRequest request,  ModelMap modelMap, HttpSession session){
 
 		int idQuiz = Integer.parseInt(request.getParameter("idQuiz"));
+		Quiz quiz = serviceQuizDAO.getQuiz(idQuiz);
 		//session = request.getSession();
 		if(servicePersonneDAO.getPersonneByEmail(session.getAttribute("courriel").toString()).getDroits() == 0) {
-			modelMap.addAttribute("idQuiz", idQuiz);
+			modelMap.addAttribute("quiz", quiz);
 			return "quiz";
 		}
 		
 		return "ingame";
 		
+	}
+
+	@RequestMapping(value = "/listQuiz", method = RequestMethod.GET)
+	public String listQuiz(HttpServletRequest request,  ModelMap modelMap, HttpSession session){
+
+		List<Quiz> listQuiz = serviceQuizDAO.getListeQuizzes();
+		//session = request.getSession();
+		modelMap.addAttribute("listQuiz", listQuiz);
+
+		return "ingame";
+
 	}
 	
 	@RequestMapping(value = "/afficherStats", method = RequestMethod.GET)
