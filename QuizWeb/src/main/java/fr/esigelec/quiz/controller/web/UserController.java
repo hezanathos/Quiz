@@ -29,8 +29,8 @@ public class UserController {
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String accueilConnexion(Model model) {
 		Personne p = new Personne();
-		p.setMail("nom@domain.com"); // pour l'exemple
-		p.setMdp("password");
+		p.setMail("inconnu"); // pour l'exemple
+		p.setMdp("inconnu");
 		model.addAttribute("formulaireConnexion", p);
 		return "index";
 	}
@@ -38,8 +38,8 @@ public class UserController {
 	@RequestMapping(value = "/inscription", method = RequestMethod.GET)
 	public String accueilInscription(Model model) {
 		Personne p = new Personne();
-		p.setMail("nom@domain.com"); // pour l'exemple
-		p.setMdp("password");
+		p.setMail("inconnu"); // pour l'exemple
+		p.setMdp("inconnu");
 		p.setNom("inconnu");
 		p.setPrenom("inconnu");
 		model.addAttribute("formulaireInscription", p);
@@ -61,8 +61,8 @@ public class UserController {
 
 			return "redirect:/index";
 		} else if (service.ajouterPersonne(p) == -1) {
-			model.addAttribute("erreurPersonneExiste", "Email deja utilise");
-			return "redirect:/inscription";
+			model.addAttribute("erreurPersonneExiste", "Email d�j� utilis�");
+			return "inscription";
 		}
 		/*
 		 * String nom = request.getParameter("nom"); String motDePasse =
@@ -72,7 +72,7 @@ public class UserController {
 		 * Personne(1000,nom,prenom,courriel,motDePasse,0); PersonneDAOImpl pdao
 		 * = new PersonneDAOImpl(); pdao.ajouterPersonne(p);
 		 */
-		return "redirect:/inscription";
+		return "inscription";
 
 
 	}
@@ -86,7 +86,7 @@ public class UserController {
 			return "redirect:/quiz";
 		} else {
 			model.addAttribute("erreurUtilisateurInconnu", "Utilisateur inconnu");
-			return "redirect:/index";
+			return "index";
 		}
 	/*String motDePasse = request.getParameter("motDePasse");
 	String courriel = request.getParameter("courriel");

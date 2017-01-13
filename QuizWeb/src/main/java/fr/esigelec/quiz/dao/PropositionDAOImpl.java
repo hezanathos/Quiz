@@ -17,19 +17,36 @@ import fr.esigelec.quiz.model.Proposition;
  * 
  * */
 
-
+/**
+ * 
+ * Classe d'implementation des méthodes contenues dans PropagationDAO
+ *
+ */
 @Repository("propositionDAOImpl") 
 @Transactional(propagation = Propagation.SUPPORTS)
 public class PropositionDAOImpl implements PropositionDAO {
+	
+	//injection du bean sessionFactory
 	@Autowired
 	 private SessionFactory sessionFactory;
 
+	
+	/**
+	 *  méthode Ajouter une proposition
+	 * @param proposition , représente la proposition à enregistrer
+	 * 
+	 */
 	@Override
 	public void ajouterProposition(Proposition proposition) {
 		   sessionFactory.getCurrentSession().saveOrUpdate(proposition);		
 		
 	}
 
+	
+	/**
+	 * méthode pour récupérer une liste des propositions 
+	 * @return la liste des propositions de la bdd
+	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	@Transactional(readOnly=true)
@@ -38,6 +55,12 @@ public class PropositionDAOImpl implements PropositionDAO {
 		return (List<Proposition>) sessionFactory.getCurrentSession().createCriteria(Proposition.class).list();
 
 	}
+	
+	/**
+	 * méthode pour récupérer une proposition 
+	 * @param id, représente l'identitifiant de la proposition à récupérer 
+	 * @return la proposition désirée
+	 */
 
 	@Override
 	@Transactional(readOnly=true)

@@ -9,6 +9,8 @@ import fr.esigelec.quiz.model.Proposition;
  * @author Sahobau
  * 
  * */
+
+//Interface PropositionDAO
 public interface PropositionDAO {
 	
 	public void ajouterProposition(Proposition proposition);

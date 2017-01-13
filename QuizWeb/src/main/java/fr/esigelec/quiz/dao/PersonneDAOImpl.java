@@ -19,6 +19,13 @@ import fr.esigelec.quiz.model.Personne;
  * 
  */
 
+
+/**
+ * 
+ * Classe d'implementation des méthodes contenues dans PersonneDAO
+ *
+ */
+
 @Repository("personneDAOImpl")
 @Transactional(propagation = Propagation.SUPPORTS)
 public class PersonneDAOImpl implements PersonneDAO {
@@ -28,6 +35,8 @@ public class PersonneDAOImpl implements PersonneDAO {
 
 	@Override
 	/**
+	 *  méthode Ajouter un Personne
+	 * @param personne , représente la personne à enregistrer
 	 * @return -1 when personne existe 0 when personne is null 1 when personne
 	 *         save
 	 */
@@ -60,7 +69,10 @@ public class PersonneDAOImpl implements PersonneDAO {
 
 	}
 
-
+	/**
+	 * méthode pour récupérer une liste des personnes 
+	 * @return la liste des personnes de la bdd
+	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	@Transactional(readOnly = true)
@@ -69,6 +81,13 @@ public class PersonneDAOImpl implements PersonneDAO {
 		return (List<Personne>) sessionFactory.getCurrentSession().createCriteria(Personne.class).list();
 	}
 
+	
+	
+	/**
+	 * méthode pour récupérer une personne 
+	 * @param id, représente l'identitifiant de la personne à récupérer 
+	 * @return la personne désirée
+	 */
 	@Override
 	@Transactional(readOnly = true)
 	public Personne getPersonne(int id) {
@@ -76,6 +95,11 @@ public class PersonneDAOImpl implements PersonneDAO {
 		return (Personne) sessionFactory.getCurrentSession().get(Personne.class, id);
 
 	}
+	
+	/**
+	 * méthode de suppression d'une personne
+	 * @param id, représente l'identifiant de la personne à supprimer 
+	 */
 
 	@Override
 	@Transactional
@@ -86,14 +110,20 @@ public class PersonneDAOImpl implements PersonneDAO {
 			session.delete(p);
 		}
 	}
-
+	
+	
+	/**
+	 * méthode de vérification si une personne existe ou pas 
+	 * @param email, email de la personne recherchée
+	 * @param modtDePasse, mot de passe de la personne recherché
+	 * @return -1 pour utilisateur inexistant dans la bdd
+	 * 			!=-1 pour un utilisateur existant
+	 */
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional(readOnly = true)
-
-	/**
-	 * @return -1 pour utilisateur inexistant dans la bdd
-	 */
+	
 	public int verifPersonne(String email, String motDePasse) {
 
 		List<Personne> personnes = new ArrayList<Personne>();
@@ -111,9 +141,14 @@ public class PersonneDAOImpl implements PersonneDAO {
 		}
 
 	}
+	
+	
 
 	/**
+	 * méthode de récupération d'une personne par son email
+	 * @param email, email de la personne recherchée
 	 * @return null when personne don't exist
+	 * 			!=null when personne exist
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
@@ -132,7 +167,10 @@ public class PersonneDAOImpl implements PersonneDAO {
 	}
 
 	/**
-	 * @return true when Email is unique false when !=
+	 * méthode de vérification si un email est contenu dans la bdd
+	 * @param email, email à rechercher 
+	 * @return true when Email is unique 
+	 * 		   false when Email is not unique
 	 */
 
 	@Override
