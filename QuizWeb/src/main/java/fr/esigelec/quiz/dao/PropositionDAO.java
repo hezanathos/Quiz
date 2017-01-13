@@ -21,6 +21,4 @@ public interface PropositionDAO {
 	
 	// public void supprimerProposition(int id);
 	
-	// get all the propositions of a question specified 
-	public List<Proposition> getPropositionsDunQuestion(int idQuestion);
 }
