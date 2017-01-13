@@ -11,6 +11,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 /**
  * 
  * @author Guillaume
@@ -35,6 +38,7 @@ public class Proposition implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name="idquestion")
+	@Cascade(CascadeType.SAVE_UPDATE)
 	private Question question;
 
 	public Proposition() {
