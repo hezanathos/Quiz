@@ -25,9 +25,9 @@
             <div class="content">
                 <h1>Connexion</h1>
                 <form:form method="POST" action="connexion.do" commandName="formulaireConnexion">
-                    <form:input type="text" placeholder="Votre identifiant" required>
-                    <form:input type="password" placeholder="Votre mot de passe" required>
-                    <form:input type="submit" value="Se connecter">
+                    <form:input type="text" placeholder="Votre identifiant" path="" required/>
+                    <form:input type="password" placeholder="Votre mot de passe"path="" required/>
+                    <input type="submit" value="Se connecter">
                 </form:form>
                 <br>
                 <a>Je n'ai pas de compte</a>

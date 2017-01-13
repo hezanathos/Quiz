@@ -24,12 +24,12 @@
             <div class="content">
                 <h1>Inscription</h1>
                 <form:form method="POST" action="inscription.do" commandName="formulaireInscription">
-                    <form:input type="text" placeholder="Prénom" required>
-                    <form:input type="text" placeholder="Nom" required>
-                    <form:input type="text" placeholder="Votre adresse-email" required>
-                    <form:input type="password" placeholder="Votre mot de passe" required>
-                    <form:input type="password" placeholder="Confirmer le mot de passe" required>
-                    <form:input type="submit" value="S'inscrire">
+                    <form:input type="text" placeholder="Prénom" required path="prenom"/>
+                    <form:input type="text" placeholder="Nom" required path="nom"/>
+                    <form:input type="text" placeholder="Votre adresse-email" required path="courriel"/>
+                    <form:input type="password" placeholder="Votre mot de passe" required path="mdp"/>
+                    <form:input type="password" placeholder="Confirmer le mot de passe" required path="mdp"/>
+                    <input type="submit" value="S'inscrire">
                 </form:form>
                 <a>J'ai déjà un compte</a>
             </div>
