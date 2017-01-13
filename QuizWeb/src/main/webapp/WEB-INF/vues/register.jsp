@@ -9,8 +9,8 @@
     <meta charset="utf-8">
     <title>quiz - login</title>
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-    <link rel="stylesheet" href="../styles/out/index.css">
-    <link rel="stylesheet" href="../styles/out/register.css">
+    <link rel="stylesheet" href="../styles/compiled/index.css">
+    <link rel="stylesheet" href="../styles/compiled/register.css">
 
 </head>
 
@@ -24,14 +24,14 @@
             <div class="content">
                 <h1>Inscription</h1>
                 <form:form method="POST" action="inscription.do" commandName="formulaireInscription">
-                    <form:input type="text" placeholder="Prénom" required path="prenom"/>
-                    <form:input type="text" placeholder="Nom" required path="nom"/>
-                    <form:input type="text" placeholder="Votre adresse-email" required path="mail"/>
-                    <form:input type="password" placeholder="Votre mot de passe" required path="mdp"/>
-                    <input type="password" placeholder="Confirmer le mot de passe" required />
+                    <form:input type="text" placeholder="Prénom" path="prenom"/>
+                    <form:input type="text" placeholder="Nom" path="nom"/>
+                    <form:input type="text" placeholder="Votre adresse-email" path="mail"/>
+                    <form:input type="password" placeholder="Votre mot de passe" path="mdp"/>
+                    <input type="password" placeholder="Confirmer le mot de passe" />
                     <input type="submit" value="S'inscrire"> 
                 </form:form>
-                <a>J'ai déjà un compte</a>
+                <a href="connexion">J'ai déjà un compte</a>
             </div>
         </div>
 
