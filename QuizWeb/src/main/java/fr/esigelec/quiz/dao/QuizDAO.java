@@ -3,6 +3,7 @@ package fr.esigelec.quiz.dao;
 
 import java.util.List;
 
+import fr.esigelec.quiz.model.Question;
 import fr.esigelec.quiz.model.Quiz;
 
 /**
@@ -21,5 +22,5 @@ public interface QuizDAO {
 	
 //	public void supprimerQuiz(int id);
 	
-
+	public Question getProchaineQuestion(int idQuiz);
 }
