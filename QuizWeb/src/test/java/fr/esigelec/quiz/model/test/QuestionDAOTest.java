@@ -27,63 +27,44 @@ public class QuestionDAOTest extends TestCase {
 
 	@Test
 	public void testQuestion() {
-		Proposition p1 = new Proposition("gris", 0);
-		Proposition p2 = new Proposition("blanc", 1);
-		Proposition p3 = new Proposition("Obi Wan Kenobi", 0);
-		Proposition p4 = new Proposition("la r�ponse 4", 0);
-		List<Proposition> lp = new ArrayList<Proposition>();
-		lp.add(p1);
-		lp.add(p2);
-		lp.add(p3);
-		lp.add(p4);
-		Question q1 = new Question("Quelle est la couleur du cheval blanc d'henri IV", lp);
+
+		Question q1 = new Question("Quelle est la couleur du cheval blanc d'henri IV");
 		assertEquals(q1.getLibelle(), "Quelle est la couleur du cheval blanc d'henri IV");
-		assertEquals(q1.getListproposition().size(), 4);
-		assertEquals(q1.getListproposition().get(0).getLibelle(), "gris");
 
 	}
 
 	@Test
 	public void testQuestionDAO() {
 		ApplicationContext context = new ClassPathXmlApplicationContext("dispatcher-servlet.xml");
-		Proposition p1 = new Proposition("gris", 0);
-		Proposition p2 = new Proposition("blanc", 1);
-		Proposition p3 = new Proposition("Obi Wan Kenobi", 0);
-		Proposition p4 = new Proposition("la r�ponse 4", 0);
-		List<Proposition> lp = new ArrayList<Proposition>();
-		PropositionDAO pDAO = (PropositionDAO) context.getBean("propositionDAOImpl");
-		lp.add(p1);
-		lp.add(p2);
-		lp.add(p3);
-		lp.add(p4);
-		int flag = 0;
-		Question q2 = new Question("Quelle est la couleur du cheval blanc d'henri IV", lp);
-		
+
+		Question q2 = new Question("Quelle est la couleur du cheval blanc d'henri IV");
+
 		QuestionDAO qDAO1 = (QuestionDAO) context.getBean("questionDAOImpl");
-		int formerSize = pDAO.getListePropositions().size();
+
 		int formersize = qDAO1.getListeQuestions().size();
-		
+
 		qDAO1.ajouterQuestion(q2);
-		assertTrue( qDAO1.getListeQuestions().size()> formersize ) ;
-		for (Question question : qDAO1.getListeQuestions()) {
-		if (question.getLibelle().equals("Quelle est la couleur du cheval blanc d'henri IV"))	flag =1;
-		} 
-		assertEquals(1, flag);
-		
-		
-		
-		
-		assertTrue( pDAO.getListePropositions().size()>formerSize);
-		
-	    assertEquals(qDAO1.getListePropositions(q2.getId()).size(),4);
-		
-		
-		
-		
-		
-		
-		
-		
+		assertTrue(qDAO1.getListeQuestions().size() > formersize);
+
 	}
-	
+
+	@Test
+	public void testGetListProposition() {
+		ApplicationContext context = new ClassPathXmlApplicationContext("dispatcher-servlet.xml");
+
+		Question q2 = new Question("Quelle est la couleur du cheval blanc d'henri IV");
+		PropositionDAO pDAO = (PropositionDAO) context.getBean("propositionDAOImpl");
+		Proposition p1 = new Proposition("gris", 0, q2);
+		Proposition p2 = new Proposition("blanc", 1, q2);
+		Proposition p3 = new Proposition("Obi Wan Kenobi", 0, q2);
+		Proposition p4 = new Proposition("la réponse 4", 0, q2);
+		QuestionDAO qDAO1 = (QuestionDAO) context.getBean("questionDAOImpl");
+
+		qDAO1.ajouterQuestion(q2);
+		pDAO.ajouterProposition(p1);
+		pDAO.ajouterProposition(p2);
+		pDAO.ajouterProposition(p3);
+		pDAO.ajouterProposition(p4);
+		assertEquals(4, qDAO1.getListePropositions(q2.getId()).size());
+	}
 }

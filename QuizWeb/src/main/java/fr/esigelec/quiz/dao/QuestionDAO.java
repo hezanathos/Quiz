@@ -23,6 +23,6 @@ public interface QuestionDAO {
 	
 	// public void supprimerQuestion(int id);
 	
-	public List<Proposition> getListePropositions(int idQuestion);
+
 
 }
