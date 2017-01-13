@@ -10,7 +10,6 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -135,7 +134,7 @@ public class AndroidQuizController {
 	 *            the id of the quiz which we are on
 	 * @throws JsonProcessingException
 	 */
-	public void sendStatus(Question question, int idQuiz, ArrayList<Proposition> propositions)
+	public void sendStatus(Question question, int idQuiz, ArrayList<Proposition> propositions, int[] stats)
 			throws JsonProcessingException {
 		ObjectMapper mapper = new ObjectMapper();
 		ObjectNode objectNode = mapper.createObjectNode();
@@ -150,11 +149,10 @@ public class AndroidQuizController {
 		questionNode.put("libelle", question.getLibelle());
 		objectNode.set("question", questionNode);
 
-		// TODO: Change value of stat in real
 		for (int i = 0; i < 4; i++) {
 			Proposition propositionTemp = propositions.get(i);
 			propositionArray.add(mapper.createObjectNode().put("id", propositionTemp.getId())
-					.put("libelle", propositionTemp.getLibelle()).put("stat", 25));
+					.put("libelle", propositionTemp.getLibelle()).put("stat", stats[i]));
 		}
 		objectNode.set("propositions", propositionArray);
 		String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(objectNode);
@@ -171,7 +169,7 @@ public class AndroidQuizController {
 	 *            the id of the Quiz we are on
 	 * @throws JsonProcessingException
 	 */
-	public void sendResult(Question question, int idQuiz, ArrayList<Proposition> propositions)
+	public void sendResult(Question question, int idQuiz, ArrayList<Proposition> propositions, int[] stats)
 			throws JsonProcessingException {
 		ObjectMapper mapper = new ObjectMapper();
 		ObjectNode objectNode = mapper.createObjectNode();
@@ -187,18 +185,17 @@ public class AndroidQuizController {
 		questionNode.put("libelle", question.getLibelle());
 		objectNode.set("question", questionNode);
 
-		// TODO: Change value of stat in real
 		for (int i = 0; i < 4; i++) {
 			Proposition propositionTemp = propositions.get(i);
+			if( propositionTemp.isBonneReponse() == 1){
+				reponseNode.put("id", propositionTemp.getId());
+				reponseNode.put("libelle", propositionTemp.getLibelle());
+			}
 			propositionArray.add(mapper.createObjectNode().put("id", propositionTemp.getId())
-					.put("libelle", propositionTemp.getLibelle()).put("stat", 25));
+					.put("libelle", propositionTemp.getLibelle()).put("stat", stats[i]));
 		}
 		objectNode.set("propositions", propositionArray);
 
-		// TODO: dynamiquely add the correcte answer
-
-		reponseNode.put("id", 4);
-		reponseNode.put("libelle", "test proposition 4");
 		objectNode.set("reponse", reponseNode);
 
 		// TODO: dynamiquely generate the classments
