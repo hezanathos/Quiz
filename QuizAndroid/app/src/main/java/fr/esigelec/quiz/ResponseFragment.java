@@ -29,10 +29,12 @@ public class ResponseFragment extends Fragment {
     private static final String ARG_prop2 = "prop2";
     private static final String ARG_prop3 = "prop3";
     private static final String ARG_prop4 = "prop4";
+    private static final String ARG_userResponce = "userResponce";
     private static final String ARG_timeRemaining = "timeRemaining";
     private static final String ARG_reponse= "reponse";
 
     private int mStatus;
+    private int mUserResponce;
     private JSONObject mProp1;
     private JSONObject mProp2;
     private JSONObject mProp3;
@@ -55,6 +57,8 @@ public class ResponseFragment extends Fragment {
     private ProgressBar time;
     private boolean vide = true ;
 
+    private CountDownTimer cdt;
+
 
     public ResponseFragment() {
         // Required empty public constructor
@@ -67,6 +71,17 @@ public class ResponseFragment extends Fragment {
      * @return a new instance of ResponseFragment with the arguments
      */
     public static ResponseFragment newInstance(int status,String s) {
+        return newInstance(status,s,-1);
+    }
+
+    /**
+     *
+     * @param status the status we are in
+     * @param s the JSON string which contain data
+     * @param userResponce id of the responce send by the user
+     * @return a new instance of ResponseFragment with the arguments
+     */
+    public static ResponseFragment newInstance(int status,String s,int userResponce) {
         ResponseFragment fragment = new ResponseFragment();
         Bundle args = new Bundle();
         try {
@@ -80,8 +95,11 @@ public class ResponseFragment extends Fragment {
             if (status == 0){
                 args.putLong(ARG_timeRemaining, message.getLong("timeRemaining"));
             }
+            if (status == 1){
+                args.putInt(ARG_userResponce, userResponce);
+            }
             if(status == 2){
-                args.putString(ARG_reponse, message.getJSONObject("reponse").getString("libelle"));
+                args.putString(ARG_reponse, message.getJSONObject("reponse").toString());
             }
             fragment.setArguments(args);
         } catch (JSONException e) {
@@ -104,6 +122,9 @@ public class ResponseFragment extends Fragment {
                 if (mStatus == 0) {
                     mTimeRemaining = getArguments().getLong(ARG_timeRemaining);
                 }
+                if (mStatus == 1) {
+                    mUserResponce = getArguments().getInt(ARG_userResponce);
+                }
                 if (mStatus == 2) {
                     mReponse = new JSONObject(getArguments().getString(ARG_reponse));
                 }
@@ -111,6 +132,14 @@ public class ResponseFragment extends Fragment {
                 e.printStackTrace();
             }
         }
+    }
+
+    @Override
+    public void onPause() {
+        if(cdt != null){
+            cdt.cancel();
+        }
+        super.onPause();
     }
 
     @Override
@@ -140,9 +169,21 @@ public class ResponseFragment extends Fragment {
                 }
 
                 btn1 = (Button) v.findViewById(R.id.btn1);
+                if(mUserResponce == mProp1.getInt("id")){
+                    btn1.setBackgroundColor(Color.parseColor("#4444AA"));
+                }
                 btn2 = (Button) v.findViewById(R.id.btn2);
+                if(mUserResponce == mProp2.getInt("id")){
+                    btn2.setBackgroundColor(Color.parseColor("#4444AA"));
+                }
                 btn3 = (Button) v.findViewById(R.id.btn3);
+                if(mUserResponce == mProp3.getInt("id")){
+                    btn3.setBackgroundColor(Color.parseColor("#4444AA"));
+                }
                 btn4 = (Button) v.findViewById(R.id.btn4);
+                if(mUserResponce == mProp4.getInt("id")){
+                    btn4.setBackgroundColor(Color.parseColor("#4444AA"));
+                }
                 // we set the 2 first proposition and hide the 2 next in case we only have 2 proposition
                 String propLibele = mProp1.getString("libelle");
                 btn1.setText(propLibele);
@@ -151,6 +192,7 @@ public class ResponseFragment extends Fragment {
                 propLibele = mProp3.getString("libelle");
                 btn3.setEnabled(false);
                 btn4.setEnabled(false);
+                btnGrpBot.setVisibility(View.INVISIBLE);
                 if (!propLibele.equals("")) {
                     // if we have 3 prop we enable and display the 3rd button but keep the  4th hidden
                     btn3.setText(propLibele);
@@ -179,10 +221,10 @@ public class ResponseFragment extends Fragment {
                 // if the status is 2 we display the good and bad responses
                 try {
                     v.findViewById(R.id.classement_indicator).setVisibility(View.VISIBLE);
-                    btn1.setBackgroundColor(mReponse.getInt("id") == mProp1.getInt("id") ? Color.parseColor("#05b31c") : Color.parseColor("#B32E05"));
-                    btn2.setBackgroundColor(mReponse.getInt("id") == mProp2.getInt("id") ? Color.parseColor("#05b31c") : Color.parseColor("#B32E05"));
-                    btn3.setBackgroundColor(mReponse.getInt("id") == mProp3.getInt("id") ? Color.parseColor("#05b31c") : Color.parseColor("#B32E05"));
-                    btn4.setBackgroundColor(mReponse.getInt("id") == mProp4.getInt("id") ? Color.parseColor("#05b31c") : Color.parseColor("#B32E05"));
+                    btn1.setBackgroundColor(mReponse.getInt("id") == mProp1.getInt("id") ? Color.parseColor("#7F05b31c") : Color.parseColor("#7FB32E05"));
+                    btn2.setBackgroundColor(mReponse.getInt("id") == mProp2.getInt("id") ? Color.parseColor("#7F05b31c") : Color.parseColor("#7FB32E05"));
+                    btn3.setBackgroundColor(mReponse.getInt("id") == mProp3.getInt("id") ? Color.parseColor("#7F05b31c") : Color.parseColor("#7FB32E05"));
+                    btn4.setBackgroundColor(mReponse.getInt("id") == mProp4.getInt("id") ? Color.parseColor("#7F05b31c") : Color.parseColor("#7FB32E05"));
                 }catch(Exception e){
                     e.printStackTrace();
                 }
@@ -190,15 +232,16 @@ public class ResponseFragment extends Fragment {
             time = (ProgressBar) v.findViewById(R.id.time);
             if (mStatus == 0) {
                 long countdownTime = 30000 - (30000 - mTimeRemaining);
-                new CountDownTimer(countdownTime, 300) {
+                cdt = new CountDownTimer(countdownTime, 300) {
 
                     public void onTick(long millisUntilFinished) {
                         //we make the progress bar to progress
-                        time.setProgress((int) ((30000 - millisUntilFinished) / 30000 * 100));
+                        time.setProgress((int) ((30000 - millisUntilFinished) * 100 / 30000 ));
                     }
 
                     public void onFinish() {
                         //when the timer is finished we disable the buttons
+                        time.setProgress(100);
                         btn1.setEnabled(false);
                         btn2.setEnabled(false);
                         btn3.setEnabled(false);
@@ -228,19 +271,19 @@ public class ResponseFragment extends Fragment {
              switch(v.getId()){
                  case R.id.btn1:
                      send(1);
-                     btn1.setBackgroundColor(Color.parseColor("pink"));
+                     btn1.setBackgroundColor(Color.parseColor("#4444AA"));
                      break;
                  case R.id.btn2:
                      send(2);
-                     btn2.setBackgroundColor(Color.parseColor("pink"));
+                     btn2.setBackgroundColor(Color.parseColor("#4444AA"));
                      break;
                  case R.id.btn3:
                      send(3);
-                     btn3.setBackgroundColor(Color.parseColor("pink"));
+                     btn3.setBackgroundColor(Color.parseColor("#4444AA"));
                      break;
                  case R.id.btn4:
                      send(4);
-                     btn4.setBackgroundColor(Color.parseColor("pink"));
+                     btn4.setBackgroundColor(Color.parseColor("#4444AA"));
                      break;
                  default:
                      break;

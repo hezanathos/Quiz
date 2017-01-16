@@ -1,4 +1,5 @@
-** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** {
+/***** ** ** ** ** ** ** ** ** ** SERVER SEND QUESTION AND PROP ** ** ** ** ** ** ** ** ** ** ***/ 
+{
   "status": 0,
   "numero": 0,
   "idquiz": 0,
@@ -20,8 +21,9 @@
     "libelle": "blabla"
   }],
   "timeRemaining": 27000
-} **
-** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** {
+}
+/***** ** ** ** ** ** ** ** ** ** SERVER SEND STAT ** ** ** ** ** ** ** ** ** ** ***/ 
+{
   "status": 1,
   "numero": 0,
   "idquiz": 0,
@@ -46,8 +48,9 @@
     "libelle": "blabla",
     "stat": 25
   }]
-} **
-** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** {
+}
+/***** ** ** ** ** ** ** ** ** ** SERVER SEND RESPONCE AND RANKING ** ** ** ** ** ** ** ** ** ** ***/ 
+{
   "status": 2,
   "numero": 0,
   "idquiz": 0,
@@ -85,9 +88,11 @@
     "nom": "poulopoulopoulo",
     "points": 5
   }]
-} **
-** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** {
+} 
+/**** ** ** ** ** ** ** ** ** User Responce ** ** ** ** ** ** ** ** ** ** ** */
+{
   "idperson": 1,
   "idquiz": 1,
-  "idproposition": 1
+  "idproposition": 1,
+  "idquestion":1
 }

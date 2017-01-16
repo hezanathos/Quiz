@@ -2,6 +2,8 @@ package fr.esigelec.quiz;
 
 /**
  * Created by gpillet on 11/01/2017.
+ *
+ * Class used to share variable in the app
  */
 
 public class Global {

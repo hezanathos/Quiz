@@ -16,6 +16,10 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
     }
 
+    /**
+     * Action of the Button, start the quiz
+     * @param v
+     */
     public void start(View v){
         Intent intent = new Intent(this, QuizActivity.class);
         startActivity(intent);

@@ -19,12 +19,6 @@ public class ClassementRow {
         points = -1;
     }
 
-    public ClassementRow(int pos, String nom, long points) {
-        this.pos = pos;
-        this.nom = nom;
-        this.points = points;
-    }
-
     public ClassementRow(JSONObject row) {
         try{
             this.pos = row.getInt("position");

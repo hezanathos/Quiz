@@ -3,7 +3,6 @@ package fr.esigelec.quiz;
 import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.os.Build;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -15,12 +14,9 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import org.java_websocket.WebSocket;
-import org.java_websocket.client.WebSocketClient;
-import org.java_websocket.handshake.ServerHandshake;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.net.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,6 +44,7 @@ public class QuizActivity extends AppCompatActivity {
     private String aQuiz;
     private String aQuestionId;
     private Global g = Global.getInstance();
+    private int userResponce;
 
 
     @Override
@@ -75,7 +72,10 @@ public class QuizActivity extends AppCompatActivity {
         mPager.setAdapter(mPagerAdapter);
     }
 
-    // Custom Pager adapter
+    /**
+     *
+     * Custom Pager adapter
+     */
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
         List<Fragment> fList;
         public ScreenSlidePagerAdapter(FragmentManager fm,List<Fragment> fList) {
@@ -95,8 +95,9 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private StompClient mStompClient;
-    //private WebSocketClient mWebSocketClient;
-    // Method to connect to the websocket and define the action listener
+    /**
+     * Method to connect to the websocket and define the action listener
+    */
     private void connectWebSocket() {
         //we get the server address from the SharedPreferences or use default value
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
@@ -142,7 +143,7 @@ public class QuizActivity extends AppCompatActivity {
                             fList.add(ResponseFragment.newInstance(status, s));
                             break;
                         case 1:
-                            fList.add(ResponseFragment.newInstance(status, s));
+                            fList.add(ResponseFragment.newInstance(status, s,userResponce));
                             break;
                         case 2:
                             fList.add(ResponseFragment.newInstance(status, s));
@@ -174,14 +175,19 @@ public class QuizActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Send the responce via the websocket
+     * @param idProp id of the proposition
+     */
     public void WebSocketSendReponce(int idProp){
         try {
+            userResponce = idProp;
             JSONObject reponce = new JSONObject();
             reponce.accumulate("idperson", g.getIdpersonne());
             reponce.accumulate("idquiz", aQuiz);
             reponce.accumulate("idquestion", aQuestionId);
             reponce.accumulate("idproposition", idProp);
-            mStompClient.send("/app/choisir",reponce.toString());
+            mStompClient.send("/choisir",reponce.toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -200,87 +206,4 @@ public class QuizActivity extends AppCompatActivity {
         }
         super.onPause();
     }
-
-    /*
-        mWebSocketClient = new WebSocketClient(uri) {
-            @Override
-            public void onOpen(ServerHandshake serverHandshake) {
-                Log.i("Websocket", "Opened");
-                mWebSocketClient.send("Hello from " + Build.MANUFACTURER + " " + Build.MODEL);
-            }
-
-            @Override
-            public void onMessage(String s) {
-                try{
-                    final JSONObject message = new JSONObject(s);
-                    final List<Fragment> fList = new ArrayList<>();
-                    final int status = message.getInt("status");
-                    aNumber = message.getString("numero");
-                    aQuestion = message.getJSONObject("question").getString("libelle");
-                    aQuestionId = message.getJSONObject("question").getString("id");
-                    aQuiz = message.getString("idquiz");
-                    switch(status) {
-                        case 0:
-                            fList.add(ResponseFragment.newInstance(status,s));
-                            break;
-                        case 1:
-                            fList.add(ResponseFragment.newInstance(status,s));
-                            break;
-                        case 2:
-                            fList.add(ResponseFragment.newInstance(status,s));
-                            fList.add(StatFragment.newInstance(message.getJSONArray("classement").toString()));
-                            break;
-                        default:
-                            break;
-                    }
-
-                    final String number = aNumber;
-                    final String question = aQuestion;
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            if (status == 0){
-                                qNumber.setText(number);
-                                qQuestion.setText(question);
-                            }
-                            mPager = (ViewPager) findViewById(R.id.pager);
-                            mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager(), fList);
-                            mPager.setAdapter(mPagerAdapter);
-                        }
-                    });
-                }catch(JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onClose(int i, String s, boolean b) {
-                Log.i("Websocket", "Closed " + s);
-            }
-
-            @Override
-            public void onError(Exception e) {
-                Log.i("Websocket", "Error " + e.getMessage());
-            }
-        };
-        mWebSocketClient.connect();
-    }
-
-    // public method to send text via WebSocket
-    public void WebSocketSendText(String s){
-        mWebSocketClient.send(s);
-    }
-    public void WebSocketSendReponce(int idProp){
-        try {
-        JSONObject reponce = new JSONObject();
-            reponce.accumulate("idperson", g.getIdpersonne());
-            reponce.accumulate("idquiz", aQuiz);
-            reponce.accumulate("idquestion", aQuestionId);
-            reponce.accumulate("idproposition", idProp);
-            mWebSocketClient.send(reponce.toString());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
-    */
 }

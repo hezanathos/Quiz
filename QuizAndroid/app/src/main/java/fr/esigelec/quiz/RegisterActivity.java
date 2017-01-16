@@ -265,8 +265,6 @@ public class RegisterActivity extends Activity{
                 JSONObject json = new JSONObject(st);
                 int id = json.getInt("id");
 
-                System.out.println("\nResponse header =>  " + response + " => response body => "+response.body().string()+ " <= end of response \n");
-
                 response.close();
 
                 if(json.getString("status").equals("OK"))

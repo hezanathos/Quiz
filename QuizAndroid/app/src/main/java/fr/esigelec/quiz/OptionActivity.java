@@ -21,6 +21,10 @@ public class OptionActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Action of the "validation" button, save the change and return to previous activity
+     * @param v
+     */
     public void saveAndReturn(View v){
         // We get the server address put by the user
         String serverAdress = adresseDuServeur.getText().toString();

@@ -35,7 +35,7 @@ public class ClassementAdapter extends ArrayAdapter<ClassementRow> {
             viewHolder.points = (TextView) convertView.findViewById(R.id.sPts);
             convertView.setTag(viewHolder);
         }
-        //getItem(position) va récupérer l'item [position] de la List<ClassementRow> row
+
         ClassementRow row = getItem(position);
 
         viewHolder.position.setText(row.getPos()+"");

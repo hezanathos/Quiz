@@ -252,9 +252,6 @@ public class LoginActivity extends Activity {
                     g.setIdpersonne(id);
                     return true;
                 }
-
-
-
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (JSONException e) {
