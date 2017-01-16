@@ -9,7 +9,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-
 /**
  * @author Guillaume Sauvage
  */
@@ -18,25 +17,36 @@ import javax.persistence.Table;
 @Table(name = "choisir")
 public class Choisir implements Serializable {
 
-	
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * La date de génération du Choix
+	 */
 	@Column(name = "date", unique = true, nullable = false)
 	private Timestamp date;
 
+	/**
+	 * La personne du choix
+	 */
 	@Id
 	@ManyToOne
-	@JoinColumn(name="idpersonne")
+	@JoinColumn(name = "idpersonne")
 	private Personne personne;
-	
+
+	/**
+	 * le quiz du Choix
+	 */
 	@Id
 	@ManyToOne
-	@JoinColumn(name="idquiz")
+	@JoinColumn(name = "idquiz")
 	private Quiz quiz;
-	
+
+	/**
+	 * La proposition du choix
+	 */
 	@Id
 	@ManyToOne
-	@JoinColumn(name="idproposition")
+	@JoinColumn(name = "idproposition")
 	private Proposition proposition;
 
 	public Choisir() {

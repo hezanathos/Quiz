@@ -1,4 +1,4 @@
-	package fr.esigelec.quiz.model;
+package fr.esigelec.quiz.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -27,15 +27,18 @@ import org.hibernate.annotations.CascadeType;
 public class Question implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
+	/**
+	 * ID en base de la question
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
+	/**
+	 * libelle en base de la question
+	 */
 	@Column(name = "libelle", unique = true, nullable = false)
 	private String libelle;
-
-	
 
 	public Question() {
 		super();
@@ -45,14 +48,14 @@ public class Question implements Serializable {
 		super();
 		this.id = id;
 		this.libelle = libelle;
-	
+
 	}
 
 	public Question(String libelle) {
 		super();
 
 		this.libelle = libelle;
-	
+
 	}
 
 	public int getId() {
@@ -70,7 +73,6 @@ public class Question implements Serializable {
 	public void setLibelle(String libelle) {
 		this.libelle = libelle;
 	}
-
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
