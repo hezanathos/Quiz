@@ -125,6 +125,7 @@ public class QuizController {
 		Question question = serviceQuizDAO.getQuestionCourrante(idQuiz);
 		Quiz quiz = serviceQuizDAO.getQuiz(idQuiz);
 		quiz.setNoQuestionCourant(quiz.getNoQuestionCourant()+1);
+		modelMap.addAttribute("idQuiz", idQuiz);
 		serviceQuizDAO.ajouterQuiz(quiz);
 		return "ingame";
 	}
