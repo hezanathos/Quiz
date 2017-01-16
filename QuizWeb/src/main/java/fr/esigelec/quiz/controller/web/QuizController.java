@@ -122,11 +122,16 @@ public class QuizController {
 	public String questionCourrante(HttpServletRequest request, ModelMap modelMap){
 		int idQuiz = (int) request.getAttribute("idQuiz");
 		Question question = serviceQuizDAO.getQuestionCourrante(idQuiz);
-		Quiz quiz = serviceQuizDAO.getQuiz(idQuiz);
-		quiz.setNoQuestionCourant(quiz.getNoQuestionCourant()+1);
-		modelMap.addAttribute("idQuiz", idQuiz);
-		serviceQuizDAO.ajouterQuiz(quiz);
-		return "ingame";
+		if (question != null){
+			Quiz quiz = serviceQuizDAO.getQuiz(idQuiz);
+			quiz.setNoQuestionCourant(quiz.getNoQuestionCourant()+1);
+			modelMap.addAttribute("idQuiz", idQuiz);
+			serviceQuizDAO.ajouterQuiz(quiz);
+			return "ingame";
+		} else {
+			return "index";
+		}
 	}
+
 
 }
