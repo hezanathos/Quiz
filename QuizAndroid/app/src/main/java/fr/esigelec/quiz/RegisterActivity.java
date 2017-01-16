@@ -25,6 +25,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import okhttp3.*;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 
@@ -217,6 +219,7 @@ public class RegisterActivity extends Activity{
         private final String passwordStr;
         private final String nameStr;
         private final String fullnameStr;
+        Global g = Global.getInstance();
 
 
         UserLoginTask(String email, String password, String name, String fullname) {
@@ -228,9 +231,6 @@ public class RegisterActivity extends Activity{
 
         @Override
         protected Boolean doInBackground(Void... params) {
-           //this is where you should write your authentication code
-            // or call external service
-            // following try-catch just simulates network access
 
             OkHttpClient client = new OkHttpClient();
 
@@ -242,18 +242,30 @@ public class RegisterActivity extends Activity{
                     .build();
 
             Request request = new Request.Builder()
-                    .url(serverAdress+"/android/inscription")
+                    .url("http://"+serverAdress+"/android/inscription")
                     .post(formBody)
                     .build();
 
             try{
                 Response response = client.newCall(request).execute();
+                String st = response.body().string();
+                JSONObject json = new JSONObject(st);
+                int id = json.getInt("id");
 
                 System.out.println("\nResponse header =>  " + response + " => response body => "+response.body().string()+ " <= end of response \n");
 
                 response.close();
 
+                if(json.getString("status").equals("OK"))
+                {
+                    g.setIdpersonne(id);
+                    return true;
+                }
+
+
             } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
                 e.printStackTrace();
             }
 
@@ -288,9 +300,9 @@ public class RegisterActivity extends Activity{
                 //  login success and move to main Activity here.
             } else {
                 // login failure
-                passwordTextView.setError("Invalid Credentials");
+                emailTextView.setError("Email déja utilisé");
                 // passwordTextView.setError(getString(R.string.error_invalid_password));
-                passwordTextView.requestFocus();
+                emailTextView.requestFocus();
             }
         }
 
