@@ -73,6 +73,7 @@ public class QuizDAOTest {
 		
 	
 	}
+	@Test
 	public void testgetQuestionCourrante() {
 		ApplicationContext context = new ClassPathXmlApplicationContext("dispatcher-servlet.xml");
 		//**********************		
@@ -83,18 +84,20 @@ public class QuizDAOTest {
 		listeQuestion.add(new Question("libelle"));
 		listeQuestion.add(new Question("libelle2"));
 
-	Quiz quiz = new Quiz("libelleQ",1,timestampDatedebutQuiz,1,1,timestampDatedebutQuestion,listeQuestion);
+	Quiz quiz = new Quiz("libelleQ",1,timestampDatedebutQuiz,0,1,timestampDatedebutQuestion,listeQuestion);
 		
 		//**********************
 		QuizDAO qdao = (QuizDAO) context.getBean("quizDAOImpl");
 		qdao.ajouterQuiz(quiz);
 		@SuppressWarnings("unused")
-		Quiz quizget=qdao.getQuiz(1);
+		Quiz quizget=qdao.getQuiz(quiz.getId());
 		
 		assertEquals(quiz.getLibelle(),"libelleQ");
+		assertEquals(quiz.getNoQuestionCourant(),0);
 		assertEquals("libelle", qdao.getQuestionCourrante(quizget.getId()).getLibelle());
 		quizget.setNoQuestionCourant(quizget.getNoQuestionCourant()+1);
 		qdao.ajouterQuiz(quizget);
+		assertEquals(1,quiz.getNoQuestionCourant());
 		assertEquals("libelle2", qdao.getQuestionCourrante(quizget.getId()).getLibelle());
 		
 
