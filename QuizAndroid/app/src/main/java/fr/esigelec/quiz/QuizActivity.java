@@ -101,7 +101,7 @@ public class QuizActivity extends AppCompatActivity {
     private void connectWebSocket() {
         //we get the server address from the SharedPreferences or use default value
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-        String webSocketAdress = settings.getString("serverAdress", "srvinfodev.esigelec.fr:8080/quiz");
+        String webSocketAdress = settings.getString("serverAdress", "srvinfodev.esigelec.fr:8080/Quiz");
         String uri = "ws://" + webSocketAdress + "/choisir";
         Log.d(STOMP_TAG, "Openning Stomp Connection : "+uri);
         mStompClient = Stomp.over(WebSocket.class, uri);
@@ -122,6 +122,7 @@ public class QuizActivity extends AppCompatActivity {
 
                     case CLOSED:
                         Log.d(STOMP_TAG, "Stomp connection closed");
+                        finish();
                         break;
                 }
             }
