@@ -155,5 +155,92 @@ public class ChoisirDAOTest {
 	
 
 	}
+	
+	public void testgetNbReponses(){
+		
+		
+		ApplicationContext context = new ClassPathXmlApplicationContext("dispatcher-servlet.xml");
+
+		Timestamp timestampDate1 = Timestamp.valueOf("2017-01-16 10:10:10.0");
+		Timestamp timestampDate2 = Timestamp.valueOf("2017-01-16 12:10:10.0");
+
+		Timestamp timestampDate3 = Timestamp.valueOf("2017-02-16 10:10:10.0");
+		Timestamp timestampDate4 = Timestamp.valueOf("2017-02-16 12:10:10.0");
+
+		Timestamp timestampDate5 = Timestamp.valueOf("2017-03-16 10:10:10.0");
+		Timestamp timestampDate6 = Timestamp.valueOf("2017-03-16 12:10:10.0");
+
+		List<Question> listeQuestion1 = new ArrayList<Question>();
+
+		listeQuestion1.add(new Question("libelle1Q1"));
+		listeQuestion1.add(new Question("libelle1Q2"));
+
+		/*
+		 * List<Question> listeQuestion2 = new ArrayList<Question>();
+		 * 
+		 * listeQuestion2.add(new Question("libelle2Q1"));
+		 * listeQuestion2.add(new Question("libelle2Q2"));
+		 */
+
+		Personne p1 = new Personne("DOMI", "Zebi", "domizebi@der.fr", "mdp1", 1000);
+		Personne p2 = new Personne("UKOI", "darinne", "ukoidarinne@der.fr", "mdp2", 0);
+
+		PersonneDAO personneDAO = (PersonneDAO) context.getBean("personneDAOImpl");
+		personneDAO.ajouterPersonne(p1);
+		personneDAO.ajouterPersonne(p2);
+
+		p1 = personneDAO.getPersonneByEmail("domizebi@der.fr");
+		p2 = personneDAO.getPersonneByEmail("ukoidarinne@der.fr");
+
+		Quiz quiz1 = new Quiz("libelleQuiz1-1_nbReponses", 1, Timestamp.valueOf("2017-01-16 12:10:10.0"), 1, 1,
+				Timestamp.valueOf("2017-01-16 12:16:10.0"), listeQuestion1);
+		// Quiz quiz2 = new Quiz("libelleQuiz2",1,Timestamp.valueOf("2007-09-23
+		// 10:10:10.0"),1,1,Timestamp.valueOf("2007-09-23
+		// 10:16:10.0"),listeQuestion2);
+
+		QuizDAO quizDAO = (QuizDAO) context.getBean("quizDAOImpl");
+		quizDAO.ajouterQuiz(quiz1);
+		// quizDAO.ajouterQuiz(quiz2);
+
+		Proposition prop1 = new Proposition("libelleprop1", 1, listeQuestion1.get(0));
+		Proposition prop2 = new Proposition("libelleprop2", 1, listeQuestion1.get(0));
+		Proposition prop3 = new Proposition("libelleprop3", 0, listeQuestion1.get(0));
+		Proposition prop4 = new Proposition("libelleprop4", 1, listeQuestion1.get(0));
+		Proposition prop5 = new Proposition("libelleprop5", 1, listeQuestion1.get(0));
+		Proposition prop6 = new Proposition("libelleprop6", 0, listeQuestion1.get(0));
+
+		PropositionDAO propositionDAO = (PropositionDAO) context.getBean("propositionDAOImpl");
+		propositionDAO.ajouterProposition(prop1);
+		propositionDAO.ajouterProposition(prop2);
+		propositionDAO.ajouterProposition(prop3);
+		propositionDAO.ajouterProposition(prop4);
+		propositionDAO.ajouterProposition(prop5);
+		propositionDAO.ajouterProposition(prop6);
+
+		Choisir chx1 = new Choisir(timestampDate1, p1, quiz1, prop1);
+		Choisir chx2 = new Choisir(timestampDate2, p2, quiz1, prop2);
+
+		Choisir chx3 = new Choisir(timestampDate3, p1, quiz1, prop3);
+		Choisir chx4 = new Choisir(timestampDate4, p2, quiz1, prop4);
+
+		Choisir chx5 = new Choisir(timestampDate5, p1, quiz1, prop5);
+		Choisir chx6 = new Choisir(timestampDate6, p2, quiz1, prop6);
+
+		ChoisirDAO cdao = (ChoisirDAO) context.getBean("choisirDAOImpl");
+
+		cdao.ajouterChoix(chx1);
+		cdao.ajouterChoix(chx2);
+		cdao.ajouterChoix(chx3);
+		cdao.ajouterChoix(chx4);
+		cdao.ajouterChoix(chx5);
+		cdao.ajouterChoix(chx6);
+
+		int nbbonnesRp = cdao.getNbReponses(quiz1.getId(), listeQuestion1.get(0).getId());
+		
+		assertEquals(nbbonnesRp, 6);
+
+		
+	
+	}
 
 }

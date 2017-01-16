@@ -136,12 +136,20 @@ public class ChoisirDAOImpl implements ChoisirDAO {
 	@Override
 	public int getNbReponses(int idQuiz, int idQuestion) {
 		List<Choisir> listeDesChoix = new ArrayList<Choisir>();
+		int nbReponses=0;
 
 		listeDesChoix = (List<Choisir>) sessionFactory.getCurrentSession()
 				.createQuery("from Choisir where idquiz=?") 
 				.setParameter(0, idQuiz);
 		
-		return listeDesChoix.size();
+		for(Choisir chx : listeDesChoix){
+			if(chx.getProposition().getQuestion().getId()==idQuestion){
+				nbReponses++;
+			}
+			
+		}
+		
+		return nbReponses;
 	}
 
 	
