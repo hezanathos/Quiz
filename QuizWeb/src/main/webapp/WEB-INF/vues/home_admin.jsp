@@ -19,7 +19,7 @@
             quiz
         </div>
         <div class="profile">
-            <a>Deconnexion</a> (Michel de Lakonta)
+            <a href="deconnexion">Deconnexion</a> (Michel de Lakonta)
         </div>
     </div>
     <div class="home-content">
