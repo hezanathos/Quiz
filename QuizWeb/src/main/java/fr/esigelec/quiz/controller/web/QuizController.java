@@ -41,27 +41,28 @@ public class QuizController {
 	private PersonneDAO servicePersonneDAO;
 	@Autowired
 	private ChoisirDAO serviceChoisirDAO;
+	@Autowired
+	private PropositionDAO servicePropositionDAO;
 
 	@RequestMapping(value = "/ajouterQuiz", method = RequestMethod.POST)
 	public String ajouterLeQuiz(@ModelAttribute(value="quiz") final Quiz q,
 							 final ModelMap pModel){
 			serviceQuizDAO.ajouterQuiz(q);
 		return "ajouterquestionadmin";
-		/*HttpSession session = request.getSession();
-		String courriel = (String) session.getAttribute("courriel");
-		String libelle = request.getParameter("libelle");
-		Timestamp dateDebutQuiz = (Timestamp) request.getParameter("dateDebutQuiz");
-		int noQuestionCourant = (Timestamp) request.getParameter("noQuestionCourant");
-
-		Quiz quiz = new Quiz(libelle, dateDebutQuiz, noQuestionCourant, etape, dateDebutQuestion, listeQuestion);*/
 
 	}
 
 	@RequestMapping(value = "/ajouterQuestion", method = RequestMethod.POST)
-	public String ajouterQuestion(@ModelAttribute(value="question") final Question question,
+	public String ajouterQuestion(@ModelAttribute(value="question") final Question question, @ModelAttribute(value="proposition") final List<Proposition> propositions,
 								 final ModelMap pModel){
 
 			serviceQuestionDAO.ajouterQuestion(question);
+			for (Proposition proposition : propositions) {
+				proposition.setQuestion(question);
+				servicePropositionDAO.ajouterProposition(proposition);
+			}
+			
+			
         return "ajouterquestionadmin";
 	}
 	
