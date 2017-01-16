@@ -186,12 +186,16 @@ public class ChoisirDAOImpl implements ChoisirDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Personne> getParticipantsQuiz(int idQuiz) {
-		List<Personne> listeDesParticipants = new ArrayList<Personne>();
+		List<Choisir> listeDesParticipants = new ArrayList<Choisir>();
+		List<Personne> listeDesPersonne = new ArrayList<Personne>();
+		listeDesParticipants = (List<Choisir>) sessionFactory.getCurrentSession()
+				.createQuery("from Choisir where idquiz=? group by idpersonne").setParameter(0, idQuiz);
+		
+		for (Choisir choisir : listeDesParticipants) {
+		  listeDesPersonne.add( choisir.getPersonne());
+		}
 
-		listeDesParticipants = (List<Personne>) sessionFactory.getCurrentSession()
-				.createQuery("from Choisir where idquiz=?").setParameter(0, idQuiz);
-
-		return listeDesParticipants;
+		return listeDesPersonne;
 	}
 
 
@@ -201,8 +205,8 @@ public class ChoisirDAOImpl implements ChoisirDAO {
 		
 		@SuppressWarnings("unchecked")
 	List<Choisir> qqch = (List<Choisir>) sessionFactory.getCurrentSession()
-	.createQuery("from Choisir where  idproposition=?") 
-	.setParameter(0, idProposition);
+	.createQuery("from Choisir where idproposition=?") 
+	.setParameter(0, idProposition).list();
 		
 		return qqch.size();
 	}
