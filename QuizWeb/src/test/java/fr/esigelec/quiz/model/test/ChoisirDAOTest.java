@@ -156,6 +156,8 @@ public class ChoisirDAOTest {
 
 	}
 	
+	
+	@Test
 	public void testgetNbReponses(){
 		
 		
