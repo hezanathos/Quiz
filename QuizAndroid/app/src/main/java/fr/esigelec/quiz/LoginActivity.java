@@ -25,10 +25,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import okhttp3.*;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import static okhttp3.internal.Internal.instance;
 
 
 /**
@@ -211,6 +215,9 @@ public class LoginActivity extends Activity {
 
         private final String emailStr;
         private final String passwordStr;
+        private String status;
+        private String id;
+        Global g = Global.getInstance();
 
         UserLoginTask(String email, String password) {
             emailStr = email;
@@ -219,18 +226,6 @@ public class LoginActivity extends Activity {
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            //this is where you should write your authentication code
-            // or call external service
-            // following try-catch just simulates network access
-
-            /*
-                Temporary connexion to access the Home view
-            */
-             if(emailStr.equals("@a")&&passwordStr.equals("1234"))
-            {
-                return true;
-            }
-
 
             OkHttpClient client = new OkHttpClient();
 
@@ -246,12 +241,31 @@ public class LoginActivity extends Activity {
 
             try{
                 Response response = client.newCall(request).execute();
+                String st = response.body().string();
+                JSONObject json = new JSONObject(st);
+                int id = json.getInt("id");
 
-                System.out.println("\nResponse header =>  " + response + " => response body => "+response.body().string()+ " <= end of response \n");
+
+                System.out.println("\nResponse header =>  " + response + " => response body => "+st+ " <= end of response \n");
+
+
+
+                System.out.println(json.getString("status"));
+
+                System.out.println("Id de la personne connectée ===> " + id);
+
+
+                if(json.getString("status").equals("OK"))
+                {
+                    g.setIdpersonne(id);
+                    return true;
+                }
 
                 response.close();
 
             } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
                 e.printStackTrace();
             }
 
