@@ -54,10 +54,9 @@ public class QuizDAOImpl implements QuizDAO {
 		return (Quiz) sessionFactory.getCurrentSession().get(Quiz.class, id);
 	}
 
-<<<<<<< HEAD
-=======
+
 	@Override
-	public Question getProchaineQuestion(int idQuiz) {
+	public Question getQuestionCourrante(int idQuiz) {
 		// TODO Auto-generated method stub
 		return null;
 	}
