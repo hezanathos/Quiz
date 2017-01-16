@@ -107,7 +107,7 @@ public class ChoisirDAOImpl implements ChoisirDAO {
 		int nbBonnesResponses=0;
 		listeDesChoix = (List<Choisir>) sessionFactory.getCurrentSession()
 				.createQuery("from Choisir where idquiz=?") 
-				.setParameter(0, idQuiz);
+				.setParameter(0, idQuiz).list();
 		
 		for(Choisir chx : listeDesChoix ){
 			
