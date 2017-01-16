@@ -20,9 +20,7 @@ import org.springframework.web.context.annotation.SessionScope;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Edouard on 04/01/2017.
@@ -124,6 +122,10 @@ public class QuizController {
 		Question question = serviceQuizDAO.getQuestionCourrante(idQuiz);
 		if (question != null){
 			Quiz quiz = serviceQuizDAO.getQuiz(idQuiz);
+			Calendar cal = Calendar.getInstance();
+			Date date = cal.getTime();
+			Timestamp timestamp = new Timestamp(date.getTime());
+			quiz.setDateDebutQuestion(timestamp);
 			quiz.setNoQuestionCourant(quiz.getNoQuestionCourant()+1);
 			modelMap.addAttribute("idQuiz", idQuiz);
 			serviceQuizDAO.ajouterQuiz(quiz);
