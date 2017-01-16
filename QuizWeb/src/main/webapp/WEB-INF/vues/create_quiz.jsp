@@ -9,8 +9,8 @@
     <meta charset="utf-8">
     <title>quiz - créer quiz</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
-    <link href="../styles/out/index.css" rel="stylesheet"></link>
-    <link href="../styles/out/create_quiz.css" rel="stylesheet"></link>
+    <link href="resources/styles/compiled/index.css" rel="stylesheet"></link>
+    <link href="resources/styles/compiled/create_quiz.css" rel="stylesheet"></link>
 </head>
 
 <body>
@@ -19,7 +19,7 @@
             quiz
         </div>
         <div class="profile">
-            <a>Deconnexion</a> (Michel de Lakonta)
+            <a href="deconnexion">Deconnexion</a> (Michel de Lakonta)
         </div>
     </div>
     <div class="create-quiz-content">
@@ -27,18 +27,16 @@
             <h2>Créer un quiz</h2>
             <h4><a>Annuler</a></h4>
         </div>
-        <form:form method = "post" action="">
-            <form:input class="lbl-quiz" type="text" placeholder="Nom du quiz" path="nomdequiz" />
+        <form:form method = "post" action="" commandName="quiz">
+            <form:input class="lbl-quiz" type="text" placeholder="Nom du quiz" path="libelle" />
             <div class="select-question">
                 <select>
-                    <option>Quelle est la taille de truc ?</option>
-                    <option>Quelle est la taille de truc ?</option>
-                    <option>Quelle est la taille de truc ?</option>
-                    <option>Quelle est la taille de truc ?</option>
-                    <option>Quelle est la taille de truc ?</option>
-                    <option>Quelle est la taille de truc ?</option>
+                 <c:forEach items="${listquiz}" var="quizunique">
+                 <option><c:out value="${quizunique.libelle}"/></option>
+                 </c:forEach>
+                
                 </select>
-                <h6><a>Ajouter</a></h6>
+                <h6><a href="ajouterQuestion">Ajouter</a></h6>
             </div>
             <ul>
                 <li>Quelle est la taille de truc ?<span>x</span></li>

@@ -97,10 +97,11 @@ public class AndroidQuizController {
 	 *            the id of the Quiz we are on
 	 * @throws JsonProcessingException
 	 */
-	public void sendQuestion(Question question, int idQuiz)
+	public void sendQuestion(int idQuestion, int idQuiz)
 			throws JsonProcessingException {
 		QuestionDAO questionDAO = new QuestionDAOImpl();
-		ArrayList<Proposition> propositions = (ArrayList<Proposition>) questionDAO.getListePropositions(question.getId());
+		Question question = questionDAO.getQuestion(idQuestion);
+		ArrayList<Proposition> propositions = (ArrayList<Proposition>) questionDAO.getListePropositions(idQuestion);
 		
 		ObjectMapper mapper = new ObjectMapper();
 		ObjectNode objectNode = mapper.createObjectNode();
@@ -140,11 +141,13 @@ public class AndroidQuizController {
 	 *            the id of the quiz which we are on
 	 * @throws JsonProcessingException
 	 */
-	public void sendStatus(Question question, int idQuiz)
+	public void sendStatus(int idQuestion, int idQuiz)
 			throws JsonProcessingException {
 
 		ChoisirDAO choisirDAO = new ChoisirDAOImpl();
 		QuestionDAO questionDAO = new QuestionDAOImpl();
+		
+		Question question = questionDAO.getQuestion(idQuestion);
 		
 		ObjectMapper mapper = new ObjectMapper();
 		ObjectNode objectNode = mapper.createObjectNode();
@@ -159,7 +162,7 @@ public class AndroidQuizController {
 		questionNode.put("libelle", question.getLibelle());
 		objectNode.set("question", questionNode);
 
-		ArrayList<Proposition> propositions = (ArrayList<Proposition>) questionDAO.getListePropositions(question.getId());
+		ArrayList<Proposition> propositions = (ArrayList<Proposition>) questionDAO.getListePropositions(idQuestion);
 		
 		for (int i = 0; i < 4; i++) {
 			Proposition propositionTemp = propositions.get(i);
@@ -183,11 +186,12 @@ public class AndroidQuizController {
 	 *            the id of the Quiz we are on
 	 * @throws JsonProcessingException
 	 */
-	public void sendResult(Question question, int idQuiz)
+	public void sendResult(int idQuestion, int idQuiz)
 			throws JsonProcessingException {
 		ChoisirDAO choisirDAO = new ChoisirDAOImpl();
 		QuestionDAO questionDAO = new QuestionDAOImpl();
-		ArrayList<Proposition> propositions = (ArrayList<Proposition>) questionDAO.getListePropositions(question.getId());
+		Question question = questionDAO.getQuestion(idQuestion);
+		ArrayList<Proposition> propositions = (ArrayList<Proposition>) questionDAO.getListePropositions(idQuestion);
 		
 		ObjectMapper mapper = new ObjectMapper();
 		ObjectNode objectNode = mapper.createObjectNode();
