@@ -206,7 +206,7 @@ public class ChoisirDAOImpl implements ChoisirDAO {
 		@SuppressWarnings("unchecked")
 	List<Choisir> qqch = (List<Choisir>) sessionFactory.getCurrentSession()
 	.createQuery("from Choisir where  idproposition=?") 
-	.setParameter(0, idProposition);
+	.setParameter(0, idProposition).list();
 		
 		return qqch.size();
 	}
