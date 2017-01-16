@@ -35,6 +35,7 @@ import static fr.esigelec.quiz.LoginActivity.PREFS_NAME;
 public class RegisterActivity extends Activity{
 
     private static final String DUMMY_CREDENTIALS = "user@test.com:hello";
+    public static final String PREFS_NAME = "Option";
 
     private UserLoginTask userLoginTask = null;
     private View loginFormView;
@@ -45,6 +46,7 @@ public class RegisterActivity extends Activity{
     private String serverAdress;
     private TextView nameTextView;
     private TextView fullnameTextView;
+    private TextView optionTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +92,9 @@ public class RegisterActivity extends Activity{
         signUpTextView = (TextView) findViewById(R.id.signUpTextView);
         signUpTextView.setPaintFlags(signUpTextView.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         Linkify.addLinks(signUpTextView, Linkify.ALL);
+        optionTextView = (TextView) findViewById(R.id.optionTextView);
+        optionTextView.setPaintFlags(optionTextView.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+        Linkify.addLinks(optionTextView, Linkify.ALL);
 
         signUpTextView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,6 +102,14 @@ public class RegisterActivity extends Activity{
                 Log.i("LoginActivity", "Sign In Activity activated.");
                 //this is where you should start the signup Activity
                 RegisterActivity.this.startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+            }
+        });
+
+        optionTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i("LoginActivity", "Option Activity activated.");
+                RegisterActivity.this.startActivity(new Intent(RegisterActivity.this, OptionActivity.class));
             }
         });
     }

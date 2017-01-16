@@ -235,7 +235,7 @@ public class LoginActivity extends Activity {
                     .build();
 
             Request request = new Request.Builder()
-                    .url(serverAdress+"/android/connexion")
+                    .url("http://" + serverAdress+"/android/connexion")
                     .post(formBody)
                     .build();
 
@@ -245,15 +245,7 @@ public class LoginActivity extends Activity {
                 JSONObject json = new JSONObject(st);
                 int id = json.getInt("id");
 
-
-                System.out.println("\nResponse header =>  " + response + " => response body => "+st+ " <= end of response \n");
-
-
-
-                System.out.println(json.getString("status"));
-
-                System.out.println("Id de la personne connectée ===> " + id);
-
+                response.close();
 
                 if(json.getString("status").equals("OK"))
                 {
@@ -261,7 +253,7 @@ public class LoginActivity extends Activity {
                     return true;
                 }
 
-                response.close();
+
 
             } catch (IOException e) {
                 e.printStackTrace();

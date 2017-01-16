@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="C:\Users\Pierre\.gradle\caches\modules-2\files-2.1\org.java-websocket\Java-WebSocket\1.3.0\db2658f013fb163de4a99274c2eb9e17efe535d2\Java-WebSocket-1.3.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="db2658f013fb163de4a99274c2eb9e17efe535d2">
+        <dex dex="C:\Users\Pierre\IdeaProjects\ProjetQuizAndroid\Quiz\QuizAndroid\app\build\intermediates\pre-dexed\debug\Java-WebSocket-1.3.0_b6af25ee443864894602d5a2c296f2474dfa4b2b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Pierre\IdeaProjects\ProjetQuizAndroid\Quiz\QuizAndroid\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="b9a1ac78ad7ef3abedc4a4b30cd92bcacb939d1f">
+        <dex dex="C:\Users\Pierre\IdeaProjects\ProjetQuizAndroid\Quiz\QuizAndroid\app\build\intermediates\pre-dexed\debug\com.android.support-support-fragment-24.2.1_ba8f036e52de2d001813b7e9594cf2c97d63a66c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Pierre\.gradle\caches\modules-2\files-2.1\io.reactivex\rxjava\1.2.0\42bfaf64c94f3848ebf5cf1c2ea4ec9d1b3ac6c8\rxjava-1.2.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="42bfaf64c94f3848ebf5cf1c2ea4ec9d1b3ac6c8">
+        <dex dex="C:\Users\Pierre\IdeaProjects\ProjetQuizAndroid\Quiz\QuizAndroid\app\build\intermediates\pre-dexed\debug\rxjava-1.2.0_f7e822a690a5a8365a39db6979910d4c29208457.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Pierre\IdeaProjects\ProjetQuizAndroid\Quiz\QuizAndroid\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
+        <dex dex="C:\Users\Pierre\IdeaProjects\ProjetQuizAndroid\Quiz\QuizAndroid\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_96e492c3c691e2304c84c4eb835ffe38a44444a2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Pierre\IdeaProjects\ProjetQuizAndroid\Quiz\QuizAndroid\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="867dad63c33388ff8c7644b236579355036d075f">
+        <dex dex="C:\Users\Pierre\IdeaProjects\ProjetQuizAndroid\Quiz\QuizAndroid\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_7df10ab410c2fe1a663d465569a9c6b7aea6fcbf.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Pierre\IdeaProjects\ProjetQuizAndroid\Quiz\QuizAndroid\app\build\intermediates\exploded-aar\com.github.NaikSoftware\StompProtocolAndroid\1.1.5\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="07ddfc0b10dcda88d6fe209025af799a967d5d14">
+        <dex dex="C:\Users\Pierre\IdeaProjects\ProjetQuizAndroid\Quiz\QuizAndroid\app\build\intermediates\pre-dexed\debug\com.github.NaikSoftware-StompProtocolAndroid-1.1.5_8b0405e941a8c1f3c552618c4c611dcd189eb3b3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Pierre\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.4.2\ccde00f7ccc77af5a6d5752e2cb21f6d8998289f\okhttp-3.4.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="ccde00f7ccc77af5a6d5752e2cb21f6d8998289f">
+        <dex dex="C:\Users\Pierre\IdeaProjects\ProjetQuizAndroid\Quiz\QuizAndroid\app\build\intermediates\pre-dexed\debug\okhttp-3.4.2_3217e97924ebb06d17c748b713061282a9d83624.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Pierre\IdeaProjects\ProjetQuizAndroid\Quiz\QuizAndroid\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="9c4c3bc902450c39ed54de170db4fb12aea20a35">
+        <dex dex="C:\Users\Pierre\IdeaProjects\ProjetQuizAndroid\Quiz\QuizAndroid\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-utils-24.2.1_85ca90d782c6ada07725ff581dbd28f49175ea36.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Pierre\IdeaProjects\ProjetQuizAndroid\Quiz\QuizAndroid\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\24.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="94bc1dfb84dcc8b6f6f8f7cc726d7b2dd39c1574">
+        <dex dex="C:\Users\Pierre\IdeaProjects\ProjetQuizAndroid\Quiz\QuizAndroid\app\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-24.2.1_383d9a75a7967497ee46570506a8b1e725f65799.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Pierre\IdeaProjects\ProjetQuizAndroid\Quiz\QuizAndroid\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
+        <dex dex="C:\Users\Pierre\IdeaProjects\ProjetQuizAndroid\Quiz\QuizAndroid\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-ui-24.2.1_4b046b8ebe84d0e8cdeeebc16ba8012e87408fac.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Pierre\IdeaProjects\ProjetQuizAndroid\Quiz\QuizAndroid\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="5f64d657e838e8375135c0f6057a7ff8fab6a50e">
+        <dex dex="C:\Users\Pierre\IdeaProjects\ProjetQuizAndroid\Quiz\QuizAndroid\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_699503007bd7be393b8a60b103a37f9f4909e704.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Pierre\IdeaProjects\ProjetQuizAndroid\Quiz\QuizAndroid\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Users\Pierre\IdeaProjects\ProjetQuizAndroid\Quiz\QuizAndroid\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-24.2.1_759f0e1b5852cddae1c053ce76de52096079229b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Pierre\IdeaProjects\ProjetQuizAndroid\Quiz\QuizAndroid\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="fbf8da429efd5ad21e02e3e5ecaa1efc4167878d">
+        <dex dex="C:\Users\Pierre\IdeaProjects\ProjetQuizAndroid\Quiz\QuizAndroid\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_b9a2bab4ed8f2c0d1be28fa7375b2c077bf7c134.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Pierre\IdeaProjects\ProjetQuizAndroid\Quiz\QuizAndroid\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="d5c731fc64c03dfe04d51134955b483551c35849">
+        <dex dex="C:\Users\Pierre\IdeaProjects\ProjetQuizAndroid\Quiz\QuizAndroid\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-24.2.1_b99cfdf4801a3f86b0ff64bbcb506e8e724b54e5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Pierre\IdeaProjects\ProjetQuizAndroid\Quiz\QuizAndroid\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="43b2dba6b5a0b14527961b75329d0b90025f15ea">
+        <dex dex="C:\Users\Pierre\IdeaProjects\ProjetQuizAndroid\Quiz\QuizAndroid\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-24.2.1_d7a65bac8af29621933723213530f5aa823ee8e5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Pierre\IdeaProjects\ProjetQuizAndroid\Quiz\QuizAndroid\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
+        <dex dex="C:\Users\Pierre\IdeaProjects\ProjetQuizAndroid\Quiz\QuizAndroid\app\build\intermediates\pre-dexed\debug\com.android.support-support-compat-24.2.1_5765b2e2fd6d278984129250a510cb477d3b3a81.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Pierre\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\24.2.1\support-annotations-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="8de3aafecbdf98a61db6427f008f2d515bcd2544">
+        <dex dex="C:\Users\Pierre\IdeaProjects\ProjetQuizAndroid\Quiz\QuizAndroid\app\build\intermediates\pre-dexed\debug\support-annotations-24.2.1_18efb658799d4868a7cdb9f243afd84332a2b154.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Pierre\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.9.0\f824591a0016efbaeddb8300bee54832a1398cfa\okio-1.9.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="f824591a0016efbaeddb8300bee54832a1398cfa">
+        <dex dex="C:\Users\Pierre\IdeaProjects\ProjetQuizAndroid\Quiz\QuizAndroid\app\build\intermediates\pre-dexed\debug\okio-1.9.0_db757293281bd995cc01ecbb6f917a4e751755ef.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Pierre\IdeaProjects\ProjetQuizAndroid\Quiz\QuizAndroid\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="09b462bbcb77650284bd6614f1a32f360ef369f8">
+        <dex dex="C:\Users\Pierre\IdeaProjects\ProjetQuizAndroid\Quiz\QuizAndroid\app\build\intermediates\pre-dexed\debug\com.android.support-support-media-compat-24.2.1_dc0bf0a38d878d80199bc360ecaf87bc274c1d30.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Pierre\IdeaProjects\ProjetQuizAndroid\Quiz\QuizAndroid\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="935a969265b2a166b2d20415423f5f6e90fe16e0">
+        <dex dex="C:\Users\Pierre\IdeaProjects\ProjetQuizAndroid\Quiz\QuizAndroid\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_5d3daaca0d19cd8a111749f3525c34a3cbd06b45.jar" />
+    </item>
+
+</items>
