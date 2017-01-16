@@ -75,7 +75,7 @@ public class QuizDAOTest {
 	}
 	@Test
 	public void testgetQuestionCourrante() {
-		ApplicationContext context = new ClassPathXmlApplicationContext("dispatcher-servlet2.xml");
+		ApplicationContext context = new ClassPathXmlApplicationContext("dispatcher-servlet.xml");
 		//**********************		
 		Timestamp timestampDatedebutQuiz = Timestamp.valueOf("2007-09-23 10:10:10.0");
 		Timestamp timestampDatedebutQuestion = Timestamp.valueOf("2007-09-23 10:15:10.0");

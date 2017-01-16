@@ -15,7 +15,7 @@ public class PropositionDAOTest extends TestCase {
 	
 	@Test
 	public void testProposition() {
-		ApplicationContext context = new ClassPathXmlApplicationContext("dispatcher-servlet2.xml");
+		ApplicationContext context = new ClassPathXmlApplicationContext("dispatcher-servlet.xml");
 		
 		Question q = new Question("Quelle est la couleur du cheval blanc d'Henry IV");
 		Proposition p = new Proposition("blanc",1,q);

@@ -14,8 +14,8 @@
 
 
 	<!-- permet de scanner tous les controleurs et beans du package base-package -->
-	<context:component-scan base-package="fr.esigelec.quiz" /> 
-
+	<context:component-scan base-package="fr.esigelec.quiz.model" /> 
+	<context:component-scan base-package="fr.esigelec.quiz.dao" /> 
 
 	<!-- permet de prendre en compte les annotations @Transactional -->
 	<tx:annotation-driven transaction-manager="hibernateTransactionManager" />

@@ -27,7 +27,7 @@ public class PersonneDAOTest extends TestCase {
 
 	@Test
 	public void testPersonneDAO() {
-		ApplicationContext context = new ClassPathXmlApplicationContext("dispatcher-servlet2.xml");
+		ApplicationContext context = new ClassPathXmlApplicationContext("dispatcher-servlet.xml");
 		Personne p2 = new Personne("Sauvage", "Guillaume", "guillaumesauv@gmail.fr", "mdp", 0);
 		PersonneDAO pDAO1 = (PersonneDAO) context.getBean("personneDAOImpl");
 		pDAO1.ajouterPersonne(p2);
@@ -43,7 +43,7 @@ public class PersonneDAOTest extends TestCase {
 	@Test
 	public void testSuppPersonneDAO() {
 		@SuppressWarnings("resource")
-		ApplicationContext context = new ClassPathXmlApplicationContext("dispatcher-servlet2.xml");
+		ApplicationContext context = new ClassPathXmlApplicationContext("dispatcher-servlet.xml");
 		Personne p31 = new Personne("Sauvage", "Guillaume", "guillaumesauv@gmail.fr", "mdp", 0);
 
 		PersonneDAO pDAO1 = (PersonneDAO) context.getBean("personneDAOImpl");
@@ -58,7 +58,7 @@ public class PersonneDAOTest extends TestCase {
 	@Test
 	public void testGetListePersonneDAO() {
 		@SuppressWarnings("resource")
-		ApplicationContext context = new ClassPathXmlApplicationContext("dispatcher-servlet2.xml");
+		ApplicationContext context = new ClassPathXmlApplicationContext("dispatcher-servlet.xml");
 		PersonneDAO pDAO3 = (PersonneDAO) context.getBean("personneDAOImpl");
 		List<Personne> Pliste = new ArrayList<Personne>();
 		Personne p6 = new Personne("Sauvage", "Guillaume", "guillaumesauv@gmail.fr", "mdp", 0);
@@ -77,7 +77,7 @@ public class PersonneDAOTest extends TestCase {
 
 	@Test
 	public void testVerifPersonneDAO() {
-		ApplicationContext context = new ClassPathXmlApplicationContext("dispatcher-servlet2.xml");
+		ApplicationContext context = new ClassPathXmlApplicationContext("dispatcher-servlet.xml");
 		PersonneDAO pDAO4 = (PersonneDAO) context.getBean("personneDAOImpl");
 		int test;
 
@@ -94,11 +94,10 @@ public class PersonneDAOTest extends TestCase {
 
 	@Test
 	public void testVerifMailPresent() {
-		ApplicationContext context = new ClassPathXmlApplicationContext("dispatcher-servlet2.xml");
+		ApplicationContext context = new ClassPathXmlApplicationContext("dispatcher-servlet.xml");
 		Personne p10 = new Personne("Test", "Paul", "present@gmail.fr", "mdp", 0);
 		PersonneDAO pDAO5 = (PersonneDAO) context.getBean("personneDAOImpl");
 		pDAO5.ajouterPersonne(p10);
-
 		assertTrue(pDAO5.verifEmailPresent("present@gmail.fr"));
 		assertFalse(pDAO5.verifEmailPresent("paspresent@gmail.fr"));
 	}
