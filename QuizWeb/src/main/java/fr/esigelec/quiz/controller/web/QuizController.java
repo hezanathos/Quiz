@@ -61,9 +61,7 @@ public class QuizController {
 				proposition.setQuestion(question);
 				servicePropositionDAO.ajouterProposition(proposition);
 			}
-			
-			
-        return "ajouterquestionadmin";
+			return "add_question";
 	}
 	
 	@RequestMapping(value = "/repondreQuestion", method = RequestMethod.GET)
@@ -84,7 +82,7 @@ public class QuizController {
 			return "quiz";
 		}
 		
-		return "ingame";
+		return "ingame_admin";
 		
 	}
 
@@ -95,18 +93,19 @@ public class QuizController {
 		//session = request.getSession();
 		modelMap.addAttribute("listQuiz", listQuiz);
 
-		return "ingame";
+		return "home_user";
 
 	}
-	
+
 	@RequestMapping(value = "/afficherStats", method = RequestMethod.GET)
 	public String afficherStats(HttpServletRequest request, ModelMap modelMap){
-		int idQuiz = (int) request.getAttribute("idQuiz");
-		int idQuestion = (int) request.getAttribute("idQuestion");
+		int idQuiz = Integer.parseInt(request.getParameter("idQuiz"));
+		int idQuestion =  Integer.parseInt(request.getParameter("idQuestion"));
 		int nbReponses = serviceChoisirDAO.getNbReponses(idQuiz, idQuestion);
 		int nbBonnesReponses = serviceChoisirDAO.getNbBonnesReponses(idQuiz, idQuestion);
 		modelMap.addAttribute("nbReponses", nbReponses);
 		modelMap.addAttribute("nbBonnesReponses", nbBonnesReponses);
+		modelMap.addAttribute("idQuiz", idQuiz);
 		
 		List<Personne> participants = serviceChoisirDAO.getParticipantsQuiz(idQuiz);
 		HashMap classement = new HashMap<String,Integer>();
@@ -119,5 +118,15 @@ public class QuizController {
 		return "stats";
 	}
 
+	@RequestMapping(value = "/questionCourrante", method = RequestMethod.GET)
+	public String questionCourrante(HttpServletRequest request, ModelMap modelMap){
+		int idQuiz = (int) request.getAttribute("idQuiz");
+		Question question = serviceQuizDAO.getQuestionCourrante(idQuiz);
+		Quiz quiz = serviceQuizDAO.getQuiz(idQuiz);
+		quiz.setNoQuestionCourant(quiz.getNoQuestionCourant()+1);
+		modelMap.addAttribute("idQuiz", idQuiz);
+		serviceQuizDAO.ajouterQuiz(quiz);
+		return "ingame";
+	}
 
 }
