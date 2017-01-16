@@ -47,7 +47,7 @@ public class PersonneDAOImpl implements PersonneDAO {
 
 			Boolean verifEmailUnique = verifEmailPresent(personne.getMail());
 
-			if (verifEmailUnique.equals(true))
+			if (verifEmailUnique.equals(false))
 
 			{
 				return -1;
