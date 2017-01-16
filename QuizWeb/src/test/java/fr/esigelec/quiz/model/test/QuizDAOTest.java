@@ -67,8 +67,42 @@ public class QuizDAOTest {
 		
 		assertEquals(quiz.getLibelle(),"libelleQ");
 
+		
+		
+		
+		
 	
 	}
+	public void testgetQuestionCourrante() {
+		ApplicationContext context = new ClassPathXmlApplicationContext("dispatcher-servlet.xml");
+		//**********************		
+		Timestamp timestampDatedebutQuiz = Timestamp.valueOf("2007-09-23 10:10:10.0");
+		Timestamp timestampDatedebutQuestion = Timestamp.valueOf("2007-09-23 10:15:10.0");
+		ArrayList<Question> listeQuestion = new ArrayList<Question>();
+		
+		listeQuestion.add(new Question("libelle"));
+		listeQuestion.add(new Question("libelle2"));
 
+	Quiz quiz = new Quiz("libelleQ",1,timestampDatedebutQuiz,1,1,timestampDatedebutQuestion,listeQuestion);
+		
+		//**********************
+		QuizDAO qdao = (QuizDAO) context.getBean("quizDAOImpl");
+		qdao.ajouterQuiz(quiz);
+		@SuppressWarnings("unused")
+		Quiz quizget=qdao.getQuiz(1);
+		
+		assertEquals(quiz.getLibelle(),"libelleQ");
+		assertEquals("libelle", qdao.getQuestionCourrante(quizget.getId()).getLibelle());
+		quizget.setNoQuestionCourant(quizget.getNoQuestionCourant()+1);
+		qdao.ajouterQuiz(quizget);
+		assertEquals("libelle2", qdao.getQuestionCourrante(quizget.getId()).getLibelle());
+		
+
+		
+		
+		
+		
+	
+	}
 
 }
