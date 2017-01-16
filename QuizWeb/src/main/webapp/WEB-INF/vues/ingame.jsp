@@ -11,8 +11,8 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
 
-    <link href="../styles/out/index.css" rel="stylesheet"></link>
-    <link href="../styles/out/ingame.css" rel="stylesheet"></link>
+    <link href="resources/styles/compiled/index.css" rel="stylesheet"></link>
+    <link href="resources/styles/compiled/ingame.css" rel="stylesheet"></link>
 </head>
 
 <body>
@@ -120,8 +120,8 @@
         </div>
 
     </div>
-    <script type="text/javascript" src="../script/jquery.js"></script>
-    <script type="text/javascript" src="../script/chrono.js"></script>
+    <script type="text/javascript" src="resources/script/jquery.js"></script>
+    <script type="text/javascript" src="resources/script/chrono.js"></script>
 
 </body>
 

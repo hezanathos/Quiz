@@ -22,5 +22,5 @@ public interface QuizDAO {
 	
 //	public void supprimerQuiz(int id);
 	
-	public Question getProchaineQuestion(int idQuiz);
+	public Question getCurrentQuestion(int idQuiz);
 }

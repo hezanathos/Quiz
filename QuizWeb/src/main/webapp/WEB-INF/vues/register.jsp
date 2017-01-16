@@ -9,8 +9,8 @@
     <meta charset="utf-8">
     <title>quiz - login</title>
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-    <link rel="stylesheet" href="../styles/compiled/index.css">
-    <link rel="stylesheet" href="../styles/compiled/register.css">
+    <link rel="stylesheet" href="resources/styles/compiled/index.css">
+    <link rel="stylesheet" href="resources/styles/compiled/register.css">
 
 </head>
 
