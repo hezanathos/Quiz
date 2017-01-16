@@ -173,7 +173,8 @@ public class ChoisirDAOImpl implements ChoisirDAO {
 		listeDesChoix = (List<Choisir>) sessionFactory.getCurrentSession()
 				.createQuery("from Choisir where idquiz=? and idpersonne=?") 
 				.setParameter(0, idQuiz)
-				.setParameter(1, idParticipant);
+				.setParameter(1, idParticipant)
+				.list();
 		
 		
 			for(Choisir chx : listeDesChoix ){
