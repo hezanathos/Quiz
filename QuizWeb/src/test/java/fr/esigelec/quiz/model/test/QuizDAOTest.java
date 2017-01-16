@@ -75,7 +75,7 @@ public class QuizDAOTest {
 	}
 	@Test
 	public void testgetQuestionCourrante() {
-		ApplicationContext context = new ClassPathXmlApplicationContext("dispatcher-servlet.xml");
+		ApplicationContext context = new ClassPathXmlApplicationContext("dispatcher-servlet2.xml");
 		//**********************		
 		Timestamp timestampDatedebutQuiz = Timestamp.valueOf("2007-09-23 10:10:10.0");
 		Timestamp timestampDatedebutQuestion = Timestamp.valueOf("2007-09-23 10:15:10.0");
@@ -97,7 +97,7 @@ public class QuizDAOTest {
 		assertEquals("libelle", qdao.getQuestionCourrante(quizget.getId()).getLibelle());
 		quizget.setNoQuestionCourant(quizget.getNoQuestionCourant()+1);
 		qdao.ajouterQuiz(quizget);
-		assertEquals(1,quiz.getNoQuestionCourant());
+		assertEquals(1,quizget.getNoQuestionCourant());
 		assertEquals("libelle2", qdao.getQuestionCourrante(quizget.getId()).getLibelle());
 		
 
