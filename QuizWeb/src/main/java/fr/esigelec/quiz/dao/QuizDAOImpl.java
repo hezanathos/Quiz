@@ -54,23 +54,25 @@ public class QuizDAOImpl implements QuizDAO {
 		return (Quiz) sessionFactory.getCurrentSession().get(Quiz.class, id);
 	}
 
-
 	@Override
 	public Question getQuestionCourrante(int idQuiz) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-/*
->>>>>>> branch 'master' of https://github.com/hezanathos/Quiz.git
-	@Override
-	public Question getCurrentQuestion(int idQuiz) {
+
 		Quiz qz = getQuiz(idQuiz);
 
 		return qz.getListeQuestion().get(qz.getNoQuestionCourant());
+
 	}
 
 	/*
+	 * >>>>>>> branch 'master' of https://github.com/hezanathos/Quiz.git
+	 * 
+	 * @Override public Question getCurrentQuestion(int idQuiz) { Quiz qz =
+	 * getQuiz(idQuiz);
+	 * 
+	 * return qz.getListeQuestion().get(qz.getNoQuestionCourant()); }
+	 * 
+	 * /*
+	 * 
 	 * @Override public void supprimerQuiz(int id) {
 	 * 
 	 * Session session = this.sessionFactory.getCurrentSession(); Quiz q =
