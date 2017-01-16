@@ -32,7 +32,7 @@ public class UserController {
 		p.setMail(""); // pour l'exemple
 		p.setMdp("");
 		model.addAttribute("formulaireConnexion", p);
-		return "index";
+		return "login";
 	}
 
 	@RequestMapping(value = "/inscription", method = RequestMethod.GET)
@@ -81,8 +81,10 @@ public class UserController {
 
 		Personne pTemp = service.getPersonneByEmail(mail);
 		if (service.verifPersonne(mail, mdp) != (-1)) {// On verifie si la
-
-			return "index";
+			if(pTemp.getDroits() == 0)
+				return "home_user";
+			if(pTemp.getDroits() == 1000)
+				return "home_admin";
 
 		} else {
 			model.addAttribute("erreurUtilisateurInconnu", "Utilisateur inconnu");
