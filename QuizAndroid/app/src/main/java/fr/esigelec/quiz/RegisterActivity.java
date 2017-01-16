@@ -183,7 +183,7 @@ public class RegisterActivity extends Activity{
 
     private boolean isPasswordValid(String password) {
         //add your own logic
-        return password.length() > 2;
+        return password.length() > 3;
     }
 
     /**
@@ -311,7 +311,7 @@ public class RegisterActivity extends Activity{
                 //  login success and move to main Activity here.
             } else {
                 // login failure
-                emailTextView.setError("Email déja utilisé");
+                emailTextView.setError("Email déja utilisé ou mdp trop court");
                 // passwordTextView.setError(getString(R.string.error_invalid_password));
                 emailTextView.requestFocus();
             }

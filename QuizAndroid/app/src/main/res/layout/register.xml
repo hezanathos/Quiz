@@ -67,7 +67,7 @@
                                           android:textColor="#ffffffff" />
 
                     <EditText android:id="@+id/password" android:layout_width="match_parent"
-                              android:layout_height="wrap_content" android:hint="Password"
+                              android:layout_height="wrap_content" android:hint="Password (4 caractères min)"
                               android:imeActionLabel="@string/action_sign_in"
                               android:imeOptions="actionUnspecified" android:inputType="textPassword"
                               android:maxLines="1" android:singleLine="true"
