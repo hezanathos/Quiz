@@ -37,7 +37,6 @@ public class InscriptionController {
 		p.setMdp(password);
 		p.setDroits(1);
 
-		// TODO mettre a jour avec les méthodes de PersonneDAO
 		// Test si l'utilisateur n'est pas déjà enregistré dans la base de
 		// donnée
 		if (service.ajouterPersonne(p) == 1) {
