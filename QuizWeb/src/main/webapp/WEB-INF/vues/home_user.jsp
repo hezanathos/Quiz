@@ -9,8 +9,8 @@
     <meta charset="utf-8">
     <title>quiz - home</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
-    <link href="../styles/compiled/index.css" rel="stylesheet"></link>
-    <link href="../styles/compiled/home.css" rel="stylesheet"></link>
+    <link href="resources/styles/compiled/index.css" rel="stylesheet"></link>
+    <link href="resources/styles/compiled/home.css" rel="stylesheet"></link>
 </head>
 
 <body>

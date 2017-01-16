@@ -9,8 +9,8 @@
     <meta charset="utf-8">
     <title>quiz - créer quiz</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
-    <link href="../styles/out/index.css" rel="stylesheet"></link>
-    <link href="../styles/out/create_quiz.css" rel="stylesheet"></link>
+    <link href="resources/styles/compiled/index.css" rel="stylesheet"></link>
+    <link href="resources/styles/compiled/create_quiz.css" rel="stylesheet"></link>
 </head>
 
 <body>
