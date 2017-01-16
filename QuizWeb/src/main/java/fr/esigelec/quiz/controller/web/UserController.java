@@ -85,11 +85,12 @@ public class UserController {
 				return "home_user";
 			if(pTemp.getDroits() == 1000)
 				return "home_admin";
-
+			else
+				return "index";
 		} else {
 			model.addAttribute("erreurUtilisateurInconnu", "Utilisateur inconnu");
 			return "index";
-		}
+		}	
 	/*String motDePasse = request.getParameter("motDePasse");
 	String courriel = request.getParameter("courriel");
 	PersonneDAOImpl pdao = new PersonneDAOImpl();
