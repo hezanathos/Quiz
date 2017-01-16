@@ -194,7 +194,13 @@ public class ChoisirDAOImpl implements ChoisirDAO {
 	@Override
 	public int getNbChoixDunProposition(int idProposition) {
 		
-		return 0;
+		
+	@SuppressWarnings("unchecked")
+	List<Choisir> qqch = (List<Choisir>) sessionFactory.getCurrentSession()
+	.createQuery("from Choisir where  idproposition=?") 
+	.setParameter(0, idProposition);
+		
+		return qqch.size();
 	}
 
 }

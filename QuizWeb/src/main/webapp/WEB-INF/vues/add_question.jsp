@@ -19,7 +19,7 @@
             quiz
         </div>
         <div class="profile">
-            <a>Deconnexion</a> (Michel de Lakonta)
+            <a href>Deconnexion</a> 
         </div>
     </div>
     <div class="add-question-content">
@@ -28,7 +28,7 @@
             <h4><a>Rétablir</a></h4>
         </div>
 
-        <form:form>
+        <form:form method = "post" action = "ajouterQuestion" commandName="question">
             <form:input class="lbl-question" type="text" path="" placeholder="Intitulé de la question"/>
             <ul>
                 <li>

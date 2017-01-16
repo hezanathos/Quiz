@@ -69,6 +69,9 @@ public class PropositionDAOImpl implements PropositionDAO {
 		  return (Proposition) sessionFactory.getCurrentSession().get(Proposition.class, id);
 	}
 
+
+	
+
 	/* @Override
 	 public void supprimerProposition(int id) {
 		

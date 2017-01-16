@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import fr.esigelec.quiz.model.Question;
 import fr.esigelec.quiz.model.Quiz;
 
 /**
@@ -49,6 +50,12 @@ public class QuizDAOImpl implements QuizDAO {
 	public Quiz getQuiz(int id) {
 		
 				  return (Quiz) sessionFactory.getCurrentSession().get(Quiz.class, id);
+	}
+
+	@Override
+	public Question getProchaineQuestion(int idQuiz) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 /*
