@@ -43,7 +43,7 @@ public class UserController {
 		p.setNom("inconnu");
 		p.setPrenom("inconnu");
 		model.addAttribute("formulaireInscription", p);
-		return "inscription";
+		return "register";
 	}
 
 	@RequestMapping(value = "/inscription.do", method = RequestMethod.POST)
@@ -59,10 +59,10 @@ public class UserController {
 
 		if (service.ajouterPersonne(p) == 1) {
 
-			return "redirect:/index";
+			return "index";
 		} else if (service.ajouterPersonne(p) == -1) {
 			model.addAttribute("erreurPersonneExiste", "Email d�j� utilis�");
-			return "inscription";
+			return "register";
 		}
 		/*
 		 * String nom = request.getParameter("nom"); String motDePasse =
@@ -72,7 +72,7 @@ public class UserController {
 		 * Personne(1000,nom,prenom,courriel,motDePasse,0); PersonneDAOImpl pdao
 		 * = new PersonneDAOImpl(); pdao.ajouterPersonne(p);
 		 */
-		return "inscription";
+		return "register";
 
 
 	}
@@ -83,7 +83,7 @@ public class UserController {
 		if (service.verifPersonne(mail, mdp) != (-1)) {// On verifie si la
 														// personne existe
 
-			return "quiz";
+			return "index";
 		} else {
 			model.addAttribute("erreurUtilisateurInconnu", "Utilisateur inconnu");
 			return "index";

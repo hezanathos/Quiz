@@ -62,7 +62,7 @@ public class QuizController {
 								 final ModelMap pModel){
 
 			serviceQuestionDAO.ajouterQuestion(question);
-        return "ajouterquestionadmin";
+			return "add_question";
 	}
 	
 	@RequestMapping(value = "/repondreQuestion", method = RequestMethod.GET)
@@ -83,7 +83,7 @@ public class QuizController {
 			return "quiz";
 		}
 		
-		return "ingame";
+		return "ingame_admin";
 		
 	}
 
@@ -94,18 +94,19 @@ public class QuizController {
 		//session = request.getSession();
 		modelMap.addAttribute("listQuiz", listQuiz);
 
-		return "ingame";
+		return "home_user";
 
 	}
-	
+
 	@RequestMapping(value = "/afficherStats", method = RequestMethod.GET)
 	public String afficherStats(HttpServletRequest request, ModelMap modelMap){
-		int idQuiz = (int) request.getAttribute("idQuiz");
-		int idQuestion = (int) request.getAttribute("idQuestion");
+		int idQuiz = Integer.parseInt(request.getParameter("idQuiz"));
+		int idQuestion =  Integer.parseInt(request.getParameter("idQuestion"));
 		int nbReponses = serviceChoisirDAO.getNbReponses(idQuiz, idQuestion);
 		int nbBonnesReponses = serviceChoisirDAO.getNbBonnesReponses(idQuiz, idQuestion);
 		modelMap.addAttribute("nbReponses", nbReponses);
 		modelMap.addAttribute("nbBonnesReponses", nbBonnesReponses);
+		modelMap.addAttribute("idQuiz", idQuiz);
 		
 		List<Personne> participants = serviceChoisirDAO.getParticipantsQuiz(idQuiz);
 		HashMap classement = new HashMap<String,Integer>();
@@ -118,5 +119,11 @@ public class QuizController {
 		return "stats";
 	}
 
+	@RequestMapping(value = "/questionSuivante", method = RequestMethod.GET)
+	public String questionSuivante(HttpServletRequest request, ModelMap modelMap){
+		int idQuiz = (int) request.getAttribute("idQuiz");
+
+		return "ingame";
+	}
 
 }
