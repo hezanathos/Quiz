@@ -119,10 +119,13 @@ public class QuizController {
 		return "stats";
 	}
 
-	@RequestMapping(value = "/questionSuivante", method = RequestMethod.GET)
-	public String questionSuivante(HttpServletRequest request, ModelMap modelMap){
+	@RequestMapping(value = "/questionCourrante", method = RequestMethod.GET)
+	public String questionCourrante(HttpServletRequest request, ModelMap modelMap){
 		int idQuiz = (int) request.getAttribute("idQuiz");
-
+		Question question = serviceQuizDAO.getQuestionCourrante(idQuiz);
+		Quiz quiz = serviceQuizDAO.getQuiz(idQuiz);
+		quiz.setNoQuestionCourant(quiz.getNoQuestionCourant()+1);
+		serviceQuizDAO.ajouterQuiz(quiz);
 		return "ingame";
 	}
 

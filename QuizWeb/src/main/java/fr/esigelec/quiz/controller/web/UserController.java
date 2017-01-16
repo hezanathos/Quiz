@@ -81,13 +81,9 @@ public class UserController {
 
 		Personne pTemp = service.getPersonneByEmail(mail);
 		if (service.verifPersonne(mail, mdp) != (-1)) {// On verifie si la
-														// personne existe
-<<<<<<< HEAD
 
 			return "index";
-=======
-			return "quiz";
->>>>>>> f78d92037f8b0645061285cae0fe2a6e05aced4d
+
 		} else {
 			model.addAttribute("erreurUtilisateurInconnu", "Utilisateur inconnu");
 			return "index";
