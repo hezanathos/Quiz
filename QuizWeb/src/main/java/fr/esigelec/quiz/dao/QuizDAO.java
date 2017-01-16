@@ -22,6 +22,4 @@ public interface QuizDAO {
 	// public void supprimerQuiz(int id);
 
 	public Question getQuestionCourrante(int idQuiz);
-	
-	public void updateDebutQuestion(int idQuiz, long timestamp);
-}
+	}
