@@ -1,0 +1,243 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif !important;
+  outline: none !important;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  background-color: #F3F3F3; }
+
+body > * {
+  display: block; }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  padding: 5px;
+  margin: 5px; }
+
+h1 {
+  font-weight: 700;
+  font-size: 40px; }
+
+h2 {
+  font-weight: 400;
+  font-size: 35px; }
+
+h3 {
+  font-weight: 400;
+  font-size: 30px; }
+
+h4 {
+  font-weight: 400;
+  font-size: 26px; }
+
+h5 {
+  font-weight: 300;
+  font-size: 22px; }
+
+h6 {
+  font-weight: 300;
+  font-size: 19px; }
+
+a {
+  text-decoration: none;
+  color: #8d8dff;
+  margin: 5px; }
+
+a:hover {
+  cursor: pointer !important;
+  color: #c28dff; }
+
+a:visited {
+  color: #c28dff; }
+
+a:active {
+  color: #3333ff; }
+
+input {
+  padding: 10px;
+  font-size: 1.25em;
+  height: 24px;
+  border-radius: 3px;
+  transition: all 0.01s linear;
+  margin-bottom: 15px; }
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  border: 1px solid #DDD; }
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+  border: 1px solid #8d8dff; }
+
+input[type="text"]:hover,
+input[type="email"]:hover,
+input[type="password"]:hover {
+  border: 1px solid #b9b9ff; }
+
+input[type="button"],
+input[type="submit"] {
+  padding-left: 15px;
+  padding-right: 15px;
+  font-size: 1.25em;
+  height: 42px;
+  line-height: 0px;
+  border: 0;
+  background: transparent;
+  background-color: #8d8dff;
+  color: white; }
+
+input[type="button"]:hover,
+input[type="submit"]:hover {
+  background-color: #5656ff;
+  cursor: pointer; }
+
+textarea {
+  margin: 5px;
+  border: 1px solid #DDD;
+  padding: 5px;
+  border-radius: 3px;
+  font-size: 1.05em; }
+
+textarea:focus {
+  border: 1px solid #8d8dff; }
+
+textarea:hover {
+  border: 1px solid #b9b9ff; }
+
+form > * {
+  display: block; }
+
+form > label {
+  margin-top: 10px;
+  text-transform: uppercase; }
+
+.question {
+  width: 100%;
+  text-align: center; }
+
+.question > .label {
+  width: 75%;
+  margin: 0 auto;
+  letter-spacing: 2px; }
+
+.propositions {
+  width: 100%;
+  box-sizing: border-box; }
+
+.row-prop {
+  box-sizing: border-box; }
+
+.row-prop > li {
+  display: inline-block;
+  width: 25%;
+  margin: 20px;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 3px;
+  font-weight: 100;
+  font-size: 1.5em; }
+
+.row-prop > li:hover {
+  transition: all 0.1s linear;
+  background-color: #d2e0f4;
+  cursor: pointer; }
+
+.row-prop .selected {
+  font-weight: bold;
+  background-color: #ebef96; }
+
+.row-prop .correct {
+  font-weight: bold;
+  background-color: #a9eba3; }
+
+.row-prop .wrong {
+  font-weight: bold;
+  background-color: #e89999; }
+
+.phone {
+  width: 50%; }
+
+.item-list:nth-child(even) {
+  background-color: #EEE; }
+
+.game {
+  width: 100%;
+  height: 100%; }
+
+.game > .plate > .chrono {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -10%);
+  font-size: 50em;
+  text-align: center;
+  color: #DDD;
+  z-index: 1; }
+
+.game > * {
+  display: inline-block;
+  vertical-align: top; }
+
+.game > .plate > .chrono > #secondes {
+  width: 50%;
+  color: #a7a7a7;
+  font-weight: 100; }
+
+.game > .plate > .chrono > #ms {
+  color: #a7a7a7;
+  font-size: 0.5em;
+  width: 50%;
+  font-weight: bold; }
+
+.game > .plate > .content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 30px;
+  width: 100%;
+  z-index: 1000; }
+
+.game > .plate > .bottom {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  z-index: 2000; }
+
+.game > .plate > .bottom > .breadcrum {
+  text-align: center; }
+
+.game > .plate > .bottom > .bar {
+  height: 10px;
+  background-color: #DDD; }
+
+.game > .plate > .bottom > .bar > .bar-active {
+  height: 100%;
+  width: 75%;
+  background-color: #5395ff; }
+
+.global-header {
+  padding: 20px;
+  background-color: white;
+  vertical-align: middle; }
+  .global-header * {
+    display: inline-block;
+    vertical-align: middle; }
+  .global-header .profile {
+    float: right; }
+  .global-header .brand {
+    font-family: 'Comic Sans MS', sans-serif !important;
+    font-size: 1.3em; }
+
+/*# sourceMappingURL=index.css.map */

@@ -32,4 +32,7 @@ public interface ChoisirDAO {
 	public int getNbBonnesReponseDunParticipantAuQuiz(int idQuiz, int idParticipant);
 	
 	public List<Personne> getParticipantsQuiz(int idQuiz);
+	
+	// get nombre de personne qui a choisi une proposition précis
+	public int getNbChoixDunProposition(int idProposition);
 }

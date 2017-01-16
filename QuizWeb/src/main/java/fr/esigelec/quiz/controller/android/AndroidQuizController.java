@@ -1,5 +1,8 @@
 package fr.esigelec.quiz.controller.android;
 
+import java.sql.Timestamp;
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -14,13 +17,26 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import fr.esigelec.quiz.dao.ChoisirDAO;
+import fr.esigelec.quiz.dao.ChoisirDAOImpl;
+import fr.esigelec.quiz.dao.PersonneDAO;
+import fr.esigelec.quiz.dao.PersonneDAOImpl;
+import fr.esigelec.quiz.dao.PropositionDAO;
+import fr.esigelec.quiz.dao.PropositionDAOImpl;
+import fr.esigelec.quiz.dao.QuestionDAO;
+import fr.esigelec.quiz.dao.QuestionDAOImpl;
+import fr.esigelec.quiz.dao.QuizDAO;
+import fr.esigelec.quiz.dao.QuizDAOImpl;
+import fr.esigelec.quiz.model.Choisir;
+import fr.esigelec.quiz.model.Personne;
 import fr.esigelec.quiz.model.Proposition;
 import fr.esigelec.quiz.model.Question;
+import fr.esigelec.quiz.model.Quiz;
 
 /**
  * 
- * @author wangxi
- * 	Quiz controller for android
+ * @author wangxi 
+ * Quiz controller for android
  * @see https://spring.io/guides/gs/messaging-stomp-websocket/
  */
 
@@ -39,31 +55,54 @@ public class AndroidQuizController {
 	}
 
 	/**
-	 *  Receive the reponse sended from Andorid
-	 * @param json in format {"idperson":1, "idquiz": 1,"idquestion" : 1, "idproposition": 1}
+	 * Receive the reponse sended from Andorid
+	 * 
+	 * @param json
+	 *            in format {"idperson":1, "idquiz": 1,"idquestion" : 1,
+	 *            "idproposition": 1}
 	 * @throws Exception
 	 */
 	@MessageMapping("/android")
 	@SendTo("/topic/questions")
 	public void getAnswer(String json) throws Exception {
-		//TODO: save answer to BDD
-		JsonElement jsonElement = new JsonParser().parse(json);
+
+		JsonElement jsonElement =  new JsonParser().parse(json);
 		JsonObject jsonObject = jsonElement.getAsJsonObject();
+		
 		int idPerson = jsonObject.getAsJsonObject("idperson").getAsInt();
 		int idQuiz = jsonObject.getAsJsonObject("idquiz").getAsInt();
 		int idQuestion = jsonObject.getAsJsonObject("idquestion").getAsInt();
 		int idproposition = jsonObject.getAsJsonObject("idproposition").getAsInt();
-		
-			
+
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		PersonneDAO personneDAO = new PersonneDAOImpl();
+		Personne personne = personneDAO.getPersonne(idPerson);
+		QuizDAO quizDAO = new QuizDAOImpl();
+		Quiz quiz = quizDAO.getQuiz(idQuiz);
+		PropositionDAO propositionDAO = new PropositionDAOImpl();
+		Proposition proposition = propositionDAO.getProposition(idproposition);
+
+		Choisir choisir = new Choisir(timestamp, personne, quiz, proposition);
+		ChoisirDAO choisirDAO = new ChoisirDAOImpl();
+		choisirDAO.ajouterChoix(choisir);
+
 	}
-	
+
 	/**
 	 * send new question to broker
-	 * @param question the question we are on, send to broker
-	 * @param idQuiz	the id of the Quiz we are on
+	 * 
+	 * @param question
+	 *            the question we are on, send to broker
+	 * @param idQuiz
+	 *            the id of the Quiz we are on
 	 * @throws JsonProcessingException
 	 */
-	public void sendQuestion(Question question, int idQuiz) throws JsonProcessingException {
+	public void sendQuestion(int idQuestion, int idQuiz)
+			throws JsonProcessingException {
+		QuestionDAO questionDAO = new QuestionDAOImpl();
+		Question question = questionDAO.getQuestion(idQuestion);
+		ArrayList<Proposition> propositions = (ArrayList<Proposition>) questionDAO.getListePropositions(idQuestion);
+		
 		ObjectMapper mapper = new ObjectMapper();
 		ObjectNode objectNode = mapper.createObjectNode();
 		ObjectNode questionNode = mapper.createObjectNode();
@@ -81,25 +120,35 @@ public class AndroidQuizController {
 		objectNode.set("question", questionNode);
 
 		for (int i = 0; i < 4; i++) {
-			Proposition propositionTemp = question.getListproposition().get(i);
+			Proposition propositionTemp = propositions.get(i);
 			propositionArray.add(mapper.createObjectNode().put("id", propositionTemp.getId()).put("libelle",
 					propositionTemp.getLibelle()));
 		}
 		objectNode.set("propositions", propositionArray);
 		objectNode.put("timeRemaining", 30000);
-		
+
 		String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(objectNode);
 		System.out.println("sendQuestion" + json);
 		this.template.convertAndSend("/topic/questions", json);
 	}
 
 	/**
-	 *  Send the question status to broker
-	 * @param question the question we are on
-	 * @param idQuiz the id of the quiz which we are on
+	 * Send the question status to broker
+	 * 
+	 * @param question
+	 *            the question we are on
+	 * @param idQuiz
+	 *            the id of the quiz which we are on
 	 * @throws JsonProcessingException
 	 */
-	public void sendStatus(Question question, int idQuiz) throws JsonProcessingException {
+	public void sendStatus(int idQuestion, int idQuiz)
+			throws JsonProcessingException {
+
+		ChoisirDAO choisirDAO = new ChoisirDAOImpl();
+		QuestionDAO questionDAO = new QuestionDAOImpl();
+		
+		Question question = questionDAO.getQuestion(idQuestion);
+		
 		ObjectMapper mapper = new ObjectMapper();
 		ObjectNode objectNode = mapper.createObjectNode();
 		ObjectNode questionNode = mapper.createObjectNode();
@@ -113,11 +162,14 @@ public class AndroidQuizController {
 		questionNode.put("libelle", question.getLibelle());
 		objectNode.set("question", questionNode);
 
-		// TODO: Change value of stat in real
+		ArrayList<Proposition> propositions = (ArrayList<Proposition>) questionDAO.getListePropositions(idQuestion);
+		
 		for (int i = 0; i < 4; i++) {
-			Proposition propositionTemp = question.getListproposition().get(i);
+			Proposition propositionTemp = propositions.get(i);
+			int idPropositionTemp = propositionTemp.getId();
+			int stat = choisirDAO.getNbChoixDunProposition(idPropositionTemp);
 			propositionArray.add(mapper.createObjectNode().put("id", propositionTemp.getId())
-					.put("libelle", propositionTemp.getLibelle()).put("stat", 25));
+					.put("libelle", propositionTemp.getLibelle()).put("stat", stat));
 		}
 		objectNode.set("propositions", propositionArray);
 		String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(objectNode);
@@ -127,11 +179,20 @@ public class AndroidQuizController {
 
 	/**
 	 * Send the question result to broker
-	 * @param question the question we are on
-	 * @param idQuiz the id of the Quiz we are on
+	 * 
+	 * @param question
+	 *            the question we are on
+	 * @param idQuiz
+	 *            the id of the Quiz we are on
 	 * @throws JsonProcessingException
 	 */
-	public void sendResult(Question question, int idQuiz) throws JsonProcessingException {
+	public void sendResult(int idQuestion, int idQuiz)
+			throws JsonProcessingException {
+		ChoisirDAO choisirDAO = new ChoisirDAOImpl();
+		QuestionDAO questionDAO = new QuestionDAOImpl();
+		Question question = questionDAO.getQuestion(idQuestion);
+		ArrayList<Proposition> propositions = (ArrayList<Proposition>) questionDAO.getListePropositions(idQuestion);
+		
 		ObjectMapper mapper = new ObjectMapper();
 		ObjectNode objectNode = mapper.createObjectNode();
 		ObjectNode questionNode = mapper.createObjectNode();
@@ -146,37 +207,41 @@ public class AndroidQuizController {
 		questionNode.put("libelle", question.getLibelle());
 		objectNode.set("question", questionNode);
 
-		// TODO: Change value of stat in real
+		
+		
 		for (int i = 0; i < 4; i++) {
-			Proposition propositionTemp = question.getListproposition().get(i);
+			Proposition propositionTemp = propositions.get(i);
+			if( propositionTemp.isBonneReponse() == 1){
+				reponseNode.put("id", propositionTemp.getId());
+				reponseNode.put("libelle", propositionTemp.getLibelle());
+			}
+			int idPropositionTemp = propositionTemp.getId();
+			int stat = choisirDAO.getNbChoixDunProposition(idPropositionTemp);
 			propositionArray.add(mapper.createObjectNode().put("id", propositionTemp.getId())
-					.put("libelle", propositionTemp.getLibelle()).put("stat", 25));
+					.put("libelle", propositionTemp.getLibelle()).put("stat", stat));
 		}
 		objectNode.set("propositions", propositionArray);
-		
-		//TODO: dynamiquely add the correcte answer
-		reponseNode.put("id", 4);
-		reponseNode.put("libelle", "test proposition 4");
+
 		objectNode.set("reponse", reponseNode);
-		
-		//TODO: dynamiquely generate the classments
+
+		// TODO: dynamiquely generate the classments
 		ArrayNode classementsArray = mapper.createArrayNode();
 		ObjectNode user = mapper.createObjectNode();
 		user.put("position", 1);
 		user.put("nom", "william");
 		user.put("points", 10);
-		
+
 		ObjectNode user2 = mapper.createObjectNode();
 		user2.put("position", 2);
 		user2.put("nom", "Xi");
 		user2.put("points", 5);
 		classementsArray.add(user);
 		classementsArray.add(user2);
-		
+
 		objectNode.putPOJO("classement", classementsArray);
 
 		String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(objectNode);
-		System.out.println("sendResult:"+ json);
+		System.out.println("sendResult:" + json);
 		this.template.convertAndSend("/topic/questions", json);
 	}
 

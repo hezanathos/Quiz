@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.esigelec.quiz.model.Choisir;
+import fr.esigelec.quiz.model.Personne;
 
 
 /**
@@ -182,4 +183,31 @@ public class ChoisirDAOImpl implements ChoisirDAO {
 		return nbBonnesResponses;
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Personne> getParticipantsQuiz(int idQuiz) {
+		List<Personne> listeDesParticipants = new ArrayList<Personne>();
+
+		listeDesParticipants = (List<Personne>) sessionFactory.getCurrentSession()
+				.createQuery("from Choisir where idquiz=?").setParameter(0, idQuiz);
+
+		return listeDesParticipants;
+	}
+
+
+	@Override
+	public int getNbChoixDunProposition(int idProposition) {
+		
+		
+		@SuppressWarnings("unchecked")
+	List<Choisir> qqch = (List<Choisir>) sessionFactory.getCurrentSession()
+	.createQuery("from Choisir where  idproposition=?") 
+	.setParameter(0, idProposition);
+		
+		return qqch.size();
+	}
+
+	
+	
+	
 }

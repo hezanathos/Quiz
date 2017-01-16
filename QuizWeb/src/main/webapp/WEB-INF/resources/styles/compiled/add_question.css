@@ -1,0 +1,16 @@
+.add-question-content {
+  width: 900px;
+  margin: 0 auto;
+  padding-top: 20px; }
+  .add-question-content .add-question-content-header {
+    padding-bottom: 10px; }
+    .add-question-content .add-question-content-header * {
+      display: inline; }
+  .add-question-content .lbl-question {
+    width: 100%; }
+  .add-question-content ul {
+    list-style: none; }
+    .add-question-content ul li * {
+      display: inline-block; }
+
+/*# sourceMappingURL=add_question.css.map */
