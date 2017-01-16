@@ -188,7 +188,7 @@ public class QuizActivity extends AppCompatActivity {
             reponce.accumulate("idquiz", aQuiz);
             reponce.accumulate("idquestion", aQuestionId);
             reponce.accumulate("idproposition", idProp);
-            mStompClient.send("/choisir",reponce.toString());
+            mStompClient.send("/app/choisir",reponce.toString()).subscribe();
         } catch (JSONException e) {
             e.printStackTrace();
         }
