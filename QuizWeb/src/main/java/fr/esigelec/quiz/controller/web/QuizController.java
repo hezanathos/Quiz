@@ -42,27 +42,46 @@ public class QuizController {
 	@Autowired
 	private PropositionDAO servicePropositionDAO;
 
-	@RequestMapping(value = "/ajouterQuiz", method = RequestMethod.POST)
+	@RequestMapping(value = "/ajouterQuiz.do", method = RequestMethod.POST)
 	public String ajouterLeQuiz(@ModelAttribute(value="quiz") final Quiz q,
 							 final ModelMap pModel){
 			serviceQuizDAO.ajouterQuiz(q);
-		return "ajouterquestionadmin";
+		List<Quiz> listQuiz = serviceQuizDAO.getListeQuizzes();
+		pModel.addAttribute("listQuiz", listQuiz);
+		return "home_admin";
 
 	}
 
-	@RequestMapping(value = "/ajouterQuestion", method = RequestMethod.POST)
+	@RequestMapping(value = "/ajouterQuiz", method = RequestMethod.GET)
+	public String ajouterLeQuiz(final ModelMap pModel){
+		return "create_quiz";
+
+	}
+
+	@RequestMapping(value = "/ajouterQuestion.do", method = RequestMethod.POST)
 	public String ajouterQuestion(@ModelAttribute(value="question") final Question question, @ModelAttribute(value="proposition") final List<Proposition> propositions,
 								 final ModelMap pModel){
 
 			serviceQuestionDAO.ajouterQuestion(question);
+			int compteur=0;
 			for (Proposition proposition : propositions) {
+				if (compteur == 0)
+					proposition.setBonneReponse(1);
+				else
+					proposition.setBonneReponse(0);
 				proposition.setQuestion(question);
 				servicePropositionDAO.ajouterProposition(proposition);
 			}
 			return "add_question";
 	}
+
+	@RequestMapping(value = "/ajouterQuestion", method = RequestMethod.GET)
+	public String ajouterQuestion(
+								  final ModelMap pModel){
+		return "add_question";
+	}
 	
-	@RequestMapping(value = "/repondreQuestion", method = RequestMethod.GET)
+	@RequestMapping(value = "/repondreQuestion.do", method = RequestMethod.GET)
 	public String repondreQuestion(@ModelAttribute(value="choisir") final Choisir choisir,
 			 final ModelMap pModel){
 		serviceChoisirDAO.ajouterChoix(choisir);
@@ -72,12 +91,14 @@ public class QuizController {
 	@RequestMapping(value = "/demarrerQuiz", method = RequestMethod.GET)
 	public String demarrerQuiz(HttpServletRequest request,  ModelMap modelMap, HttpSession session){
 
+		if(request.getParameter("idQuiz") == null)
+			return "index";
 		int idQuiz = Integer.parseInt(request.getParameter("idQuiz"));
 		Quiz quiz = serviceQuizDAO.getQuiz(idQuiz);
 		//session = request.getSession();
 		if(servicePersonneDAO.getPersonneByEmail(session.getAttribute("courriel").toString()).getDroits() == 0) {
 			modelMap.addAttribute("quiz", quiz);
-			return "quiz";
+			return "ingame";
 		}
 		
 		return "ingame_admin";
@@ -97,6 +118,9 @@ public class QuizController {
 
 	@RequestMapping(value = "/afficherStats", method = RequestMethod.GET)
 	public String afficherStats(HttpServletRequest request, ModelMap modelMap){
+
+		if(request.getParameter("idQuiz") == null || request.getParameter("idQuestion") == null)
+			return "index";
 		int idQuiz = Integer.parseInt(request.getParameter("idQuiz"));
 		int idQuestion =  Integer.parseInt(request.getParameter("idQuestion"));
 		int nbReponses = serviceChoisirDAO.getNbReponses(idQuiz, idQuestion);
@@ -118,7 +142,9 @@ public class QuizController {
 
 	@RequestMapping(value = "/questionCourrante", method = RequestMethod.GET)
 	public String questionCourrante(HttpServletRequest request, ModelMap modelMap){
-		int idQuiz = (int) request.getAttribute("idQuiz");
+		if(request.getAttribute("idQuestion") == null)
+			return "index";
+		int idQuiz = Integer.parseInt(request.getParameter("idQuiz"));
 		Question question = serviceQuizDAO.getQuestionCourrante(idQuiz);
 		if (question != null){
 			Quiz quiz = serviceQuizDAO.getQuiz(idQuiz);

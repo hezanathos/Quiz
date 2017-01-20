@@ -12,6 +12,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.*;
+import java.util.List;
 
 /**
  * Created by Edouard on 04/01/2017.
@@ -27,6 +28,8 @@ public class UserController {
 	@Autowired
 	@Qualifier("personneDAOImpl")
 	private PersonneDAO service;
+	@Autowired
+	private QuizDAO serviceQuizDAO;
 
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String accueilConnexion(Model model) {
@@ -61,18 +64,28 @@ public class UserController {
 
 	}
 	@RequestMapping(value = "/connexion.do", method = RequestMethod.POST)
-	public String connexion(@RequestParam("mail") String mail, @RequestParam("mdp") String mdp, Model model) {
-
+	public String connexion(@RequestParam("mail") String mail, @RequestParam("mdp") String mdp, ModelMap modelMap, HttpServletRequest request) {
+		HttpSession session = request.getSession();
 		Personne pTemp = service.getPersonneByEmail(mail);
-		if (service.verifPersonne(mail, mdp) != (-1)) {
-			if(pTemp.getDroits() == 0)
+		session.setAttribute("courriel", pTemp.getMail());
+		session.setAttribute("nom", pTemp.getNom());
+		session.setAttribute("prenom", pTemp.getPrenom());
+		session.setAttribute("droits", pTemp.getDroits());
+		if (service.verifPersonne(mail, mdp) != (-1)) {// On verifie si la
+			if(pTemp.getDroits() == 0) {
+				List<Quiz> listQuiz = serviceQuizDAO.getListeQuizzes();
+				modelMap.addAttribute("listQuiz", listQuiz);
 				return "home_user";
-			if(pTemp.getDroits() == 1000)
+			}
+			if(pTemp.getDroits() == 1000) {
+				List<Quiz> listQuiz = serviceQuizDAO.getListeQuizzes();
+				modelMap.addAttribute("listQuiz", listQuiz);
 				return "home_admin";
+			}
 			else
 				return "index";
 		} else {
-			model.addAttribute("erreurUtilisateurInconnu", "Utilisateur inconnu");
+			modelMap.addAttribute("erreurUtilisateurInconnu", "Utilisateur inconnu");
 			return "index";
 		}	
 
