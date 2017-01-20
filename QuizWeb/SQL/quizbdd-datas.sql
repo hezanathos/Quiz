@@ -40,6 +40,44 @@ INSERT INTO `personne` (`id`, `nom`, `prenom`, `mail`, `mdp`, `droits`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Dumping data for table `quiz`
+--
+
+INSERT INTO `quiz` (`id`, `libelle`, `etat`, `datedebutquiz`, `noquestioncourant`, `etape`, `datedebutquestion`) VALUES
+(1, 'Quiz1', 0, '2017-01-09 13:51:49', 0, 0, '0000-00-00 00:00:00'),
+(2, 'Quiz2', 0, '2017-01-09 13:52:31', 0, 0, '0000-00-00 00:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Dumping data for table `question`
+--
+
+INSERT INTO `question` (`id`, `libelle`) VALUES
+(1, 'Comment s\'appelle le president americain?'),
+(3, 'Comment s\'appelle Louis la Brocante?'),
+(4, 'Comment s\'appelle Michel Drucker?'),
+(5, 'Comment s\'appelle le president francais?'),
+(6, 'De quelle serie de six films un champion de boxe est-il la vedette ?'),
+(7, 'Quelle est la capitale de la Nouvelle-Zelande ?'),
+(8, 'Quel pays a pour capitale Katmandou?'),
+(9, 'A quel groupe musical international doit-on la bande originale du film Flash Gordon ?'),
+(10, 'A quelle classe animale le scorpion appartient-il ?'),
+(11, 'Dans les annees 1980, quel groupe musical a chant? le titre Shout ?'),
+(12, 'Quelle est la seule valeur a la roulette a porter la couleur verte ?'),
+(13, 'Quelle est la plus petite unite de memoire utilisable sur un ordinateur ?'),
+(14, 'Qui fut le premier europeen a arriver aux Philippines ?'),
+(15, 'Combien de temps dure le mandat du president des Etats-Unis ?'),
+(16, 'Quelle est l\'unite de mesure de la force d\'un piment ?'),
+(17, 'Quel est la valeur du pH du Coca-Cola ?'),
+(18, 'Comment se nomme le signe & ?'),
+(19, 'Comment se nomme la peur du nombre 13 ?'),
+(20, 'Comment se nomme le plus grand specimen de chouette ?'),
+(21, 'A quel element se rapporte la loi de Godwin ?');
+
+-- --------------------------------------------------------
+
+--
 -- Dumping data for table `proposition`
 --
 
@@ -56,7 +94,7 @@ INSERT INTO `proposition` (`id`, `libelle`, `bonnereponse`, `idquestion`) VALUES
 (11, 'Michel Drucker', 1, 4),
 (12, 'Marylin Manson', 0, 4),
 (13, 'Charles Manson', 0, 4),
-(14, 'FranÃ§ois Hollande', 1, 5),
+(14, 'Francois Hollande', 1, 5),
 (15, 'Bob', 0, 5),
 (16, 'Marylin Manson', 0, 5),
 (17, 'Michel Drucker', 0, 5),
@@ -100,10 +138,10 @@ INSERT INTO `proposition` (`id`, `libelle`, `bonnereponse`, `idquestion`) VALUES
 (55, '4 Ans', 1, 15),
 (56, '5 Ans', 0, 15),
 (57, '7 Ans', 0, 15),
-(58, 'L''unité hauy', 0, 16),
-(59, 'L''unité thermoptim', 0, 16),
-(60, 'L''unité scoville', 1, 16),
-(61, 'L''unité cherit', 0, 16),
+(58, 'L\'unité hauy', 0, 16),
+(59, 'L\'unité thermoptim', 0, 16),
+(60, 'L\'unité scoville', 1, 16),
+(61, 'L\'unité cherit', 0, 16),
 (62, '2.3', 1, 17),
 (63, '4.5', 0, 17),
 (64, '5.3', 0, 17),
@@ -125,33 +163,6 @@ INSERT INTO `proposition` (`id`, `libelle`, `bonnereponse`, `idquestion`) VALUES
 (80, 'Socialisme', 0, 21),
 (81, 'Communisme', 0, 21);
 
--- --------------------------------------------------------
-
---
--- Dumping data for table `question`
---
-
-INSERT INTO `question` (`id`, `libelle`) VALUES
-(1, 'Comment s''appelle le president americain?'),
-(3, 'Comment s''appelle Louis la Brocante?'),
-(4, 'Comment s''appelle Michel Drucker?'),
-(5, 'Comment s''appelle le president francais?'),
-(6, 'De quelle serie de six films un champion de boxe est-il la vedette ?'),
-(7, 'Quelle est la capitale de la Nouvelle-Zelande ?'),
-(8, 'Quel pays a pour capitale Katma?'),
-(9, 'A quel groupe musical international doit-on la bande originale du film Flash Gordon ?'),
-(10, 'A quelle classe animale le scorpion appartient-il ?'),
-(11, 'Dans les annees 1980, quel groupe musical a chant? le titre Shout ?'),
-(12, 'Quelle est la seule valeur a la roulette a porter la couleur verte ?'),
-(13, 'Quelle est la plus petite unit? de m?moire utilisable sur un ordinateur ?'),
-(14, 'Qui fut le premier europeen ? arriver aux Philippines ?'),
-(15, 'Combien de temps dure le mandat du pr?sident des ?tats-Unis ?'),
-(16, 'Quelle est l''unit? de mesure de la force d''un piment ?'),
-(17, 'Quel est la valeur du pH du Coca-Cola ?'),
-(18, 'Comment se nomme le signe & ?'),
-(19, 'Comment se nomme la peur du nombre 13 ?'),
-(20, 'Comment se nomme le plus grand specimen de chouette ?'),
-(21, 'A quel element se rapporte la loi de Godwin ?');
 
 -- --------------------------------------------------------
 
@@ -181,12 +192,3 @@ INSERT INTO `questionduquiz` (`idquiz`, `idquestion`) VALUES
 (2, 20),
 (2, 21);
 
--- --------------------------------------------------------
-
---
--- Dumping data for table `quiz`
---
-
-INSERT INTO `quiz` (`id`, `libelle`, `etat`, `datedebutquiz`, `noquestioncourant`, `etape`, `datedebutquestion`) VALUES
-(1, 'Quiz1', 0, '2017-01-09 13:51:49', 0, 0, '0000-00-00 00:00:00'),
-(2, 'Quiz2', 0, '2017-01-09 13:52:31', 0, 0, '0000-00-00 00:00:00');

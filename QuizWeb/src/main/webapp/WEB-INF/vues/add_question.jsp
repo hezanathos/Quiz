@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8" isELIgnored="false" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -28,7 +30,7 @@
             <h4><a>Rétablir</a></h4>
         </div>
 
-        <form:form method = "post" action = "ajouterQuestion" commandName="question">
+        <form:form method="post" action="ajouterQuestion" commandName="question">
             <form:input class="lbl-question" type="text" path="question" placeholder="Intitulé de la question"/>
             <ul>
                 <li>
