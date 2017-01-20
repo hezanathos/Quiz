@@ -6,6 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+
+/**
+*   Option class :  allows to modify and set the server address
+*
+* */
+
 public class OptionActivity extends AppCompatActivity {
 
     public static final String PREFS_NAME = "Option";
