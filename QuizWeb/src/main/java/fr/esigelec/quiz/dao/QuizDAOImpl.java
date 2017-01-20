@@ -17,7 +17,7 @@ import fr.esigelec.quiz.model.Quiz;
  * 
  * @author Sahobau
  * 
- * classe d'implémentation des méthodes de QuizDAO
+ *         classe d'implémentation des méthodes de QuizDAO
  * 
  */
 
@@ -25,15 +25,15 @@ import fr.esigelec.quiz.model.Quiz;
 @Transactional(propagation = Propagation.SUPPORTS)
 public class QuizDAOImpl implements QuizDAO {
 
-	//injection du bean sessionFactory
+	// injection du bean sessionFactory
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	
 	/**
-	 * méthode permettant d'ajouter un quiz 
+	 * méthode permettant d'ajouter un quiz
 	 * 
-	 * @param quiz représente le quiz à ajouter 
+	 * @param quiz
+	 *            représente le quiz à ajouter
 	 */
 	@Override
 	public void ajouterQuiz(Quiz quiz) {
@@ -41,10 +41,10 @@ public class QuizDAOImpl implements QuizDAO {
 
 	}
 
-	
 	/**
 	 * méthode permettant de récupérer la liste des quizzes
-	 * @return  la liste des quizzes
+	 * 
+	 * @return la liste des quizzes
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
@@ -63,9 +63,11 @@ public class QuizDAOImpl implements QuizDAO {
 	}
 
 	/**
-	 * méthode permettant de récupérer un quiz 
-	 * @param id représente l'identifiant du quiz à récupérer
-	 * @return le quiz 
+	 * méthode permettant de récupérer un quiz
+	 * 
+	 * @param id
+	 *            représente l'identifiant du quiz à récupérer
+	 * @return le quiz
 	 */
 	@Override
 	@Transactional(readOnly = true)
@@ -75,8 +77,10 @@ public class QuizDAOImpl implements QuizDAO {
 	}
 
 	/**
-	 * méthode permettant de récupérer la question courante 
-	 * @param idQuiz l'identifiant du Quiz à récupérer
+	 * méthode permettant de récupérer la question courante
+	 * 
+	 * @param idQuiz
+	 *            l'identifiant du Quiz à récupérer
 	 * @return la question désirée
 	 */
 	@Override
@@ -87,23 +91,21 @@ public class QuizDAOImpl implements QuizDAO {
 		return qz.getListeQuestion().get(qz.getNoQuestionCourant());
 
 	}
+
 	@SuppressWarnings("unchecked")
-	public Quiz getDernierQuiz(){
-		
-		
-		
+	public Quiz getDernierQuiz() {
 
 		List<Quiz> quiz = new ArrayList<Quiz>();
 
-		quiz = (List<Quiz>)sessionFactory.getCurrentSession()
+		quiz = (List<Quiz>) sessionFactory.getCurrentSession()
 				.createQuery("from Quiz where etat =1 ORDER BY datedebutquiz desc").list();
-				
 
+		if (quiz.size() == 0)
+			return null;
+		else
+			return quiz.get(0);
 
-		return quiz.get(0);
-		
 	}
-	
 
 	/*
 	 * >>>>>>> branch 'master' of https://github.com/hezanathos/Quiz.git
