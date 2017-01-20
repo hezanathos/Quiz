@@ -62,10 +62,6 @@ public class RegisterActivity extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register);
 
-
-        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-        serverAdress = settings.getString("serverAdress","srvinfodev.esigelec.fr:8080/quiz");
-
         emailTextView = (AutoCompleteTextView) findViewById(R.id.email);
         //loadAutoComplete();
 
@@ -123,6 +119,13 @@ public class RegisterActivity extends Activity{
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        serverAdress = settings.getString("serverAdress","srvinfodev.esigelec.fr:8080/quiz");
+    }
 
     /**
      * Validate Login form and authenticate.

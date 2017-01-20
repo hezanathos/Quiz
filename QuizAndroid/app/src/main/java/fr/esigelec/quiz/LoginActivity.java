@@ -61,9 +61,6 @@ public class LoginActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
-        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-        serverAdress = settings.getString("serverAdress","srvinfodev.esigelec.fr:8080/quiz");
-
         emailTextView = (AutoCompleteTextView) findViewById(R.id.email);
         //loadAutoComplete();
 
@@ -120,6 +117,13 @@ public class LoginActivity extends Activity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        serverAdress = settings.getString("serverAdress","srvinfodev.esigelec.fr:8080/quiz");
+    }
 
     /**
      * Validate Login form and authenticate.
