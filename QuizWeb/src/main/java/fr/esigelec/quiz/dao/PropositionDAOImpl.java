@@ -33,6 +33,7 @@ public class PropositionDAOImpl implements PropositionDAO {
 	
 	/**
 	 *  méthode Ajouter une proposition
+	 *  
 	 * @param proposition  représente la proposition à enregistrer
 	 * 
 	 */
@@ -61,7 +62,6 @@ public class PropositionDAOImpl implements PropositionDAO {
 	 * @param id représente l'identitifiant de la proposition à récupérer 
 	 * @return la proposition désirée
 	 */
-
 	@Override
 	@Transactional(readOnly=true)
 	public Proposition getProposition(int id) {
@@ -69,8 +69,6 @@ public class PropositionDAOImpl implements PropositionDAO {
 		  return (Proposition) sessionFactory.getCurrentSession().get(Proposition.class, id);
 	}
 
-
-	
 
 	/* @Override
 	 public void supprimerProposition(int id) {

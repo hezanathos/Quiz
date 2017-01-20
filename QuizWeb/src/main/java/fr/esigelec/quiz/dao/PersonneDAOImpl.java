@@ -36,10 +36,8 @@ public class PersonneDAOImpl implements PersonneDAO {
 	/**
 	 * méthode Ajouter un Personne
 	 * 
-	 * @param personne
-	 *             représente la personne à enregistrer
-	 * @return -1 when personne existe 0 when personne is null 1 when personne
-	 *         save
+	 * @param personne représente la personne à enregistrer
+	 * @return -1 when personne existe 0 when personne is null 1 when personne save
 	 */
 	@Transactional
 	public int ajouterPersonne(Personne personne) {
@@ -84,8 +82,7 @@ public class PersonneDAOImpl implements PersonneDAO {
 	/**
 	 * méthode pour récupérer une personne
 	 * 
-	 * @param id
-	 *            représente l'identitifiant de la personne à récupérer
+	 * @param id représente l'identitifiant de la personne à récupérer
 	 * @return la personne désirée
 	 */
 	@Override
@@ -99,8 +96,7 @@ public class PersonneDAOImpl implements PersonneDAO {
 	/**
 	 * méthode de suppression d'une personne
 	 * 
-	 * @param id
-	 *            représente l'identifiant de la personne à supprimer
+	 * @param id représente l'identifiant de la personne à supprimer
 	 */
 
 	@Override
@@ -116,12 +112,9 @@ public class PersonneDAOImpl implements PersonneDAO {
 	/**
 	 * méthode de vérification si une personne existe ou pas
 	 * 
-	 * @param email
-	 *            email de la personne recherchée
-	 * @param modtDePasse
-	 *            mot de passe de la personne recherché
-	 * @return -1 pour utilisateur inexistant dans la bdd !=-1 pour un
-	 *         utilisateur existant
+	 * @param email email de la personne recherchée
+	 * @param modtDePasse mot de passe de la personne recherché
+	 * @return -1 pour utilisateur inexistant dans la bdd !=-1 pour un utilisateur existant
 	 */
 
 	@SuppressWarnings("unchecked")
@@ -149,8 +142,7 @@ public class PersonneDAOImpl implements PersonneDAO {
 	/**
 	 * méthode de récupération d'une personne par son email
 	 * 
-	 * @param email
-	 *            email de la personne recherchée
+	 * @param email email de la personne recherchée
 	 * @return null when personne don't exist !=null when personne exist
 	 */
 	@Override
@@ -176,7 +168,6 @@ public class PersonneDAOImpl implements PersonneDAO {
 	 *            email à rechercher
 	 * @return true when Email is unique false when Email is not unique
 	 */
-
 	@Override
 	@SuppressWarnings("unchecked")
 	@Transactional(readOnly = true)

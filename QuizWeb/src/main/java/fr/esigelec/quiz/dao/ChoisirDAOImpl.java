@@ -43,8 +43,6 @@ public class ChoisirDAOImpl implements ChoisirDAO {
 	public void ajouterChoix(Choisir choix) {
 
 		sessionFactory.getCurrentSession().saveOrUpdate(choix);
-		
-	
 
 	}
 
@@ -97,7 +95,6 @@ public class ChoisirDAOImpl implements ChoisirDAO {
 	 * 
 	 * @return le nombre de bonnes réponses correspondant à la question d'un quiz précis 
 	 */
-
 	@SuppressWarnings("unchecked")
 	@Override
 	public int getNbBonnesReponses(int idQuiz, int idQuestion) {
@@ -156,12 +153,10 @@ public class ChoisirDAOImpl implements ChoisirDAO {
 	
 	/**
 	 * méthode de récupération du nombre de bonnes réponses d'un participant  dans un Quiz
-	 * @param idQuiz, représente l'identifiant du Quiz 
-	 * @param idParticipant, représente l'identifiant de l'utilisateur pour lequel on cherche le nombre de bonnes réponses	
+	 * @param idQuiz représente l'identifiant du Quiz 
+	 * @param idParticipant représente l'identifiant de l'utilisateur pour lequel on cherche le nombre de bonnes réponses	
 	 * @return le nombre de bonnes réponses du participant. 
 	 */
-	
-	
 	@SuppressWarnings("unchecked")
 	@Override
 	public int getNbBonnesReponseDunParticipantAuQuiz(int idQuiz, int idParticipant) {
@@ -195,7 +190,7 @@ public class ChoisirDAOImpl implements ChoisirDAO {
 
 	/**
 	 * méthode pour récupérer le nombre de participant d'un quiz 
-	 * @param idQuiz, représente l'identifiant du Quiz 
+	 * @param idQuiz représente l'identifiant du Quiz 
 	 * @return la liste des personnes
 	 */
 	@SuppressWarnings("unchecked")
@@ -216,7 +211,7 @@ public class ChoisirDAOImpl implements ChoisirDAO {
 
 	/**
 	 * methode pour récupérer le nombre de choix d'un participant
-	 * @param idProposition, représente l'identifiant de la proposition 
+	 * @param idProposition représente l'identifiant de la proposition 
 	 * @return le nombre de choix d'un proposition
 	 */
 	@Override
