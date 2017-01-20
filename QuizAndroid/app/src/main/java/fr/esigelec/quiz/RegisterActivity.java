@@ -37,6 +37,12 @@ import static fr.esigelec.quiz.LoginActivity.PREFS_NAME;
 
 public class RegisterActivity extends Activity{
 
+    /**
+     *
+     * @param  userLoginTask : vérification des champs
+     * @param  serverAddress : addresse du serveur sur lequel se trouve le quizz
+     */
+
     private static final String DUMMY_CREDENTIALS = "user@test.com:hello";
     public static final String PREFS_NAME = "Option";
 
