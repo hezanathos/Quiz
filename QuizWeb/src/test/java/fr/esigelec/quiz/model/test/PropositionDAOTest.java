@@ -1,6 +1,7 @@
 package fr.esigelec.quiz.model.test;
 
 import org.junit.Test;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -9,10 +10,17 @@ import fr.esigelec.quiz.model.Question;
 import junit.framework.TestCase;
 import fr.esigelec.quiz.dao.PropositionDAO;
 import fr.esigelec.quiz.dao.QuestionDAO;
+
+/**
+ * Classe de tests des méthodes de propositionDAO
+ */
 public class PropositionDAOTest extends TestCase {
 
 	
-	
+	/**
+	 * Test ajouterProposition
+	 * Test getListePropositions
+	 */
 	@Test
 	public void testProposition() {
 		ApplicationContext context = new ClassPathXmlApplicationContext("dispatcher-servlet.xml");
