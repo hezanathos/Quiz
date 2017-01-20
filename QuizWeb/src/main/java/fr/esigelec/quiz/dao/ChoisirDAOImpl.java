@@ -199,7 +199,7 @@ public class ChoisirDAOImpl implements ChoisirDAO {
 		List<Choisir> listeDesParticipants = new ArrayList<Choisir>();
 		List<Personne> listeDesPersonne = new ArrayList<Personne>();
 		listeDesParticipants = (List<Choisir>) sessionFactory.getCurrentSession()
-				.createQuery("from Choisir where idquiz=? group by idpersonne").setParameter(0, idQuiz);
+				.createQuery("from Choisir where idquiz=? group by idpersonne").setParameter(0, idQuiz).list();
 		
 		for (Choisir choisir : listeDesParticipants) {
 		  listeDesPersonne.add( choisir.getPersonne());
