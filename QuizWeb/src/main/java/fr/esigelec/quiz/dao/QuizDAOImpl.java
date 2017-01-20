@@ -30,6 +30,7 @@ public class QuizDAOImpl implements QuizDAO {
 	
 	/**
 	 * méthode permettant d'ajouter un quiz 
+	 * 
 	 * @param quiz représente le quiz à ajouter 
 	 */
 	@Override
