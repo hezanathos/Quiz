@@ -2,7 +2,7 @@
   margin: 0 auto;
   width: 900px; }
 .ingame-content .pending-question {
-    display: none;
+    display: block;
 }
   .ingame-content .admin-controles {
     text-align: center;
@@ -11,6 +11,9 @@
       padding: 20px; }
   .ingame-content .pending-question {
     display: block; }
+    .ingame-content .results {
+    display: none;
+    }
   .ingame-content .results .results-question {
     text-align: center; }
     .ingame-content .results .results-question * {

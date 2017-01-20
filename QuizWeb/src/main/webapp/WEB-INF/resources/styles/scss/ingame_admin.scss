@@ -9,7 +9,7 @@
         }
     }
     .pending-question {
-        display: none;
+        display: block;
     }
     .results {
         .results-question {
@@ -19,7 +19,7 @@
             }
             .stat {
                 * {
-                    display: block;
+                    display: none;
                 }                
                 text-align: center;
             }

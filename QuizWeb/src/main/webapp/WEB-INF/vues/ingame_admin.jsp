@@ -32,7 +32,7 @@
             <a href="afficherStats">Afficher les resultats</a>
             <a>Afficher la bonne réponse</a>
             <a href="questionCourrante">Lancer la prochaine question</a>
-            <a href="">Arrêter le quiz</a>
+            <a href="home_admin">Arrêter le quiz</a>
         </div>
         <div class="pending-question">
             <div class="chrono">
@@ -43,60 +43,46 @@
                     </div>
                 </div>
             </div>
-            <div class="question">
-                <div class="lbl-question">
-                    Which ballet features a battle between gingerbread men soldiers and a Mouse King?
-                </div>
-                <div class="answers">
-                    <div class="row">
-                        <div class="prop">
-                            <div class="text">Lourd</div>
-                            <div class="score">
-                                <div class="inner-score"></div>
-                            </div>
-                        </div>
-                        <div class="prop">
-                            <div class="text">Zer</div>
-                            <div class="score">
-                                <div class="inner-score"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="prop">
-                            <div class="text">Mille</div>
-                            <div class="score">
-                                <div class="inner-score"></div>
-                            </div>
-                        </div>
-                        <div class="prop">
-                            <div class="text">Toz</div>
-                            <div class="score">
-                                <div class="inner-score"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="results">
+          <c:if test="${!empty quiz && !empty listProp}">
+            	
+            		<div class="question">
+                		<div class="lbl-question">
+                			<c:forEach items="${listProp}" var="lprop">
+                				<c:if test="${lprop.id == quiz.id}">
+                					<c:out value="${lprop.question.libelle}"/>
+                				</c:if>
+                			
+                			</c:forEach>
+                    		
+                		</div>
+                		<div class="answers">
+                    		<div class="row">
+                        		<c:forEach items="${listProp}" var="lprop">
+                            		<c:if test="${lprop.question.id == quiz.id}">
+                            		<div class="prop">
+                            			<div class="text">
+                							<c:out value="${lprop.libelle}"/>
+                						</div> 
+                					</div> 
+                					</c:if>
+                            	</c:forEach>
+                            	<div class="score">
+                                	<div class="inner-score"></div>
+                            	</div>	   
+                			</div>
+           			 	</div>
+           			 </div>
+            	</c:if>
+        <div class="results" >
         
             <div class="results-question">
                 <div class="stat">
-                	<c:if test="${!empty nbReponses}">
-                	
-                	<c:out value="${nbReponses}">
-                	</c:out>
-                	</c:if>
+                
                     <h1>345</h1>
                     <h6>personnes ont répondu</h6>
                 </div>
                 <div class="stat">
-                <c:if test="${!empty nbBonnesReponses}">
-                	
-                	<c:out value="${nbBonnesReponses}">
-                	</c:out>
-                	</c:if>
+              
                     <h1>90%</h1>
                     <h6>de bonnes réponses</h6>
                 </div>
