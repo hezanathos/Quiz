@@ -276,33 +276,37 @@ public class ResponseFragment extends Fragment {
 
          @Override
          public void onClick(View v) {
-             switch(v.getId()){
-                 case R.id.btn1:
-                     send(1);
-                     btn1.setBackgroundColor(Color.parseColor("#4444AA"));
-                     break;
-                 case R.id.btn2:
-                     send(2);
-                     btn2.setBackgroundColor(Color.parseColor("#4444AA"));
-                     break;
-                 case R.id.btn3:
-                     send(3);
-                     btn3.setBackgroundColor(Color.parseColor("#4444AA"));
-                     break;
-                 case R.id.btn4:
-                     send(4);
-                     btn4.setBackgroundColor(Color.parseColor("#4444AA"));
-                     break;
-                 case R.id.home_button:
-                     getActivity().finish();
-                     break;
-                 default:
-                     break;
+             try {
+                 switch (v.getId()) {
+                     case R.id.btn1:
+                         send(mProp1.getInt("id"));
+                         btn1.setBackgroundColor(Color.parseColor("#4444AA"));
+                         break;
+                     case R.id.btn2:
+                         send(mProp2.getInt("id"));
+                         btn2.setBackgroundColor(Color.parseColor("#4444AA"));
+                         break;
+                     case R.id.btn3:
+                         send(mProp3.getInt("id"));
+                         btn3.setBackgroundColor(Color.parseColor("#4444AA"));
+                         break;
+                     case R.id.btn4:
+                         send(mProp4.getInt("id"));
+                         btn4.setBackgroundColor(Color.parseColor("#4444AA"));
+                         break;
+                     case R.id.home_button:
+                         getActivity().finish();
+                         break;
+                     default:
+                         break;
+                 }
+                 btn1.setEnabled(false);
+                 btn2.setEnabled(false);
+                 btn3.setEnabled(false);
+                 btn4.setEnabled(false);
+             }catch (JSONException e){
+                 e.printStackTrace();
              }
-             btn1.setEnabled(false);
-             btn2.setEnabled(false);
-             btn3.setEnabled(false);
-             btn4.setEnabled(false);
          }
 
         /**
