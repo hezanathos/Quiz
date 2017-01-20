@@ -17,7 +17,7 @@ public class OptionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_option);
         adresseDuServeur = (EditText) findViewById(R.id.opt_adresse);
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-        adresseDuServeur.setText(settings.getString("serverAdress", "srvinfodev.esigelec.fr:8080/quiz"));
+        adresseDuServeur.setText(settings.getString("serverAdress", "srvinfodev.esigelec.fr:8080/Quiz"));
 
     }
 
