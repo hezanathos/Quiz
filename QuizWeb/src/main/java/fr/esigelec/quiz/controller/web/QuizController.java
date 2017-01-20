@@ -95,9 +95,13 @@ public class QuizController {
 			return "index";
 		int idQuiz = Integer.parseInt(request.getParameter("idQuiz"));
 		Quiz quiz = serviceQuizDAO.getQuiz(idQuiz);
+		quiz.setEtat(1);
+		serviceQuizDAO.ajouterQuiz(quiz);
+		List<Proposition> listProposition = servicePropositionDAO.getListePropositions();
 		//session = request.getSession();
 		if(servicePersonneDAO.getPersonneByEmail(session.getAttribute("courriel").toString()).getDroits() == 0) {
 			modelMap.addAttribute("quiz", quiz);
+			modelMap.addAttribute("listProp", listProposition);
 			return "ingame";
 		}
 		
