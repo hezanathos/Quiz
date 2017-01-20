@@ -1,13 +1,19 @@
 .ingame-content {
   margin: 0 auto;
   width: 900px; }
+.ingame-content .pending-question {
+    display: block;
+}
   .ingame-content .admin-controles {
     text-align: center;
     margin-bottom: 20px; }
     .ingame-content .admin-controles * {
       padding: 20px; }
   .ingame-content .pending-question {
-    display: display; }
+    display: block; }
+    .ingame-content .results {
+    display: none;
+    }
   .ingame-content .results .results-question {
     text-align: center; }
     .ingame-content .results .results-question * {

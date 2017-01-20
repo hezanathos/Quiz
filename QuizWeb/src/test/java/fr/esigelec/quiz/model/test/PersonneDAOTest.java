@@ -13,8 +13,18 @@ import fr.esigelec.quiz.dao.PersonneDAO;
 import fr.esigelec.quiz.model.Personne;
 import junit.framework.TestCase;
 
+/**
+ * 
+ * @author Saobane
+ * 
+ * Classe de tests des méthodes de personneDAO
+ *
+ */
 public class PersonneDAOTest extends TestCase {
 
+	/**
+	 * Test de personne()
+	 */
 	@Test
 	public void testPersonne() {
 		Personne p1 = new Personne("Sauvage", "Guillaume", "guillaumesauv@gmail.fr", "mdp", 0);
@@ -24,6 +34,10 @@ public class PersonneDAOTest extends TestCase {
 		assertEquals(p1.getMdp(), "mdp");
 		assertEquals(p1.getDroits(), 0);
 	}
+	
+	/**
+	 * Test de la méthode ajouterPersonne
+	 */
 
 	@Test
 	public void testPersonneDAO() {
@@ -40,6 +54,9 @@ public class PersonneDAOTest extends TestCase {
 
 	}
 
+	/**
+	 * Test de la méthode supprimerPersonne
+	 */
 	@Test
 	public void testSuppPersonneDAO() {
 		@SuppressWarnings("resource")
@@ -55,6 +72,9 @@ public class PersonneDAOTest extends TestCase {
 		assertNull(p5);
 	}
 
+	/**
+	 * Test de getListeListePersonne()
+	 */
 	@Test
 	public void testGetListePersonneDAO() {
 		@SuppressWarnings("resource")
@@ -74,6 +94,10 @@ public class PersonneDAOTest extends TestCase {
 		}
 
 	}
+	
+	/**
+	 * Test de la méthode verifPersonne
+	 */
 
 	@Test
 	public void testVerifPersonneDAO() {
@@ -92,6 +116,9 @@ public class PersonneDAOTest extends TestCase {
 
 	}
 
+	/**
+	 * Test de la méthode VerifMailPresent
+	 */
 	@Test
 	public void testVerifMailPresent() {
 		ApplicationContext context = new ClassPathXmlApplicationContext("dispatcher-servlet.xml");

@@ -75,7 +75,7 @@ public class Quiz implements Serializable {
 	/**
 	 * liste des question en base du quiz
 	 */
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "questionduquiz", joinColumns = { @JoinColumn(name = "idQuiz") }, inverseJoinColumns = {
 			@JoinColumn(name = "idQuestion") })
 	@Cascade(CascadeType.SAVE_UPDATE)

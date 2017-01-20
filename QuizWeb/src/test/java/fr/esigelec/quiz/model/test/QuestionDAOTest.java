@@ -22,9 +22,13 @@ import fr.esigelec.quiz.model.Proposition;;
 /**
  * @author Alex Lecoq
  *
+ *Classe de tests des méthode de QuestionDAO
  */
 public class QuestionDAOTest extends TestCase {
 
+	/**
+	 * Test de Question
+	 */
 	@Test
 	public void testQuestion() {
 
@@ -33,6 +37,10 @@ public class QuestionDAOTest extends TestCase {
 
 	}
 
+	/**
+	 * Test de ajouterQuestion
+	 * Test de getListeQuestion
+	 */
 	@Test
 	public void testQuestionDAO() {
 		ApplicationContext context = new ClassPathXmlApplicationContext("dispatcher-servlet.xml");
@@ -47,6 +55,10 @@ public class QuestionDAOTest extends TestCase {
 		assertTrue(qDAO1.getListeQuestions().size() > formersize);
 
 	}
+	
+	/**
+	 * Test de getListeProposition
+	 */
 
 	@Test
 	public void testGetListProposition() {

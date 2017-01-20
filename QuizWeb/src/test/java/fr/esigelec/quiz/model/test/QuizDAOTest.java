@@ -19,11 +19,17 @@ import fr.esigelec.quiz.model.Quiz;
 
 /**
  * @author Saobane
+ * 
+ * Classe de tests des méthodes de QuizDAO
+ * 
  */
 
 public class QuizDAOTest {
 	
 	
+	/**
+	 * Test de Quiz()
+	 */
 	@SuppressWarnings("serial")
 	@Test
 	public void testsQuiz() {
@@ -46,6 +52,9 @@ public class QuizDAOTest {
 
 	}
 
+	/**
+	 * Test de la méthode AjouterQuiz
+	 */
 	@Test
 	public void testAjouterQuiz() {
 		ApplicationContext context = new ClassPathXmlApplicationContext("dispatcher-servlet.xml");
@@ -70,7 +79,10 @@ public class QuizDAOTest {
 		
 		
 		
-		
+	
+		/**
+		 * Test de la méthode getQuestionCourante
+		 */
 	
 	}
 	@Test

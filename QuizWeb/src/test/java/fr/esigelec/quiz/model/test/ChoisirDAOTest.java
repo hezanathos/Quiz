@@ -21,8 +21,15 @@ import fr.esigelec.quiz.model.Proposition;
 import fr.esigelec.quiz.model.Question;
 import fr.esigelec.quiz.model.Quiz;
 
+/**
+ * Classe de tests de ChoisirDAO
+ *
+ */
 public class ChoisirDAOTest {
 
+	/**
+	 * Test de la méthode ajouter choix 
+	 */
 	@Test
 	public void testChoixDAO() {
 
@@ -69,6 +76,9 @@ public class ChoisirDAOTest {
 
 	}
 
+	/**
+	 * Test de la méthode getNbBonnesReponses
+	 */
 	@Test
 	public void testgetNbBonnesReponses() {
 		ApplicationContext context = new ClassPathXmlApplicationContext("dispatcher-servlet.xml");
@@ -127,6 +137,9 @@ public class ChoisirDAOTest {
 	}
 	
 	
+	/**
+	 * Test de la méthode getNbReponses
+	 */
 	@Test
 	public void testgetNbReponses(){
 		
@@ -215,6 +228,9 @@ public class ChoisirDAOTest {
 	
 	}
 	
+	/**
+	 * test de la méthode testgetNbBonnesReponseDunParticipantAuQuiz
+	 */
 	@Test
 	public void testgetNbBonnesReponseDunParticipantAuQuiz(){
 		
