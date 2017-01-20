@@ -40,4 +40,6 @@ public interface QuizDAO {
 	 * @return la question désirée
 	 */
 	public Question getQuestionCourrante(int idQuiz);
+	
+	public Quiz getDernierQuiz();
 	}

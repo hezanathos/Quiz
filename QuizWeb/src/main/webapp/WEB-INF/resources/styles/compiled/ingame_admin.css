@@ -7,15 +7,15 @@
     .ingame-content .admin-controles * {
       padding: 20px; }
   .ingame-content .pending-question {
-    display: none; }
+    display: display; }
   .ingame-content .results .results-question {
     text-align: center; }
     .ingame-content .results .results-question * {
-      display: inline-block; }
+      display: none; }
     .ingame-content .results .results-question .stat {
       text-align: center; }
       .ingame-content .results .results-question .stat * {
-        display: block; }
+        display: none; }
   .ingame-content .results .global-results .list-leaderboard {
     margin: 0 auto;
     padding: 30px;
