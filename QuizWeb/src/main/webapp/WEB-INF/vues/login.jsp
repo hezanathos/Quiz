@@ -24,10 +24,10 @@
         <div class="form-content">
             <div class="content">
                 <h1>Connexion</h1>
-                <form:form method="POST" action="connexion.do" commandName="formulaireConnexion">
+                <form:form method="POST" action="connexion.do" >
                 	
-                    <form:input type="text" placeholder="Votre identifiant" path="mail"/>
-                    <form:input type="password" placeholder="Votre mot de passe" path="mdp"/>
+                    <input type="text" placeholder="Votre identifiant" />
+                    <input type="password" placeholder="Votre mot de passe" />
                     <input type="submit" value="Se connecter">
                 </form:form>
                 <br>

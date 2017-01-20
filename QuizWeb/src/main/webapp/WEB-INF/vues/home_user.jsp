@@ -3,6 +3,7 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 
@@ -25,15 +26,17 @@
     </div>
     <div class="home-content">
         <div class="home-content-header">
-            <h2>Quiz actif</h2><h6>Lancé il y a 12 minutes</h6>
+            <h2></h2><h6></h6>
         </div>
         <div class="active-quiz">
+        
+        
             <div class="header-aquiz">
-                Ceci est le titre du quiz en cours
+                
             </div>
            
             <div class="content-aquiz">
-                <div class="participate" ><a href="listQuiz">Participer toto!</a></div>
+                <div class="participate" ><a href="listQuiz">Liste des quiz</a></div>
             </div>
             
            
@@ -43,7 +46,6 @@
  				<table>
   					<tr>
    						<th>Libellé</th>
-   						<th>Questions</th>
    						<th>Date</th>
    						<th>Jouer</th>
    						<th>Résultats</th>
@@ -52,7 +54,7 @@
   					<c:forEach items="${listQuiz}" var="listQuiz">
    						<tr>
     						<td><c:out value="${listQuiz.libelle}"/></td>
-    						<td><c:out value="${listQuiz.libelle}"/></td>
+    						
     						<td><c:out value="${listQuiz.dateDebutQuiz}"/></td>
     						<td>
     							<c:if test="${listQuiz.etat == 0}">

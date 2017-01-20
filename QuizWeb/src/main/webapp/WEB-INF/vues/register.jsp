@@ -23,11 +23,11 @@
         <div class="form-content">
             <div class="content">
                 <h1>Inscription</h1>
-                <form:form method="POST" action="inscription.do" commandName="formulaireInscription">
-                    <form:input type="text" placeholder="Prénom" path="prenom"/>
-                    <form:input type="text" placeholder="Nom" path="nom"/>
-                    <form:input type="text" placeholder="Votre adresse-email" path="mail"/>
-                    <form:input type="password" placeholder="Votre mot de passe" path="mdp"/>
+                <form:form method="POST" action="inscription.do" >
+                    <input type="text" placeholder="Prénom"/>
+                    <input type="text" placeholder="Nom"/>
+                    <input type="text" placeholder="Votre adresse-email" />
+                    <input type="password" placeholder="Votre mot de passe"/>
                     <input type="password" placeholder="Confirmer le mot de passe" />
                     <input type="submit" value="S'inscrire"> 
                 </form:form>
