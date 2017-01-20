@@ -57,7 +57,7 @@
     						
     						<td><c:out value="${listQuiz.dateDebutQuiz}"/></td>
     						<td>
-    							<c:if test="${listQuiz.etat == 0}">
+    							<c:if test="${listQuiz.etat == 0 || listQuiz.etat == 1}">
     								<a href="demarrerQuiz?idQuiz=${listQuiz.id}"><c:out value="Participer !"/></a>
     							</c:if>
     						</td>

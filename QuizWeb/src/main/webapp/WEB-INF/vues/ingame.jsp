@@ -56,7 +56,7 @@
                             		<c:if test="${lprop.question.id == quiz.id}">
                             		<div class="prop">
                             			<div class="text">
-                							<c:out value="${lprop.libelle}"/>
+                							<a href="repondreQuestion.do"><c:out value="${lprop.libelle}"/></a>
                 						</div> 
                 					</div> 
                 					</c:if>
