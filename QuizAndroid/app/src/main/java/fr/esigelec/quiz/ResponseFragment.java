@@ -217,7 +217,7 @@ public class ResponseFragment extends Fragment {
             btn2.setOnClickListener(new CustomOnClickListener());
             btn3.setOnClickListener(new CustomOnClickListener());
             btn4.setOnClickListener(new CustomOnClickListener());
-            if (mStatus == 2) {
+            if (mStatus >= 2 ) {
                 // if the status is 2 we display the good and bad responses
                 try {
                     v.findViewById(R.id.classement_indicator).setVisibility(View.VISIBLE);
@@ -228,6 +228,11 @@ public class ResponseFragment extends Fragment {
                 }catch(Exception e){
                     e.printStackTrace();
                 }
+            }
+            if (mStatus == 3){
+                Button homeButton = (Button) v.findViewById(R.id.home_button);
+                homeButton.setVisibility(View.VISIBLE);
+                homeButton.setOnClickListener(new CustomOnClickListener());
             }
             time = (ProgressBar) v.findViewById(R.id.time);
             if (mStatus == 0) {
@@ -256,6 +261,9 @@ public class ResponseFragment extends Fragment {
                 btn4.setEnabled(false);
                 time.setProgress(100);
             }
+        }else{
+            v.findViewById(R.id.resp_layout).setVisibility(View.GONE);
+            v.findViewById(R.id.resp_progress).setVisibility(View.VISIBLE);
         }
         return v;
     }
@@ -284,6 +292,9 @@ public class ResponseFragment extends Fragment {
                  case R.id.btn4:
                      send(4);
                      btn4.setBackgroundColor(Color.parseColor("#4444AA"));
+                     break;
+                 case R.id.home_button:
+                     getActivity().finish();
                      break;
                  default:
                      break;

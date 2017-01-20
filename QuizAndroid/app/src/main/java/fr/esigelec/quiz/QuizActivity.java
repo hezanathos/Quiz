@@ -150,6 +150,10 @@ public class QuizActivity extends AppCompatActivity {
                             fList.add(ResponseFragment.newInstance(status, s));
                             fList.add(StatFragment.newInstance(message.getJSONArray("classement").toString()));
                             break;
+                        case 3:
+                            fList.add(ResponseFragment.newInstance(status, s));
+                            fList.add(StatFragment.newInstance(message.getJSONArray("classement").toString()));
+                            break;
                         default:
                             break;
                     }
