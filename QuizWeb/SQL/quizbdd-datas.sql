@@ -29,14 +29,7 @@ SET time_zone = "+00:00";
 INSERT INTO `personne` (`id`, `nom`, `prenom`, `mail`, `mdp`, `droits`) VALUES
 (1, 'Admin', 'Admin', 'admin@tf8.com', 'adminTF8', 1000),
 (2, 'Animateur', '1', 'animateur-1@tf8.com', 'animateurTF8', 1000),
-(3, 'Test1', 'Prenom1', 'prenom-test1@gmail.com', 'estNul', 1),
-(4, 'Test2', 'PrenomNul', 'PrenomNul-Test2@orange.fr', 'mdpSecurise', 1),
-(5, 'NomMieux', 'Luc', 'luc.nommieux@fai.io', 'Original2015', 1),
-(6, 'Dell', 'Graham', 'graham-dell@groupe-esigelec.org', 'EsigeDell20202016', 1),
-(7, 'Dvd', 'Henry', 'henry.dvd@fai.com', 'faiNul', 1),
-(8, 'Adams', 'Famille', 'famille.admas@scary.com', 'AdamsFamily', 1),
-(9, 'Docteur', 'Le', 'Le-Docteur@bbc.com', 'Daleksaremean12', 1),
-(10, 'Lour', 'Zer', 'Mille@mille.mille', 'mdpMille', 1000);
+(3, 'Lour', 'Zer', 'Mille@mille.mille', 'mdpMille', 1000);
 
 -- --------------------------------------------------------
 
@@ -56,8 +49,8 @@ INSERT INTO `quiz` (`id`, `libelle`, `etat`, `datedebutquiz`, `noquestioncourant
 
 INSERT INTO `question` (`id`, `libelle`) VALUES
 (1, 'Comment s\'appelle le president americain?'),
-(3, 'Comment s\'appelle Louis la Brocante?'),
-(4, 'Comment s\'appelle Michel Drucker?'),
+(3, 'Laquelle de ces series francaises existe?'),
+(4, 'Quel est le vrai nom de Marilyn Manson?'),
 (5, 'Comment s\'appelle le president francais?'),
 (6, 'De quelle serie de six films un champion de boxe est-il la vedette ?'),
 (7, 'Quelle est la capitale de la Nouvelle-Zelande ?'),
@@ -84,21 +77,21 @@ INSERT INTO `question` (`id`, `libelle`) VALUES
 
 INSERT INTO `proposition` (`id`, `libelle`, `bonnereponse`, `idquestion`) VALUES
 (2, 'Georges Bush', 0, 1),
-(3, 'Barack Obama', 1, 1),
-(4, 'Donald Trump', 0, 1),
+(3, 'Barack Obama', 0, 1),
+(4, 'Donald Trump', 1, 1),
 (5, 'Bill Clinton', 0, 1),
 (6, 'Louis le vide grenier', 0, 3),
-(7, 'Louis LaVille', 0, 3),
+(7, 'Josephine le Demon', 0, 3),
 (8, 'Louis La Brocante', 1, 3),
-(9, 'Bob', 0, 3),
-(10, 'Jack', 0, 4),
-(11, 'Michel Drucker', 1, 4),
+(9, 'Plus sale la Ville', 0, 3),
+(10, 'Brian Hugh Warner,', 1, 4),
+(11, 'Dwight J Arnold', 0, 4),
 (12, 'Marylin Manson', 0, 4),
-(13, 'Charles Manson', 0, 4),
+(13, 'Rudolph Giuliani', 0, 4),
 (14, 'Francois Hollande', 1, 5),
-(15, 'Bob', 0, 5),
-(16, 'Marylin Manson', 0, 5),
-(17, 'Michel Drucker', 0, 5),
+(15, 'Nicolas Sarkozy', 0, 5),
+(16, 'Barak Obama', 0, 5),
+(17, 'Le petit Manu', 0, 5),
 (18, 'Ritchie', 0, 6),
 (19, 'Rocky', 1, 6),
 (20, 'Rambo', 0, 6),
