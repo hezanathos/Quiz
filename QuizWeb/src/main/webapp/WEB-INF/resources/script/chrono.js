@@ -1,43 +1,58 @@
+/*
+ * VARIABLES
+ */
+
+/* Base time for the timer */
 var base_time = 3000
+
+/* Set the value of the timer */
 var time = base_time;
+
+/* Object for the interval */
 var interval;
 
-interval = setInterval(function () {
-    tick();
-    if (time <= 0) {
-        clearInterval(interval);
-    }
-}, 10);
+/*
+ * FUNCTIONS
+ */
 
+/* Launches the timer */
 function start() {
-    interval = setInterval(function () {
-        tick();
-        if (time <= 0) {
-            clearInterval(interval);
-        }
-    }, 10);
+    if (inverval == null) {
+        interval = setInterval(function () {
+            tick();
+            if (time <= 0) {
+                clearInterval(interval);
+            }
+        }, 10);
+    }
 }
 
-function stop(){
+/* Stops the timer */
+function stop() {
     clearInterval(interval);
 }
 
-function init(){
-    base_time = 3000;
+/* Initializes the timer to the base time */
+function init() {
+    time = base_time;
 }
 
-
-
+/* Handles every iteration of the timer */
 function tick() {
     time--;
+    
     var ratio = ((time / base_time) * 100);
     var s = Math.floor(time / 100);
     var m = Math.floor(((time / 100) - s) * 100);
+    
     m = (m < 10) ? 0 + "" + m : m;
+    
     $("#secondes").html(s);
     $("#ms").html(m);
     $("#inner-bar").css("width", ((time / base_time) * 100) + "%");
+    
     var r = 255 - ((ratio * 255) / 100);
     var v = ((ratio * 255) / 100);
+    
     $("#inner-bar").css("background-color", "rgb(" + r + ", " + v + ", 128)");
 }
