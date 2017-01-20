@@ -34,7 +34,7 @@ import fr.esigelec.quiz.model.Quiz;
 
 /**
  * 
- * @author wangxi Quiz controller for android
+ * @author wangxi 
  * @see https://spring.io/guides/gs/messaging-stomp-websocket/
  */
 
@@ -77,16 +77,16 @@ public class AndroidQuizController {
 	 *            "idproposition": 1}
 	 * @throws Exception
 	 */
-	@MessageMapping("/android")
+	@MessageMapping("/choisir")
 	@SendTo("/topic/questions")
 	public void getAnswer(String json) throws Exception {
 
 		JsonElement jsonElement = new JsonParser().parse(json);
 		JsonObject jsonObject = jsonElement.getAsJsonObject();
 
-		int idPerson = jsonObject.getAsJsonObject("idperson").getAsInt();
-		int idQuiz = jsonObject.getAsJsonObject("idquiz").getAsInt();
-		int idproposition = jsonObject.getAsJsonObject("idproposition").getAsInt();
+		int idPerson = jsonObject.getAsJsonPrimitive("idperson").getAsInt();
+		int idQuiz = jsonObject.getAsJsonPrimitive("idquiz").getAsInt();
+		int idproposition = jsonObject.getAsJsonPrimitive("idproposition").getAsInt();
 
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
@@ -144,7 +144,7 @@ public class AndroidQuizController {
 
 		long chrono = System.currentTimeMillis() - quiz.getDateDebutQuestion().getTime();
 
-		objectNode.put("timeRemaining", chrono);
+		objectNode.put("timeRemaining", 30000 - chrono);
 
 		String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(objectNode);
 		System.out.println("sendQuestion" + json);
@@ -251,7 +251,7 @@ public class AndroidQuizController {
 		Comparator<Classement> comparator = new Comparator<Classement>() {
 			public int compare(Classement c1, Classement c2) {
 				if (c1.point != c2.point) {
-					return c1.point - c2.point;
+					return c2.point - c1.point;
 				} else {
 					if (!c1.personne.getNom().equals(c2.personne.getNom())) {
 						return c1.personne.getNom().compareTo(c2.personne.getNom());

@@ -14,6 +14,7 @@ import fr.esigelec.quiz.model.Quiz;
 /**
  * 
  * @author Sahobau
+ * 
  * classe d'implémentation des méthodes de QuizDAO
  * 
  */
@@ -29,6 +30,7 @@ public class QuizDAOImpl implements QuizDAO {
 	
 	/**
 	 * méthode permettant d'ajouter un quiz 
+	 * 
 	 * @param quiz représente le quiz à ajouter 
 	 */
 	@Override
@@ -45,7 +47,6 @@ public class QuizDAOImpl implements QuizDAO {
 	@Override
 	@SuppressWarnings("unchecked")
 	@Transactional(readOnly = true)
-
 	public List<Quiz> getListeQuizzes() {
 
 		/*

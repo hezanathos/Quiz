@@ -33,7 +33,7 @@
      <c:if test="${!empty listQuiz}">  
 			  <c:forEach items="${listQuiz}" var="quizunique">
 			  
-				  <div class="home-content-list-item">dsadsa
+				  <div class="home-content-list-item">
 	                <div class="title"><c:out value="${quizunique.libelle}"/></div>
 	                <div class="actions">
 	                    <a href="demarrerQuiz?idQuiz=${quizunique.id}">Lancer</a>
@@ -45,46 +45,8 @@
 			  </c:forEach>
 			</c:if>
   
-            <div class="home-content-list-item">
-                <div class="title">Ceci est un quiz de ouf</div>
-                <div class="actions">
-                    <a>Lancer</a>
-                    <a>Modifier</a>
-                    <a>Supprimer</a>
-                </div>
-            </div>
-            <div class="home-content-list-item">
-                <div class="title">Ceci est un quiz de ouf</div>
-                <div class="actions">
-                    <a>Lancer</a>
-                    <a>Modifier</a>
-                    <a>Supprimer</a>
-                </div>
-            </div>
-            <div class="home-content-list-item">
-                <div class="title">Ceci est un quiz de ouf</div>
-                <div class="actions">
-                    <a>Lancer</a>
-                    <a>Modifier</a>
-                    <a>Supprimer</a>
-                </div>
-            </div>
-            <div class="home-content-list-item">
-                <div class="title">Ceci est un quiz de ouf</div>
-                <div class="actions">
-                    <a>Lancer</a>
-                    <a>Modifier</a>
-                    <a>Supprimer</a>
-                </div>
-            </div>
-            <div class="home-content-list-item">
-                <div class="title">Ceci est un quiz de ouf</div>
-                <div class="actions">
-                    <a>Lancer</a>
-                    <a>Modifier</a>
-                    <a>Supprimer</a>
-                </div>
-            </div>
+          
+
              
         </div>
     </div>

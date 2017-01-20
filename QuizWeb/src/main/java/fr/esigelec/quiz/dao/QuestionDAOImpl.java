@@ -37,12 +37,10 @@ public class QuestionDAOImpl implements QuestionDAO{
 	 * méthode pour ajouter une question 
 	 * @param question l'objet question à ajouter 
 	 */
-
 	@Override
 	public void ajouterQuestion(Question question) {
 		   sessionFactory.getCurrentSession().saveOrUpdate(question);		
 	}
-
 	
 	/**
 	 * méthodes pour récupérer la liste des question
@@ -51,7 +49,6 @@ public class QuestionDAOImpl implements QuestionDAO{
 	@Override
 	@SuppressWarnings("unchecked")
 	@Transactional(readOnly=true)
-	
 	public List<Question> getListeQuestions() {
 		
 		return (List<Question>) sessionFactory.getCurrentSession().createCriteria(Question.class).list();
@@ -63,7 +60,6 @@ public class QuestionDAOImpl implements QuestionDAO{
 	 * @param id représente l'identifiant de la question recherchée
 	 * return la question
 	 */
-
 	@Override
 	@Transactional(readOnly=true)
 	public Question getQuestion(int id) {
@@ -71,6 +67,7 @@ public class QuestionDAOImpl implements QuestionDAO{
 		  return (Question) sessionFactory.getCurrentSession().get(Question.class, id);
 
 	}
+	
 /*
 	@Override
 	public void supprimerQuestion(int id) {
@@ -89,7 +86,6 @@ public class QuestionDAOImpl implements QuestionDAO{
 	 * @param idQuestion  représente l'identifiant d'une question
 	 * @return la liste des propositions
 	 */
-
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Proposition> getListePropositions(int idQuestion) {
