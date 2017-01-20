@@ -90,13 +90,13 @@ public class QuizDAOImpl implements QuizDAO {
 	@SuppressWarnings("unchecked")
 	public Quiz getDernierQuiz(){
 		
-		Quiz q;
+		
 		
 
 		List<Quiz> quiz = new ArrayList<Quiz>();
 
 		quiz = (List<Quiz>)sessionFactory.getCurrentSession()
-				.createQuery("from quiz where etat =1 ORDER BY datedebutquiz desc").list();
+				.createQuery("from Quiz where etat =1 ORDER BY datedebutquiz desc").list();
 				
 
 
