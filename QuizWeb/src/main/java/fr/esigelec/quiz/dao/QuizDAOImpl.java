@@ -40,7 +40,7 @@ public class QuizDAOImpl implements QuizDAO {
 	
 	/**
 	 * méthode permettant de récupérer la liste des quizzes
-	 * @return la liste des quizzes
+	 * @return  la liste des quizzes
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
