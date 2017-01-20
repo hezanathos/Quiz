@@ -2,6 +2,9 @@ package fr.esigelec.quiz;
 
 /**
  * Created by Pierre on 06/01/2017.
+ *
+ * Login Activity - Projet Quiz ISN 2016-2017
+ *
  */
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -38,6 +41,7 @@ import static okhttp3.internal.Internal.instance;
 /**
  * Android login screen Activity
  */
+
 public class LoginActivity extends Activity {
 
     private static final String DUMMY_CREDENTIALS = "user@test.com:hello";
@@ -209,7 +213,9 @@ public class LoginActivity extends Activity {
 
 
     /**
-     * Async Login Task to authenticate
+     * Authentification de l'utilisateur
+     *
+     *  Verification du mail et du password
      */
     public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
