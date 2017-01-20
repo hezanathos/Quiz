@@ -54,6 +54,8 @@ public class QuizController {
 
 	@RequestMapping(value = "/ajouterQuiz", method = RequestMethod.GET)
 	public String ajouterLeQuiz(final ModelMap pModel){
+		Quiz quiz = new Quiz();
+		pModel.addAttribute("quiz",quiz);
 		return "create_quiz";
 
 	}
@@ -78,6 +80,8 @@ public class QuizController {
 	@RequestMapping(value = "/ajouterQuestion", method = RequestMethod.GET)
 	public String ajouterQuestion(
 								  final ModelMap pModel){
+		Question question = new Question();
+		pModel.addAttribute("question", question);
 		return "add_question";
 	}
 	
