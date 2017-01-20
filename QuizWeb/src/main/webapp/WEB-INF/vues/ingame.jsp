@@ -2,6 +2,7 @@
     pageEncoding="utf-8"  isELIgnored="false" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE html>
 <html>
 
@@ -25,7 +26,7 @@
         </div>
     </div>
     <div class="ingame-content">
-        <div class="bread">Question 3 sur 1000</div>
+        <div class="bread"></div>
 
         <div class="pending-question">
             <div class="chrono">
@@ -37,25 +38,36 @@
                 </div>
             </div>
             
-            <c:if test="${!empty quiz}">
-            	<c:forEach items="${quiz}" var="quiz">
+              <c:if test="${!empty quiz && !empty listProp}">
+            	
             		<div class="question">
                 		<div class="lbl-question">
-                    		<c:out value="${quiz.libelle}"/>
+                			<c:forEach items="${listProp}" var="lprop">
+                				<c:if test="${lprop.id == quiz.id}">
+                					<c:out value="${lprop.question.libelle}"/>
+                				</c:if>
+                			
+                			</c:forEach>
+                    		
                 		</div>
                 		<div class="answers">
                     		<div class="row">
-                        		<div class="prop">
-                            		<div class="text"><c:out value="${quiz.libelle}"/></div>
-                            		<div class="score">
-                                		<div class="inner-score"></div>
-                            		</div>
-                        		</div>    
-                    		</div>    
-                		</div>
+                        		<c:forEach items="${listProp}" var="lprop">
+                            		<c:if test="${lprop.question.id == quiz.id}">
+                            		<div class="prop">
+                            			<div class="text">
+                							<c:out value="${lprop.libelle}"/>
+                						</div> 
+                					</div> 
+                					</c:if>
+                            	</c:forEach>
+                            	<div class="score">
+                                	<div class="inner-score"></div>
+                            	</div>	   
+                			</div>
+           			 	</div>
            			 </div>
-            	</c:forEach>
-          	</c:if>
+            	</c:if>
         </div>
         <div class="results">
             <div class="results-question">
