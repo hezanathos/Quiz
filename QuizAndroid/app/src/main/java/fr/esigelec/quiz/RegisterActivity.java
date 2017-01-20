@@ -2,6 +2,9 @@ package fr.esigelec.quiz;
 
 /**
  * Created by Pierre on 06/01/2017.
+ *
+ * Register Activity - Projet Quiz ISN 2016-2017
+ *
  */
 
 import android.animation.Animator;
@@ -224,7 +227,9 @@ public class RegisterActivity extends Activity{
 
 
     /**
-     * Async Login Task to authenticate
+     * Authentification de l'utilisateur
+     *
+     *  Verification de l'adresse mail
      */
     public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
