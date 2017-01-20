@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8" isELIgnored="false" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -21,7 +23,7 @@
             quiz
         </div>
         <div class="profile">
-            <a href="deconnexion">Deconnexion</a> (Michel de Lakonta)
+            <a href="deconnexion">Deconnexion</a>
         </div>
     </div>
     <div class="ingame-content">
@@ -30,7 +32,7 @@
             <a href="afficherStats">Afficher les resultats</a>
             <a>Afficher la bonne réponse</a>
             <a href="questionCourrante">Lancer la prochaine question</a>
-            <a>Arrêter le quiz</a>
+            <a href="">Arrêter le quiz</a>
         </div>
         <div class="pending-question">
             <div class="chrono">
@@ -105,14 +107,7 @@
                 <div class="list-leaderboard">
                 
                 <div class="item">
-                <c:if test="${!empty stats}">
-                <c:forEach items="${stats}" var = "${node}">
-                <div class="index"><c:out value="${node.key}"></div>
-                <div class=:nick"><c:out value="${node.value}"></c:out></div>
-                </c:out>
-                
-                </c:forEach>
-                </c:if>
+           
                 </div>
                 
                     <div class="item">

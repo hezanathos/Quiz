@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8" isELIgnored="false" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -19,22 +21,23 @@
             quiz
         </div>
         <div class="profile">
-            <a href="deconnexion">Deconnexion</a> (Michel de Lakonta)
+            <a href="deconnexion">Deconnexion</a>
         </div>
     </div>
     <div class="create-quiz-content">
         <div class="create-quiz-content-header">
             <h2>Créer un quiz</h2>
-            <h4><a>Annuler</a></h4>
+            <h4><a="">Annuler</a></h4>
         </div>
-        <form:form method = "post" action="" commandName="quiz">
-            <form:input class="lbl-quiz" type="text" placeholder="Nom du quiz" path="libelle" />
+        <form:form method = "post" action="ajouterQuiz.do" >
+            <input class="lbl-quiz" type="text" placeholder="Nom du quiz" name="libelle" />
             <div class="select-question">
                 <select>
+                <c:if test="${!empty listquestion}">
                  <c:forEach items="${listquestion}" var="questionunique">
                  <option><c:out value="${questionunique.libelle}"/></option>
                  </c:forEach>
-                
+                </c:if>
                 </select>
                 <h6><a href="ajouterQuestion">Ajouter</a></h6>
             </div>

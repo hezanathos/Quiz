@@ -37,7 +37,7 @@
 	                <div class="title"><c:out value="${quizunique.libelle}"/></div>
 	                <div class="actions">
 	                    <a href="demarrerQuiz?idQuiz=${quizunique.id}">Lancer</a>
-	                    <a href="modifierQuiz?idQuiz=${quizunique.id}">Modifier</a>
+	                    <a href="ajouterQuestion">Modifier</a>
 	                    <a href="supprimerQuiz?idQuiz=${quizunique.id}">Supprimer</a>
 	                </div>
 	           	 </div>
