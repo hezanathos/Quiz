@@ -35,7 +35,8 @@ INSERT INTO `personne` (`id`, `nom`, `prenom`, `mail`, `mdp`, `droits`) VALUES
 (6, 'Dell', 'Graham', 'graham-dell@groupe-esigelec.org', 'EsigeDell20202016', 1),
 (7, 'Dvd', 'Henry', 'henry.dvd@fai.com', 'faiNul', 1),
 (8, 'Adams', 'Famille', 'famille.admas@scary.com', 'AdamsFamily', 1),
-(9, 'Docteur', 'Le', 'Le-Docteur@bbc.com', 'Daleksaremean12', 1);
+(9, 'Docteur', 'Le', 'Le-Docteur@bbc.com', 'Daleksaremean12', 1),
+(10, 'Lour', 'Zer', 'Mille@mille.mille', 'mdpMille', 1000);
 
 -- --------------------------------------------------------
 
