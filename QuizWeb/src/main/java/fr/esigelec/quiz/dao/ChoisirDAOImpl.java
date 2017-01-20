@@ -36,8 +36,8 @@ public class ChoisirDAOImpl implements ChoisirDAO {
 	/**
 	 * méthode Ajouter un choix
 	 * 
-	 * @param choix , représente le choix à enregistrer
-	 * 
+	 * @param choix  représente le choix à enregistrer
+	 *
 	 */
 	@Override
 	public void ajouterChoix(Choisir choix) {
@@ -51,7 +51,7 @@ public class ChoisirDAOImpl implements ChoisirDAO {
 	
 	/**
 	 * méthode pour récupérer un choix 
-	 * @param id, représente l'identitifiant du choix à récupérer 
+	 * @param id représente l'identitifiant du choix à récupérer 
 	 * @return le choix désirer
 	 */
 	
@@ -75,7 +75,7 @@ public class ChoisirDAOImpl implements ChoisirDAO {
 	
 	/**
 	 * méthode de suppression d'un choix
-	 * @param id, représente l'identifiant du choix à supprimer 
+	 * @param id représente l'identifiant du choix à supprimer 
 	 */
 	@Override
 	@Transactional(readOnly = true)
@@ -92,8 +92,8 @@ public class ChoisirDAOImpl implements ChoisirDAO {
 	/**
 	 * Méthode de récupération du nombre de bonnes réponses à une question d'un quiz
 	 * 
-	 * @param idQuiz, représente l'identifiant du Quiz dans lequel se trouve la question
-	 * @param idQuestion, représente l'idention de la question dont on veut le nombre de bonnes réponses
+	 * @param idQuiz représente l'identifiant du Quiz dans lequel se trouve la question
+	 * @param idQuestion représente l'idention de la question dont on veut le nombre de bonnes réponses
 	 * 
 	 * @return le nombre de bonnes réponses correspondant à la question d'un quiz précis 
 	 */
@@ -107,7 +107,7 @@ public class ChoisirDAOImpl implements ChoisirDAO {
 		int nbBonnesResponses=0;
 		listeDesChoix = (List<Choisir>) sessionFactory.getCurrentSession()
 				.createQuery("from Choisir where idquiz=?") 
-				.setParameter(0, idQuiz);
+				.setParameter(0, idQuiz).list();
 		
 		for(Choisir chx : listeDesChoix ){
 			
@@ -128,20 +128,29 @@ public class ChoisirDAOImpl implements ChoisirDAO {
 	
 	/**
 	 * méthode de récupération du nombre de réponses d'une question d'un Quiz 
-	 * @param idQuiz, représente l'identifiant du Quiz dans lequel se trouve la question
-	 * @param idQuestion, représente l'idention de la question dont on veut le nombre de bonnes réponses
+	 * @param idQuiz représente l'identifiant du Quiz dans lequel se trouve la question
+	 * @param idQuestion représente l'idention de la question dont on veut le nombre de bonnes réponses
 	 * @return le nombre de réponses à la question d'un quiz précis 
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public int getNbReponses(int idQuiz, int idQuestion) {
 		List<Choisir> listeDesChoix = new ArrayList<Choisir>();
+		int nbReponses=0;
 
 		listeDesChoix = (List<Choisir>) sessionFactory.getCurrentSession()
 				.createQuery("from Choisir where idquiz=?") 
-				.setParameter(0, idQuiz);
+				.setParameter(0, idQuiz)
+				.list();
 		
-		return listeDesChoix.size();
+		for(Choisir chx : listeDesChoix){
+			if(chx.getProposition().getQuestion().getId()==idQuestion){
+				nbReponses++;
+			}
+			
+		}
+		
+		return nbReponses;
 	}
 
 	
@@ -164,7 +173,8 @@ public class ChoisirDAOImpl implements ChoisirDAO {
 		listeDesChoix = (List<Choisir>) sessionFactory.getCurrentSession()
 				.createQuery("from Choisir where idquiz=? and idpersonne=?") 
 				.setParameter(0, idQuiz)
-				.setParameter(1, idParticipant);
+				.setParameter(1, idParticipant)
+				.list();
 		
 		
 			for(Choisir chx : listeDesChoix ){
@@ -183,13 +193,18 @@ public class ChoisirDAOImpl implements ChoisirDAO {
 		return nbBonnesResponses;
 	}
 
+	/**
+	 * méthode pour récupérer le nombre de participant d'un quiz 
+	 * @param idQuiz, représente l'identifiant du Quiz 
+	 * @return la liste des personnes
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Personne> getParticipantsQuiz(int idQuiz) {
 		List<Choisir> listeDesParticipants = new ArrayList<Choisir>();
 		List<Personne> listeDesPersonne = new ArrayList<Personne>();
 		listeDesParticipants = (List<Choisir>) sessionFactory.getCurrentSession()
-				.createQuery("from Choisir where idquiz=? group by idpersonne").setParameter(0, idQuiz);
+				.createQuery("from Choisir where idquiz=? group by idpersonne").setParameter(0, idQuiz).list();
 		
 		for (Choisir choisir : listeDesParticipants) {
 		  listeDesPersonne.add( choisir.getPersonne());
@@ -199,6 +214,11 @@ public class ChoisirDAOImpl implements ChoisirDAO {
 	}
 
 
+	/**
+	 * methode pour récupérer le nombre de choix d'un participant
+	 * @param idProposition, représente l'identifiant de la proposition 
+	 * @return le nombre de choix d'un proposition
+	 */
 	@Override
 	public int getNbChoixDunProposition(int idProposition) {
 		

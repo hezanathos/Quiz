@@ -19,7 +19,6 @@ import fr.esigelec.quiz.model.Personne;
  * 
  */
 
-
 /**
  * 
  * Classe d'implementation des méthodes contenues dans PersonneDAO
@@ -35,8 +34,10 @@ public class PersonneDAOImpl implements PersonneDAO {
 
 	@Override
 	/**
-	 *  méthode Ajouter un Personne
-	 * @param personne , représente la personne à enregistrer
+	 * méthode Ajouter un Personne
+	 * 
+	 * @param personne
+	 *             représente la personne à enregistrer
 	 * @return -1 when personne existe 0 when personne is null 1 when personne
 	 *         save
 	 */
@@ -45,32 +46,31 @@ public class PersonneDAOImpl implements PersonneDAO {
 
 		if (personne != null) {
 
-			Boolean verifEmailUnique = verifEmailPresent(personne.getMail());
+			Boolean verifEmailpresent = verifEmailPresent(personne.getMail());
 
-			if (verifEmailUnique.equals(false))
+			if (verifEmailpresent)
 
 			{
+
 				return -1;
 			} else {
-
-				try {
-					sessionFactory.getCurrentSession().saveOrUpdate(personne);
-
-				} catch (HibernateException e) {
-
+				try{
+				sessionFactory.getCurrentSession().saveOrUpdate(personne);
+				}catch (Exception e) {
+					System.out.println("ici");
+					e.printStackTrace();
 				}
-
 				return 1;
 
 			}
-
 		}
 		return 0;
 
 	}
 
 	/**
-	 * méthode pour récupérer une liste des personnes 
+	 * méthode pour récupérer une liste des personnes
+	 * 
 	 * @return la liste des personnes de la bdd
 	 */
 	@Override
@@ -81,11 +81,11 @@ public class PersonneDAOImpl implements PersonneDAO {
 		return (List<Personne>) sessionFactory.getCurrentSession().createCriteria(Personne.class).list();
 	}
 
-	
-	
 	/**
-	 * méthode pour récupérer une personne 
-	 * @param id, représente l'identitifiant de la personne à récupérer 
+	 * méthode pour récupérer une personne
+	 * 
+	 * @param id
+	 *            représente l'identitifiant de la personne à récupérer
 	 * @return la personne désirée
 	 */
 	@Override
@@ -95,10 +95,12 @@ public class PersonneDAOImpl implements PersonneDAO {
 		return (Personne) sessionFactory.getCurrentSession().get(Personne.class, id);
 
 	}
-	
+
 	/**
 	 * méthode de suppression d'une personne
-	 * @param id, représente l'identifiant de la personne à supprimer 
+	 * 
+	 * @param id
+	 *            représente l'identifiant de la personne à supprimer
 	 */
 
 	@Override
@@ -110,20 +112,22 @@ public class PersonneDAOImpl implements PersonneDAO {
 			session.delete(p);
 		}
 	}
-	
-	
+
 	/**
-	 * méthode de vérification si une personne existe ou pas 
-	 * @param email, email de la personne recherchée
-	 * @param modtDePasse, mot de passe de la personne recherché
-	 * @return -1 pour utilisateur inexistant dans la bdd
-	 * 			!=-1 pour un utilisateur existant
+	 * méthode de vérification si une personne existe ou pas
+	 * 
+	 * @param email
+	 *            email de la personne recherchée
+	 * @param modtDePasse
+	 *            mot de passe de la personne recherché
+	 * @return -1 pour utilisateur inexistant dans la bdd !=-1 pour un
+	 *         utilisateur existant
 	 */
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional(readOnly = true)
-	
+
 	public int verifPersonne(String email, String motDePasse) {
 
 		List<Personne> personnes = new ArrayList<Personne>();
@@ -141,14 +145,13 @@ public class PersonneDAOImpl implements PersonneDAO {
 		}
 
 	}
-	
-	
 
 	/**
 	 * méthode de récupération d'une personne par son email
-	 * @param email, email de la personne recherchée
-	 * @return null when personne don't exist
-	 * 			!=null when personne exist
+	 * 
+	 * @param email
+	 *            email de la personne recherchée
+	 * @return null when personne don't exist !=null when personne exist
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
@@ -168,23 +171,23 @@ public class PersonneDAOImpl implements PersonneDAO {
 
 	/**
 	 * méthode de vérification si un email est contenu dans la bdd
-	 * @param email, email à rechercher 
-	 * @return true when Email is unique 
-	 * 		   false when Email is not unique
+	 * 
+	 * @param email
+	 *            email à rechercher
+	 * @return true when Email is unique false when Email is not unique
 	 */
 
 	@Override
 	@SuppressWarnings("unchecked")
 	@Transactional(readOnly = true)
 	public Boolean verifEmailPresent(String email) {
-		//
 
 		List<Personne> personnes = new ArrayList<Personne>();
 
 		personnes = sessionFactory.getCurrentSession().createQuery("from Personne where mail=?").setParameter(0, email)
 				.list();
 
-		if (personnes.size() == 1) {
+		if (personnes.size() != 0) {
 
 			return true;
 

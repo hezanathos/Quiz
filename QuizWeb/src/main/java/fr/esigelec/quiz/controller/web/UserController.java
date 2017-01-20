@@ -18,6 +18,8 @@ import java.util.List;
  * Created by Edouard on 04/01/2017.
  *
  * @author - Edouard PETIT Matthieu Munhoven
+ * 
+ * Merci de respecter les auteurs des Controller : DEMANDEZ UNE FONCTIONNALITE, NE LA CODEZ PAS.
  */
 
 @Controller
@@ -31,21 +33,11 @@ public class UserController {
 
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String accueilConnexion(Model model) {
-		Personne p = new Personne();
-		p.setMail(""); // pour l'exemple
-		p.setMdp("");
-		model.addAttribute("formulaireConnexion", p);
 		return "login";
 	}
 
 	@RequestMapping(value = "/inscription", method = RequestMethod.GET)
 	public String accueilInscription(Model model) {
-		Personne p = new Personne();
-		p.setMail(""); // pour l'exemple
-		p.setMdp("");
-		p.setNom("");
-		p.setPrenom("");
-		model.addAttribute("formulaireInscription", p);
 		return "register";
 	}
 
@@ -67,14 +59,6 @@ public class UserController {
 			model.addAttribute("erreurPersonneExiste", "Email d�j� utilis�");
 			return "register";
 		}
-		/*
-		 * String nom = request.getParameter("nom"); String motDePasse =
-		 * request.getParameter("motDePasse"); String prenom =
-		 * request.getParameter("prenom"); String courriel =
-		 * request.getParameter("courriel"); Personne p = new
-		 * Personne(1000,nom,prenom,courriel,motDePasse,0); PersonneDAOImpl pdao
-		 * = new PersonneDAOImpl(); pdao.ajouterPersonne(p);
-		 */
 		return "register";
 
 
@@ -104,16 +88,6 @@ public class UserController {
 			modelMap.addAttribute("erreurUtilisateurInconnu", "Utilisateur inconnu");
 			return "index";
 		}	
-	/*String motDePasse = request.getParameter("motDePasse");
-	String courriel = request.getParameter("courriel");
-	PersonneDAOImpl pdao = new PersonneDAOImpl();
-	Personne pTemp = pdao.getPersonne(courriel);
-	if(pdao.verifPersonne(courriel,motDePasse)){
-		HttpSession session = request.getSession();
-		session.setAttribute("courriel", pTemp.getMail());
-		session.setAttribute("nom", pTemp.getNom());
-		session.setAttribute("prenom", pTemp.getPrenom());
-	}*/
 
 	}
 

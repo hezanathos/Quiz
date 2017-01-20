@@ -29,19 +29,19 @@
         </div>
 
         <form:form method = "post" action = "ajouterQuestion" commandName="question">
-            <form:input class="lbl-question" type="text" path="" placeholder="Intitulé de la question"/>
+            <form:input class="lbl-question" type="text" path="question" placeholder="Intitulé de la question"/>
             <ul>
                 <li>
-                    <form:input type="text" placeholder="Bonne réponse" path=""/>
+                    <form:input type="text" placeholder="Bonne réponse" path="proposition"/>
                 </li>
                 <li>
-                    <form:input type="text" placeholder="Proposition #2" path=""/>
+                    <form:input type="text" placeholder="Proposition #2" path="proposition"/>
                 </li>
                 <li>
-                    <form:input type="text" placeholder="Proposition #3" path=""/>
+                    <form:input type="text" placeholder="Proposition #3" path="proposition"/>
                 </li>
                 <li>
-                    <form:input type="text" placeholder="Proposition #4" path=""/>
+                    <form:input type="text" placeholder="Proposition #4" path="proposition"/>
                 </li>
                 
             </ul>

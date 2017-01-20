@@ -21,15 +21,15 @@
             quiz
         </div>
         <div class="profile">
-            <a>Deconnexion</a> (Michel de Lakonta)
+            <a href="deconnexion">Deconnexion</a> (Michel de Lakonta)
         </div>
     </div>
     <div class="ingame-content">
         <div class="bread">Question 3 sur 1000</div>
         <div class="admin-controles">
-            <a>Afficher les resultats</a>
+            <a href="afficherStats">Afficher les resultats</a>
             <a>Afficher la bonne réponse</a>
-            <a>Lancer la prochaine question</a>
+            <a href="questionCourrante">Lancer la prochaine question</a>
             <a>Arrêter le quiz</a>
         </div>
         <div class="pending-question">
@@ -78,12 +78,23 @@
             </div>
         </div>
         <div class="results">
+        
             <div class="results-question">
                 <div class="stat">
+                	<c:if test="${!empty nbReponses}">
+                	
+                	<c:out value="${nbReponses}">
+                	</c:out>
+                	</c:if>
                     <h1>345</h1>
                     <h6>personnes ont répondu</h6>
                 </div>
                 <div class="stat">
+                <c:if test="${!empty nbBonnesReponses}">
+                	
+                	<c:out value="${nbBonnesReponses}">
+                	</c:out>
+                	</c:if>
                     <h1>90%</h1>
                     <h6>de bonnes réponses</h6>
                 </div>
@@ -92,6 +103,18 @@
 
             <div class="global-results">
                 <div class="list-leaderboard">
+                
+                <div class="item">
+                <c:if test="${!empty stats}">
+                <c:forEach items="${stats}" var = "${node}">
+                <div class="index"><c:out value="${node.key}"></div>
+                <div class=:nick"><c:out value="${node.value}"></c:out></div>
+                </c:out>
+                
+                </c:forEach>
+                </c:if>
+                </div>
+                
                     <div class="item">
                         <div class="index">1.</div>
                         <div class="nick">Tozman</div>

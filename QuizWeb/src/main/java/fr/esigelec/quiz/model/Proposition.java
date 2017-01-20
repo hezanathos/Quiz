@@ -25,17 +25,28 @@ import org.hibernate.annotations.CascadeType;
 public class Proposition implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+	/**
+	 *id en base de la Proposition
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	/**
+	 * libelle en base de la Proposition
+	 */
 	@Column(name = "libelle", unique = true, nullable = false)
 	private String libelle;
 	
+	/**
+	 * boollean qui represente si la proposition est une bonne reponse en base 
+	 */
 	@Column(name = "bonneReponse", unique = true, nullable = false)
 	private int bonneReponse;
 	
+	/**
+	 * Question de la Proposition
+	 */
 	@ManyToOne
 	@JoinColumn(name="idquestion")
 	@Cascade(CascadeType.SAVE_UPDATE)

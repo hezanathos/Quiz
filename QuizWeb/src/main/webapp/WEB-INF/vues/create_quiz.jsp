@@ -31,8 +31,8 @@
             <form:input class="lbl-quiz" type="text" placeholder="Nom du quiz" path="libelle" />
             <div class="select-question">
                 <select>
-                 <c:forEach items="${listquiz}" var="quizunique">
-                 <option><c:out value="${quizunique.libelle}"/></option>
+                 <c:forEach items="${listquestion}" var="questionunique">
+                 <option><c:out value="${questionunique.libelle}"/></option>
                  </c:forEach>
                 
                 </select>

@@ -20,19 +20,34 @@ import fr.esigelec.quiz.model.Question;
  * 
  * */
 
+/**
+ * Classe d'implémentation des méthodes de QuestionDAO
+ *
+ */
 
 @Repository("questionDAOImpl") 
 @Transactional(propagation = Propagation.SUPPORTS)
 public class QuestionDAOImpl implements QuestionDAO{
 	
+	//injection du bean sessionFactory
 	@Autowired
 	 private SessionFactory sessionFactory;
+	
+	/**
+	 * méthode pour ajouter une question 
+	 * @param question l'objet question à ajouter 
+	 */
 
 	@Override
 	public void ajouterQuestion(Question question) {
 		   sessionFactory.getCurrentSession().saveOrUpdate(question);		
 	}
 
+	
+	/**
+	 * méthodes pour récupérer la liste des question
+	 * @return la liste des questions
+	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	@Transactional(readOnly=true)
@@ -42,6 +57,12 @@ public class QuestionDAOImpl implements QuestionDAO{
 		return (List<Question>) sessionFactory.getCurrentSession().createCriteria(Question.class).list();
 
 	}
+	
+	/**
+	 * Méthode de récupération d'une question
+	 * @param id représente l'identifiant de la question recherchée
+	 * return la question
+	 */
 
 	@Override
 	@Transactional(readOnly=true)
@@ -62,6 +83,12 @@ public class QuestionDAOImpl implements QuestionDAO{
 		
 	}
 	*/
+	
+	/**
+	 * Méthode de récupération des listes des de propositions d'une question
+	 * @param idQuestion  représente l'identifiant d'une question
+	 * @return la liste des propositions
+	 */
 
 	@SuppressWarnings("unchecked")
 	@Override

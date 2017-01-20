@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+    pageEncoding="utf-8"  isELIgnored="false" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE html>
 <html>
 
@@ -32,8 +33,43 @@
             </div>
            
             <div class="content-aquiz">
-                <div class="participate">Participer !</div>
+                <div class="participate" ><a href="listQuiz">Participer toto!</a></div>
             </div>
+            
+           
+            
+            
+            <c:if test="${!empty listQuiz}">
+ 				<table>
+  					<tr>
+   						<th>Libellé</th>
+   						<th>Questions</th>
+   						<th>Date</th>
+   						<th>Jouer</th>
+   						<th>Résultats</th>
+   					</tr>
+
+  					<c:forEach items="${listQuiz}" var="listQuiz">
+   						<tr>
+    						<td><c:out value="${listQuiz.libelle}"/></td>
+    						<td><c:out value="${listQuiz.libelle}"/></td>
+    						<td><c:out value="${listQuiz.dateDebutQuiz}"/></td>
+    						<td>
+    							<c:if test="${listQuiz.etat == 0}">
+    								<a href="demarrerQuiz?idQuiz=${listQuiz.id}"><c:out value="Participer !"/></a>
+    							</c:if>
+    						</td>
+    						<td>
+    							<c:if test="${listQuiz.etat == 2}">
+    								<a href="afficherStats"><c:out value="Statistiques"/></a>
+    							</c:if>
+    						</td>
+    					</tr>
+  					</c:forEach>
+ 				</table>
+			</c:if>
+            
+            
         </div>
        
        

@@ -36,41 +36,26 @@
                     </div>
                 </div>
             </div>
-            <div class="question">
-                <div class="lbl-question">
-                    Which ballet features a battle between gingerbread men soldiers and a Mouse King?
-                </div>
-                <div class="answers">
-                    <div class="row">
-                        <div class="prop">
-                            <div class="text">Lourd</div>
-                            <div class="score">
-                                <div class="inner-score"></div>
-                            </div>
-                        </div>
-                        <div class="prop">
-                            <div class="text">Zer</div>
-                            <div class="score">
-                                <div class="inner-score"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="prop">
-                            <div class="text">Mille</div>
-                            <div class="score">
-                                <div class="inner-score"></div>
-                            </div>
-                        </div>
-                        <div class="prop">
-                            <div class="text">Toz</div>
-                            <div class="score">
-                                <div class="inner-score"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
+            <c:if test="${!empty quiz}">
+            	<c:forEach items="${quiz}" var="quiz">
+            		<div class="question">
+                		<div class="lbl-question">
+                    		<c:out value="${quiz.libelle}"/>
+                		</div>
+                		<div class="answers">
+                    		<div class="row">
+                        		<div class="prop">
+                            		<div class="text"><c:out value="${quiz.libelle}"/></div>
+                            		<div class="score">
+                                		<div class="inner-score"></div>
+                            		</div>
+                        		</div>    
+                    		</div>    
+                		</div>
+           			 </div>
+            	</c:forEach>
+          	</c:if>
         </div>
         <div class="results">
             <div class="results-question">

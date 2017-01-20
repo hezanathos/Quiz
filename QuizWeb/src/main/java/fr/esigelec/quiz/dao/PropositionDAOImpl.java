@@ -33,7 +33,7 @@ public class PropositionDAOImpl implements PropositionDAO {
 	
 	/**
 	 *  méthode Ajouter une proposition
-	 * @param proposition , représente la proposition à enregistrer
+	 * @param proposition  représente la proposition à enregistrer
 	 * 
 	 */
 	@Override
@@ -58,7 +58,7 @@ public class PropositionDAOImpl implements PropositionDAO {
 	
 	/**
 	 * méthode pour récupérer une proposition 
-	 * @param id, représente l'identitifiant de la proposition à récupérer 
+	 * @param id représente l'identitifiant de la proposition à récupérer 
 	 * @return la proposition désirée
 	 */
 

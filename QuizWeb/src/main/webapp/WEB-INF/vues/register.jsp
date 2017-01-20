@@ -31,7 +31,7 @@
                     <input type="password" placeholder="Confirmer le mot de passe" />
                     <input type="submit" value="S'inscrire"> 
                 </form:form>
-                <a href="connexion">J'ai déjà un compte</a>
+                <a href="index">J'ai déjà un compte</a>
             </div>
         </div>
 

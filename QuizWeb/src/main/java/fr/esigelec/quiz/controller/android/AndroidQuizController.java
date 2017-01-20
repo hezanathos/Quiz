@@ -2,8 +2,12 @@ package fr.esigelec.quiz.controller.android;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
@@ -18,15 +22,10 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import fr.esigelec.quiz.dao.ChoisirDAO;
-import fr.esigelec.quiz.dao.ChoisirDAOImpl;
 import fr.esigelec.quiz.dao.PersonneDAO;
-import fr.esigelec.quiz.dao.PersonneDAOImpl;
 import fr.esigelec.quiz.dao.PropositionDAO;
-import fr.esigelec.quiz.dao.PropositionDAOImpl;
 import fr.esigelec.quiz.dao.QuestionDAO;
-import fr.esigelec.quiz.dao.QuestionDAOImpl;
 import fr.esigelec.quiz.dao.QuizDAO;
-import fr.esigelec.quiz.dao.QuizDAOImpl;
 import fr.esigelec.quiz.model.Choisir;
 import fr.esigelec.quiz.model.Personne;
 import fr.esigelec.quiz.model.Proposition;
@@ -35,13 +34,28 @@ import fr.esigelec.quiz.model.Quiz;
 
 /**
  * 
- * @author wangxi 
- * Quiz controller for android
+ * @author wangxi Quiz controller for android
  * @see https://spring.io/guides/gs/messaging-stomp-websocket/
  */
 
 @Controller
 public class AndroidQuizController {
+
+	@Autowired
+	@Qualifier("questionDAOImpl")
+	private QuestionDAO questionDAO;
+	@Autowired
+	@Qualifier("choisirDAOImpl")
+	private ChoisirDAO choisirDAO;
+	@Autowired
+	@Qualifier("personneDAOImpl")
+	private PersonneDAO personneDAO;
+	@Autowired
+	@Qualifier("quizDAOImpl")
+	private QuizDAO quizDAO;
+	@Autowired
+	@Qualifier("propositionDAOImpl")
+	private PropositionDAO propositionDAO;
 
 	private SimpMessagingTemplate template;
 
@@ -52,6 +66,7 @@ public class AndroidQuizController {
 	@Autowired
 	public AndroidQuizController(SimpMessagingTemplate template) {
 		this.template = template;
+
 	}
 
 	/**
@@ -66,25 +81,25 @@ public class AndroidQuizController {
 	@SendTo("/topic/questions")
 	public void getAnswer(String json) throws Exception {
 
-		JsonElement jsonElement =  new JsonParser().parse(json);
+		JsonElement jsonElement = new JsonParser().parse(json);
 		JsonObject jsonObject = jsonElement.getAsJsonObject();
-		
+
 		int idPerson = jsonObject.getAsJsonObject("idperson").getAsInt();
 		int idQuiz = jsonObject.getAsJsonObject("idquiz").getAsInt();
-		int idQuestion = jsonObject.getAsJsonObject("idquestion").getAsInt();
 		int idproposition = jsonObject.getAsJsonObject("idproposition").getAsInt();
 
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-		PersonneDAO personneDAO = new PersonneDAOImpl();
+
 		Personne personne = personneDAO.getPersonne(idPerson);
-		QuizDAO quizDAO = new QuizDAOImpl();
 		Quiz quiz = quizDAO.getQuiz(idQuiz);
-		PropositionDAO propositionDAO = new PropositionDAOImpl();
 		Proposition proposition = propositionDAO.getProposition(idproposition);
 
 		Choisir choisir = new Choisir(timestamp, personne, quiz, proposition);
-		ChoisirDAO choisirDAO = new ChoisirDAOImpl();
-		choisirDAO.ajouterChoix(choisir);
+
+		long chrono = System.currentTimeMillis() - quiz.getDateDebutQuestion().getTime();
+		if (chrono <= 30000) {
+			choisirDAO.ajouterChoix(choisir);
+		}
 
 	}
 
@@ -97,19 +112,20 @@ public class AndroidQuizController {
 	 *            the id of the Quiz we are on
 	 * @throws JsonProcessingException
 	 */
-	public void sendQuestion(int idQuestion, int idQuiz)
-			throws JsonProcessingException {
-		QuestionDAO questionDAO = new QuestionDAOImpl();
+	public void sendQuestion(int idQuestion, int idQuiz) throws JsonProcessingException {
+		// ApplicationContext context = new
+		// ClassPathXmlApplicationContext("dispatcher-servlet.xml");
+		// QuestionDAO questionDAO = (QuestionDAO)
+		// context.getBean("questionDAOImpl");
+
 		Question question = questionDAO.getQuestion(idQuestion);
+		Quiz quiz = quizDAO.getQuiz(idQuiz);
 		ArrayList<Proposition> propositions = (ArrayList<Proposition>) questionDAO.getListePropositions(idQuestion);
-		
+
 		ObjectMapper mapper = new ObjectMapper();
 		ObjectNode objectNode = mapper.createObjectNode();
 		ObjectNode questionNode = mapper.createObjectNode();
 		ArrayNode propositionArray = mapper.createArrayNode();
-
-		// QuestionDAO questionDAO = new QuestionDAOImpl();
-		// Question question = questionDAO.getQuestion(1);
 
 		objectNode.put("status", 0);
 		objectNode.put("numero", question.getId());
@@ -125,7 +141,10 @@ public class AndroidQuizController {
 					propositionTemp.getLibelle()));
 		}
 		objectNode.set("propositions", propositionArray);
-		objectNode.put("timeRemaining", 30000);
+
+		long chrono = System.currentTimeMillis() - quiz.getDateDebutQuestion().getTime();
+
+		objectNode.put("timeRemaining", chrono);
 
 		String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(objectNode);
 		System.out.println("sendQuestion" + json);
@@ -141,14 +160,10 @@ public class AndroidQuizController {
 	 *            the id of the quiz which we are on
 	 * @throws JsonProcessingException
 	 */
-	public void sendStatus(int idQuestion, int idQuiz)
-			throws JsonProcessingException {
+	public void sendStatus(int idQuestion, int idQuiz) throws JsonProcessingException {
 
-		ChoisirDAO choisirDAO = new ChoisirDAOImpl();
-		QuestionDAO questionDAO = new QuestionDAOImpl();
-		
 		Question question = questionDAO.getQuestion(idQuestion);
-		
+
 		ObjectMapper mapper = new ObjectMapper();
 		ObjectNode objectNode = mapper.createObjectNode();
 		ObjectNode questionNode = mapper.createObjectNode();
@@ -163,7 +178,7 @@ public class AndroidQuizController {
 		objectNode.set("question", questionNode);
 
 		ArrayList<Proposition> propositions = (ArrayList<Proposition>) questionDAO.getListePropositions(idQuestion);
-		
+
 		for (int i = 0; i < 4; i++) {
 			Proposition propositionTemp = propositions.get(i);
 			int idPropositionTemp = propositionTemp.getId();
@@ -186,13 +201,11 @@ public class AndroidQuizController {
 	 *            the id of the Quiz we are on
 	 * @throws JsonProcessingException
 	 */
-	public void sendResult(int idQuestion, int idQuiz)
-			throws JsonProcessingException {
-		ChoisirDAO choisirDAO = new ChoisirDAOImpl();
-		QuestionDAO questionDAO = new QuestionDAOImpl();
+	public void sendResult(int idQuestion, int idQuiz) throws JsonProcessingException {
+
 		Question question = questionDAO.getQuestion(idQuestion);
 		ArrayList<Proposition> propositions = (ArrayList<Proposition>) questionDAO.getListePropositions(idQuestion);
-		
+
 		ObjectMapper mapper = new ObjectMapper();
 		ObjectNode objectNode = mapper.createObjectNode();
 		ObjectNode questionNode = mapper.createObjectNode();
@@ -207,11 +220,9 @@ public class AndroidQuizController {
 		questionNode.put("libelle", question.getLibelle());
 		objectNode.set("question", questionNode);
 
-		
-		
 		for (int i = 0; i < 4; i++) {
 			Proposition propositionTemp = propositions.get(i);
-			if( propositionTemp.isBonneReponse() == 1){
+			if (propositionTemp.isBonneReponse() == 1) {
 				reponseNode.put("id", propositionTemp.getId());
 				reponseNode.put("libelle", propositionTemp.getLibelle());
 			}
@@ -224,19 +235,63 @@ public class AndroidQuizController {
 
 		objectNode.set("reponse", reponseNode);
 
-		// TODO: dynamiquely generate the classments
-		ArrayNode classementsArray = mapper.createArrayNode();
-		ObjectNode user = mapper.createObjectNode();
-		user.put("position", 1);
-		user.put("nom", "william");
-		user.put("points", 10);
+		// begin
+		List<Personne> participants = choisirDAO.getParticipantsQuiz(idQuiz);
 
-		ObjectNode user2 = mapper.createObjectNode();
-		user2.put("position", 2);
-		user2.put("nom", "Xi");
-		user2.put("points", 5);
-		classementsArray.add(user);
-		classementsArray.add(user2);
+		class Classement {
+			Personne personne;
+			int point;
+
+			public Classement(Personne personne, int point) {
+				this.personne = personne;
+				this.point = point;
+			}
+		}
+
+		Comparator<Classement> comparator = new Comparator<Classement>() {
+			public int compare(Classement c1, Classement c2) {
+				if (c1.point != c2.point) {
+					return c1.point - c2.point;
+				} else {
+					if (!c1.personne.getNom().equals(c2.personne.getNom())) {
+						return c1.personne.getNom().compareTo(c2.personne.getNom());
+					} else {
+						return c1.personne.getId() - c2.personne.getId();
+					}
+				}
+			}
+		};
+
+		ArrayList<Classement> classements = new ArrayList();
+
+		for (Personne participant : participants) {
+			int points = choisirDAO.getNbBonnesReponseDunParticipantAuQuiz(idQuiz, participant.getId());
+			Classement classementTemp = new Classement(participant, points);
+			classements.add(classementTemp);
+		}
+
+		Collections.sort(classements, comparator);
+		ArrayNode classementsArray = mapper.createArrayNode();
+		for (int i = 0; i < classements.size(); i++) {
+			ObjectNode user = mapper.createObjectNode();
+			user.put("position", i + 1);
+			user.put("nom", classements.get(i).personne.getNom());
+			user.put("points", classements.get(i).point);
+			classementsArray.add(user);
+		}
+
+		// ArrayNode classementsArray = mapper.createArrayNode();
+		// ObjectNode user = mapper.createObjectNode();
+		// user.put("position", 1);
+		// user.put("nom", "william");
+		// user.put("points", 10);
+		//
+		// ObjectNode user2 = mapper.createObjectNode();
+		// user2.put("position", 2);
+		// user2.put("nom", "Xi");
+		// user2.put("points", 5);
+		// classementsArray.add(user);
+		// classementsArray.add(user2);
 
 		objectNode.putPOJO("classement", classementsArray);
 

@@ -21,22 +21,40 @@ public class Personne implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Id en base de la personne
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-
+	
+	/**
+	 * Nom en base de la personne
+	 */
 	@Column(name = "nom", unique = true, nullable = false)
 	private String nom;
 
+	/**
+	 * Prenom en base de la personne
+	 */
 	@Column(name = "prenom", unique = true, nullable = false)
 	private String prenom;
 
+	/**
+	 * mail en base de la personne
+	 */
 	@Column(name = "mail", unique = true, nullable = false)
 	private String mail;
 
+	/**
+	 * Mot de passe en base de la personne
+	 */
 	@Column(name = "mdp", unique = true, nullable = false)
 	private String mdp;
 
+	/**
+	 * Droit en base de la personne (0->utilisateur, 1000->admin)
+	 */
 	@Column(name = "droits", unique = true, nullable = false)
 	private int droits;
 

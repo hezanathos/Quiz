@@ -31,28 +31,50 @@ public class Quiz implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * id en base du quiz
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
+	/**
+	 * libelle en base du quiz
+	 */
 	@Column(name = "libelle", unique = true, nullable = false)
 	private String libelle;
-	
+
+	/**
+	 * etat en base du quiz
+	 */
 	@Column(name = "etat", unique = true, nullable = false)
 	private int etat;
-
+	/**
+	 * date du debut en base du quiz
+	 */
 	@Column(name = "dateDebutQuiz", unique = true, nullable = false)
 	private Timestamp dateDebutQuiz;
-
+	/**
+	 * numero de la question en base du quiz
+	 */
 	@Column(name = "noQuestionCourant", unique = true, nullable = false)
 	private int noQuestionCourant;
 
+	/**
+	 * etape en base du quiz
+	 */
 	@Column(name = "etape", unique = true, nullable = false)
 	private int etape;
 
+	/**
+	 * date de la question en base du quiz
+	 */
 	@Column(name = "dateDebutQuestion", unique = true, nullable = false)
 	private Timestamp dateDebutQuestion;
 
+	/**
+	 * liste des question en base du quiz
+	 */
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "questionduquiz", joinColumns = { @JoinColumn(name = "idQuiz") }, inverseJoinColumns = {
 			@JoinColumn(name = "idQuestion") })
@@ -63,8 +85,8 @@ public class Quiz implements Serializable {
 		super();
 	}
 
-	public Quiz(int id, String libelle,int etat ,Timestamp dateDebutQuiz, int noQuestionCourant, int etape,
-			Timestamp dateDebutQuestion,List<Question> listeQuestion) {
+	public Quiz(int id, String libelle, int etat, Timestamp dateDebutQuiz, int noQuestionCourant, int etape,
+			Timestamp dateDebutQuestion, List<Question> listeQuestion) {
 		super();
 		this.id = id;
 		this.libelle = libelle;
@@ -76,8 +98,8 @@ public class Quiz implements Serializable {
 		this.listeQuestion = listeQuestion;
 	}
 
-	public Quiz(String libelle, int etat,  Timestamp dateDebutQuiz, int noQuestionCourant, int etape, Timestamp dateDebutQuestion,
-			List<Question> listeQuestion) {
+	public Quiz(String libelle, int etat, Timestamp dateDebutQuiz, int noQuestionCourant, int etape,
+			Timestamp dateDebutQuestion, List<Question> listeQuestion) {
 		super();
 
 		this.libelle = libelle;

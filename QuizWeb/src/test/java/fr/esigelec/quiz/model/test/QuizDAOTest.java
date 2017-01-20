@@ -97,7 +97,7 @@ public class QuizDAOTest {
 		assertEquals("libelle", qdao.getQuestionCourrante(quizget.getId()).getLibelle());
 		quizget.setNoQuestionCourant(quizget.getNoQuestionCourant()+1);
 		qdao.ajouterQuiz(quizget);
-		assertEquals(1,quiz.getNoQuestionCourant());
+		assertEquals(1,quizget.getNoQuestionCourant());
 		assertEquals("libelle2", qdao.getQuestionCourrante(quizget.getId()).getLibelle());
 		
 
