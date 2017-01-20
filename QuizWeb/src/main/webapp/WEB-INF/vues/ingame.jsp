@@ -77,7 +77,7 @@
                 </div>
                 <div class="stat">
                     <h1>3'45</h1>
-                    <h6>réponse la plus rapide</h6>
+                    <h6>réponse la plu rapide</h6>
                 </div>
                 <div class="stat">
                     <h1>7%</h1>xr
