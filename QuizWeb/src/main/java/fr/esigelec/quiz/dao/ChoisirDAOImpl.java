@@ -36,8 +36,8 @@ public class ChoisirDAOImpl implements ChoisirDAO {
 	/**
 	 * méthode Ajouter un choix
 	 * 
-	 * @param choix , représente le choix à enregistrer
-	 * 
+	 * @param choix  représente le choix à enregistrer
+	 *
 	 */
 	@Override
 	public void ajouterChoix(Choisir choix) {
@@ -51,7 +51,7 @@ public class ChoisirDAOImpl implements ChoisirDAO {
 	
 	/**
 	 * méthode pour récupérer un choix 
-	 * @param id, représente l'identitifiant du choix à récupérer 
+	 * @param id représente l'identitifiant du choix à récupérer 
 	 * @return le choix désirer
 	 */
 	
@@ -75,7 +75,7 @@ public class ChoisirDAOImpl implements ChoisirDAO {
 	
 	/**
 	 * méthode de suppression d'un choix
-	 * @param id, représente l'identifiant du choix à supprimer 
+	 * @param id représente l'identifiant du choix à supprimer 
 	 */
 	@Override
 	@Transactional(readOnly = true)
@@ -92,8 +92,8 @@ public class ChoisirDAOImpl implements ChoisirDAO {
 	/**
 	 * Méthode de récupération du nombre de bonnes réponses à une question d'un quiz
 	 * 
-	 * @param idQuiz, représente l'identifiant du Quiz dans lequel se trouve la question
-	 * @param idQuestion, représente l'idention de la question dont on veut le nombre de bonnes réponses
+	 * @param idQuiz représente l'identifiant du Quiz dans lequel se trouve la question
+	 * @param idQuestion représente l'idention de la question dont on veut le nombre de bonnes réponses
 	 * 
 	 * @return le nombre de bonnes réponses correspondant à la question d'un quiz précis 
 	 */
@@ -128,8 +128,8 @@ public class ChoisirDAOImpl implements ChoisirDAO {
 	
 	/**
 	 * méthode de récupération du nombre de réponses d'une question d'un Quiz 
-	 * @param idQuiz, représente l'identifiant du Quiz dans lequel se trouve la question
-	 * @param idQuestion, représente l'idention de la question dont on veut le nombre de bonnes réponses
+	 * @param idQuiz représente l'identifiant du Quiz dans lequel se trouve la question
+	 * @param idQuestion représente l'idention de la question dont on veut le nombre de bonnes réponses
 	 * @return le nombre de réponses à la question d'un quiz précis 
 	 */
 	@SuppressWarnings("unchecked")

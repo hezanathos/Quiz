@@ -14,6 +14,7 @@ import fr.esigelec.quiz.model.Quiz;
 /**
  * 
  * @author Sahobau
+ * classe d'implémentation des méthodes de QuizDAO
  * 
  */
 
@@ -21,15 +22,26 @@ import fr.esigelec.quiz.model.Quiz;
 @Transactional(propagation = Propagation.SUPPORTS)
 public class QuizDAOImpl implements QuizDAO {
 
+	//injection du bean sessionFactory
 	@Autowired
 	private SessionFactory sessionFactory;
 
+	
+	/**
+	 * méthode permettant d'ajouter un quiz 
+	 * @param quiz représente le quiz à ajouter 
+	 */
 	@Override
 	public void ajouterQuiz(Quiz quiz) {
 		sessionFactory.getCurrentSession().saveOrUpdate(quiz);
 
 	}
 
+	
+	/**
+	 * méthode permettant de récupérer la liste des quizzes
+	 * @return la liste des quizzes
+	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	@Transactional(readOnly = true)
@@ -47,6 +59,11 @@ public class QuizDAOImpl implements QuizDAO {
 
 	}
 
+	/**
+	 * méthode permettant de récupérer un quiz 
+	 * @param id représente l'identifiant du quiz à récupérer
+	 * @return le quiz 
+	 */
 	@Override
 	@Transactional(readOnly = true)
 	public Quiz getQuiz(int id) {
@@ -54,6 +71,11 @@ public class QuizDAOImpl implements QuizDAO {
 		return (Quiz) sessionFactory.getCurrentSession().get(Quiz.class, id);
 	}
 
+	/**
+	 * méthode permettant de récupérer la question courante 
+	 * @param idQuiz l'identifiant du Quiz à récupérer
+	 * @return la question désirée
+	 */
 	@Override
 	public Question getQuestionCourrante(int idQuiz) {
 
