@@ -30,20 +30,20 @@
             <h4><a>Rétablir</a></h4>
         </div>
 
-        <form:form method="post" action="ajouterQuestion" commandName="question">
-            <form:input class="lbl-question" type="text" path="question" placeholder="Intitulé de la question"/>
+        <form:form method="post" action="ajouterQuestion.do" >
+            <input class="lbl-question" type="text" name="question" placeholder="Intitulé de la question"/>
             <ul>
                 <li>
-                    <form:input type="text" placeholder="Bonne réponse" path="proposition"/>
+                    <input type="text" placeholder="Bonne réponse" name="proposition"/>
                 </li>
                 <li>
-                    <form:input type="text" placeholder="Proposition #2" path="proposition"/>
+                    <input type="text" placeholder="Proposition #2" name="proposition"/>
                 </li>
                 <li>
-                    <form:input type="text" placeholder="Proposition #3" path="proposition"/>
+                    <input type="text" placeholder="Proposition #3" name="proposition"/>
                 </li>
                 <li>
-                    <form:input type="text" placeholder="Proposition #4" path="proposition"/>
+                    <input type="text" placeholder="Proposition #4" name="proposition"/>
                 </li>
                 
             </ul>
