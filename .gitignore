@@ -52,3 +52,5 @@ out
 test-output
 atlassian-ide-plugin.xml
 .gradletasknamecache
+QuizAndroid/local.properties
+QuizAndroid/build/
