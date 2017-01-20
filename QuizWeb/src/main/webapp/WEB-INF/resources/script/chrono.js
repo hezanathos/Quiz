@@ -17,7 +17,7 @@ var interval;
 
 /* Launches the timer */
 function start() {
-
+    console.log('start the timer');
     interval = setInterval(function () {
         tick();
         if (time <= 0) {
@@ -34,6 +34,7 @@ function stop() {
 
 /* Initializes the timer to the base time */
 function init() {
+    console.log('init the timer');
     time = base_time;
 }
 
