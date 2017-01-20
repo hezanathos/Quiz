@@ -1,3 +1,4 @@
+<!-- ZANOU STEVEN -->
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
@@ -20,7 +21,7 @@
             <div class="brand">quiz</div>
             <div class="catch">the best quiz app ever</div>
         </div>
-        <br>
+        <br><!-- Formulaire connexion -->
         <div class="form-content">
             <div class="content">
                 <h1>Connexion</h1>

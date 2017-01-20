@@ -1,3 +1,4 @@
+<!-- ZANOU STEVEN -->
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
@@ -23,6 +24,7 @@
         <div class="form-content">
             <div class="content">
                 <h1>Inscription</h1>
+                <!-- Formulaire inscription -->
                 <form:form method="POST" action="inscription.do" >
                     <input type="text" placeholder="Prénom" name="prenom"/>
                     <input type="text" placeholder="Nom" name="nom"/>

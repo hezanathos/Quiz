@@ -1,3 +1,4 @@
+<!-- ZANOU STEVEN -->
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"  isELIgnored="false" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
@@ -37,7 +38,7 @@
                     </div>
                 </div>
             </div>
-            
+            <!-- On affiche la question et la liste de ses propositions -->
               <c:if test="${!empty quiz && !empty listProp}">
             	
             		<div class="question">

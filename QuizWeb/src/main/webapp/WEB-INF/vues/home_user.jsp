@@ -1,3 +1,4 @@
+<!-- ZANOU STEVEN -->
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"  isELIgnored="false" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
@@ -41,7 +42,7 @@
             
            
             
-            
+            <!-- On recupere la list des quiz du controleur -->
             <c:if test="${!empty listQuiz}">
  				<table>
   					<tr>
@@ -50,7 +51,7 @@
    						<th>Jouer</th>
    						<th>Résultats</th>
    					</tr>
-
+					<!-- Pour chaque quiz on affiche le libellé, la date avec la possibilité de jouer si le quiz est en cours ou pas démarré -->
   					<c:forEach items="${listQuiz}" var="listQuiz">
    						<tr>
     						<td><c:out value="${listQuiz.libelle}"/></td>
