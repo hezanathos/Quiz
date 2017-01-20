@@ -1,5 +1,6 @@
 package fr.esigelec.quiz.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import fr.esigelec.quiz.model.Proposition;
 import fr.esigelec.quiz.model.Question;
 import fr.esigelec.quiz.model.Quiz;
 
@@ -85,7 +87,22 @@ public class QuizDAOImpl implements QuizDAO {
 		return qz.getListeQuestion().get(qz.getNoQuestionCourant());
 
 	}
+	@SuppressWarnings("unchecked")
+	public Quiz getDernierQuiz(){
+		
+		Quiz q;
+		
 
+		List<Quiz> quiz = new ArrayList<Quiz>();
+
+		quiz = (List<Quiz>)sessionFactory.getCurrentSession()
+				.createQuery("from quiz where etat =1 ORDER BY datedebutquiz desc").list();
+				
+
+
+		return quiz.get(0);
+		
+	}
 	
 
 	/*
