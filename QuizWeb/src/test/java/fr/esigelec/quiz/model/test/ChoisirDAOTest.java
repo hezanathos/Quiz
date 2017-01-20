@@ -27,7 +27,6 @@ import fr.esigelec.quiz.model.Quiz;
  */
 public class ChoisirDAOTest {
 
-	
 	/**
 	 * Test de la méthode ajouter choix 
 	 */
