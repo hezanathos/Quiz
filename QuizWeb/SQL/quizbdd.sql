@@ -10,7 +10,6 @@
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
-
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
@@ -25,6 +24,14 @@ SET time_zone = "+00:00";
 --
 -- Structure de la table `choisir`
 --
+
+DROP IF EXISTS `choisir`;
+DROP IF EXISTS`personne`;
+DROP IF EXISTS `proposition`;
+DROP IF EXISTS `question`;
+DROP IF EXISTS `questionduquiz`;
+DROP IF EXISTS `quiz`;
+
 
 CREATE TABLE IF NOT EXISTS `choisir` (
   `date` timestamp NOT NULL,
@@ -136,8 +143,6 @@ ALTER TABLE `proposition`
 --
 ALTER TABLE `questionduquiz`
   ADD CONSTRAINT `fk_quiz` FOREIGN KEY (`idquiz`) REFERENCES `quiz` (`id`);
-
-  
   
   ALTER TABLE `personne` ADD UNIQUE(`mail`);
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

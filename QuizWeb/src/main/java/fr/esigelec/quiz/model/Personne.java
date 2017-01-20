@@ -31,13 +31,13 @@ public class Personne implements Serializable {
 	/**
 	 * Nom en base de la personne
 	 */
-	@Column(name = "nom", unique = true, nullable = false)
+	@Column(name = "nom", unique = false, nullable = false)
 	private String nom;
 
 	/**
 	 * Prenom en base de la personne
 	 */
-	@Column(name = "prenom", unique = true, nullable = false)
+	@Column(name = "prenom", unique = false, nullable = false)
 	private String prenom;
 
 	/**
@@ -49,13 +49,13 @@ public class Personne implements Serializable {
 	/**
 	 * Mot de passe en base de la personne
 	 */
-	@Column(name = "mdp", unique = true, nullable = false)
+	@Column(name = "mdp", unique = false, nullable = false)
 	private String mdp;
 
 	/**
 	 * Droit en base de la personne (0->utilisateur, 1000->admin)
 	 */
-	@Column(name = "droits", unique = true, nullable = false)
+	@Column(name = "droits", unique = false, nullable = false)
 	private int droits;
 
 	public Personne(int id, String nom, String prenom, String mail, String mdp, int droits) {

@@ -35,7 +35,7 @@ public class Question implements Serializable {
 	/**
 	 * libelle en base de la question
 	 */
-	@Column(name = "libelle", unique = true, nullable = false)
+	@Column(name = "libelle", unique = false, nullable = false)
 	private String libelle;
 
 	public Question() {

@@ -35,13 +35,13 @@ public class Proposition implements Serializable {
 	/**
 	 * libelle en base de la Proposition
 	 */
-	@Column(name = "libelle", unique = true, nullable = false)
+	@Column(name = "libelle", unique = false, nullable = false)
 	private String libelle;
 	
 	/**
 	 * boollean qui represente si la proposition est une bonne reponse en base 
 	 */
-	@Column(name = "bonneReponse", unique = true, nullable = false)
+	@Column(name = "bonneReponse", unique = false, nullable = false)
 	private int bonneReponse;
 	
 	/**

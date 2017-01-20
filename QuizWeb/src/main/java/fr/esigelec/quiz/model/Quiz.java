@@ -41,13 +41,13 @@ public class Quiz implements Serializable {
 	/**
 	 * libelle en base du quiz
 	 */
-	@Column(name = "libelle", unique = true, nullable = false)
+	@Column(name = "libelle", unique = false, nullable = false)
 	private String libelle;
 
 	/**
 	 * etat en base du quiz
 	 */
-	@Column(name = "etat", unique = true, nullable = false)
+	@Column(name = "etat", unique = false, nullable = false)
 	private int etat;
 	/**
 	 * date du debut en base du quiz
@@ -57,19 +57,19 @@ public class Quiz implements Serializable {
 	/**
 	 * numero de la question en base du quiz
 	 */
-	@Column(name = "noQuestionCourant", unique = true, nullable = false)
+	@Column(name = "noQuestionCourant", unique = false, nullable = false)
 	private int noQuestionCourant;
 
 	/**
 	 * etape en base du quiz
 	 */
-	@Column(name = "etape", unique = true, nullable = false)
+	@Column(name = "etape", unique = false, nullable = false)
 	private int etape;
 
 	/**
 	 * date de la question en base du quiz
 	 */
-	@Column(name = "dateDebutQuestion", unique = true, nullable = false)
+	@Column(name = "dateDebutQuestion", unique = false, nullable = false)
 	private Timestamp dateDebutQuestion;
 
 	/**
