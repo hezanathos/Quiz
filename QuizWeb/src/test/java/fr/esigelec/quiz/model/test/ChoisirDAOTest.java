@@ -28,7 +28,7 @@ public class ChoisirDAOTest {
 
 		ApplicationContext context = new ClassPathXmlApplicationContext("dispatcher-servlet.xml");
 
-	
+		//on Creer
 		Personne personne1 = new Personne("Sauvage", "Guillaume", "ph@gmail.fr", "mdp", 0);
 		PersonneDAO pDAO1 = (PersonneDAO) context.getBean("personneDAOImpl");
 		pDAO1.ajouterPersonne(personne1);
