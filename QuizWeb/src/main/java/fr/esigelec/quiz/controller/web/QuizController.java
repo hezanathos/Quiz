@@ -72,6 +72,8 @@ public class QuizController {
 	@RequestMapping(value = "/demarrerQuiz", method = RequestMethod.GET)
 	public String demarrerQuiz(HttpServletRequest request,  ModelMap modelMap, HttpSession session){
 
+		if(request.getParameter("idQuiz") == null)
+			return "index";
 		int idQuiz = Integer.parseInt(request.getParameter("idQuiz"));
 		Quiz quiz = serviceQuizDAO.getQuiz(idQuiz);
 		//session = request.getSession();
@@ -97,6 +99,9 @@ public class QuizController {
 
 	@RequestMapping(value = "/afficherStats", method = RequestMethod.GET)
 	public String afficherStats(HttpServletRequest request, ModelMap modelMap){
+
+		if(request.getParameter("idQuiz") == null || request.getParameter("idQuestion") == null)
+			return "index";
 		int idQuiz = Integer.parseInt(request.getParameter("idQuiz"));
 		int idQuestion =  Integer.parseInt(request.getParameter("idQuestion"));
 		int nbReponses = serviceChoisirDAO.getNbReponses(idQuiz, idQuestion);
@@ -118,7 +123,9 @@ public class QuizController {
 
 	@RequestMapping(value = "/questionCourrante", method = RequestMethod.GET)
 	public String questionCourrante(HttpServletRequest request, ModelMap modelMap){
-		int idQuiz = (int) request.getAttribute("idQuiz");
+		if(request.getAttribute("idQuestion") == null)
+			return "index";
+		int idQuiz = Integer.parseInt(request.getParameter("idQuiz"));
 		Question question = serviceQuizDAO.getQuestionCourrante(idQuiz);
 		if (question != null){
 			Quiz quiz = serviceQuizDAO.getQuiz(idQuiz);
