@@ -193,6 +193,11 @@ public class ChoisirDAOImpl implements ChoisirDAO {
 		return nbBonnesResponses;
 	}
 
+	/**
+	 * méthode pour récupérer le nombre de participant d'un quiz 
+	 * @param idQuiz, représente l'identifiant du Quiz 
+	 * @return la liste des personnes
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Personne> getParticipantsQuiz(int idQuiz) {
@@ -209,6 +214,11 @@ public class ChoisirDAOImpl implements ChoisirDAO {
 	}
 
 
+	/**
+	 * methode pour récupérer le nombre de choix d'un participant
+	 * @param idProposition, représente l'identifiant de la proposition 
+	 * @return le nombre de choix d'un proposition
+	 */
 	@Override
 	public int getNbChoixDunProposition(int idProposition) {
 		
