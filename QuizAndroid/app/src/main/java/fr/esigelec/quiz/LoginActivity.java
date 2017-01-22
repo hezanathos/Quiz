@@ -117,14 +117,6 @@ public class LoginActivity extends Activity {
 
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-        serverAdress = settings.getString("serverAdress","srvinfodev.esigelec.fr:8080/quiz");
-    }
-
     /**
      * Validate Login form and authenticate.
      */
@@ -244,6 +236,8 @@ public class LoginActivity extends Activity {
                     .add("password", passwordStr)
                     .build();
 
+            SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+            serverAdress = settings.getString("serverAdress","srvinfodev.esigelec.fr:8080/quiz");
             Request request = new Request.Builder()
                     .url("http://" + serverAdress+"/android/connexion")
                     .post(formBody)

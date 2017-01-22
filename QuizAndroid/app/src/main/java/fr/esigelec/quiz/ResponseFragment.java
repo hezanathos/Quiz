@@ -98,7 +98,7 @@ public class ResponseFragment extends Fragment {
             if (status == 1){
                 args.putInt(ARG_userResponce, userResponce);
             }
-            if(status == 2){
+            if(status >= 2){
                 args.putString(ARG_reponse, message.getJSONObject("reponse").toString());
             }
             fragment.setArguments(args);
@@ -125,7 +125,7 @@ public class ResponseFragment extends Fragment {
                 if (mStatus == 1) {
                     mUserResponce = getArguments().getInt(ARG_userResponce);
                 }
-                if (mStatus == 2) {
+                if (mStatus >= 2) {
                     mReponse = new JSONObject(getArguments().getString(ARG_reponse));
                 }
             }catch(Exception e){

@@ -1,5 +1,6 @@
 package fr.esigelec.quiz.controller.android;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -128,7 +129,7 @@ public class AndroidQuizController {
 		ArrayNode propositionArray = mapper.createArrayNode();
 
 		objectNode.put("status", 0);
-		objectNode.put("numero", question.getId());
+		objectNode.put("numero", quiz.getNoQuestionCourant()+1);
 		objectNode.put("idquiz", idQuiz);
 
 		questionNode.put("id", question.getId());
@@ -147,7 +148,6 @@ public class AndroidQuizController {
 		objectNode.put("timeRemaining", 30000 - chrono);
 
 		String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(objectNode);
-		System.out.println("sendQuestion" + json);
 		this.template.convertAndSend("/topic/questions", json);
 	}
 
@@ -163,6 +163,7 @@ public class AndroidQuizController {
 	public void sendStatus(int idQuestion, int idQuiz) throws JsonProcessingException {
 
 		Question question = questionDAO.getQuestion(idQuestion);
+		Quiz quiz = quizDAO.getQuiz(idQuiz);
 
 		ObjectMapper mapper = new ObjectMapper();
 		ObjectNode objectNode = mapper.createObjectNode();
@@ -170,7 +171,7 @@ public class AndroidQuizController {
 		ArrayNode propositionArray = mapper.createArrayNode();
 
 		objectNode.put("status", 1);
-		objectNode.put("numero", question.getId());
+		objectNode.put("numero", quiz.getNoQuestionCourant()+1);
 		objectNode.put("idquiz", idQuiz);
 
 		questionNode.put("id", question.getId());
@@ -178,17 +179,22 @@ public class AndroidQuizController {
 		objectNode.set("question", questionNode);
 
 		ArrayList<Proposition> propositions = (ArrayList<Proposition>) questionDAO.getListePropositions(idQuestion);
+		double total=0;
+		for (Proposition p : propositions) {
+			total += choisirDAO.getNbChoixDunProposition(p.getId());
+		}
 
 		for (int i = 0; i < 4; i++) {
 			Proposition propositionTemp = propositions.get(i);
 			int idPropositionTemp = propositionTemp.getId();
-			int stat = choisirDAO.getNbChoixDunProposition(idPropositionTemp);
+			double stat = choisirDAO.getNbChoixDunProposition(idPropositionTemp);
+			BigDecimal b = new BigDecimal((stat/(total > 0 ? total : 1))*100);
+			double statPercent = b.setScale(2, BigDecimal.ROUND_FLOOR).doubleValue(); 
 			propositionArray.add(mapper.createObjectNode().put("id", propositionTemp.getId())
-					.put("libelle", propositionTemp.getLibelle()).put("stat", stat));
+					.put("libelle", propositionTemp.getLibelle()).put("stat", statPercent));
 		}
 		objectNode.set("propositions", propositionArray);
 		String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(objectNode);
-		System.out.println("sendStatus:" + json);
 		this.template.convertAndSend("/topic/questions", json);
 	}
 
@@ -204,6 +210,7 @@ public class AndroidQuizController {
 	public void sendResult(int idQuestion, int idQuiz) throws JsonProcessingException {
 
 		Question question = questionDAO.getQuestion(idQuestion);
+		Quiz quiz = quizDAO.getQuiz(idQuiz);
 		ArrayList<Proposition> propositions = (ArrayList<Proposition>) questionDAO.getListePropositions(idQuestion);
 
 		ObjectMapper mapper = new ObjectMapper();
@@ -213,13 +220,17 @@ public class AndroidQuizController {
 		ArrayNode propositionArray = mapper.createArrayNode();
 
 		objectNode.put("status", 2);
-		objectNode.put("numero", 0);
+		objectNode.put("numero", quiz.getNoQuestionCourant()+1);
 		objectNode.put("idquiz", idQuiz);
 
 		questionNode.put("id", question.getId());
 		questionNode.put("libelle", question.getLibelle());
 		objectNode.set("question", questionNode);
 
+		double total=0;
+		for (Proposition p : propositions) {
+			total += choisirDAO.getNbChoixDunProposition(p.getId());
+		}
 		for (int i = 0; i < 4; i++) {
 			Proposition propositionTemp = propositions.get(i);
 			if (propositionTemp.isBonneReponse() == 1) {
@@ -227,9 +238,11 @@ public class AndroidQuizController {
 				reponseNode.put("libelle", propositionTemp.getLibelle());
 			}
 			int idPropositionTemp = propositionTemp.getId();
-			int stat = choisirDAO.getNbChoixDunProposition(idPropositionTemp);
+			double stat = choisirDAO.getNbChoixDunProposition(idPropositionTemp);
+			BigDecimal b = new BigDecimal((stat/(total > 0 ? total : 1))*100);
+			double statPercent = b.setScale(2, BigDecimal.ROUND_FLOOR).doubleValue(); 
 			propositionArray.add(mapper.createObjectNode().put("id", propositionTemp.getId())
-					.put("libelle", propositionTemp.getLibelle()).put("stat", stat));
+					.put("libelle", propositionTemp.getLibelle()).put("stat", statPercent));
 		}
 		objectNode.set("propositions", propositionArray);
 
@@ -280,24 +293,108 @@ public class AndroidQuizController {
 			classementsArray.add(user);
 		}
 
-		// ArrayNode classementsArray = mapper.createArrayNode();
-		// ObjectNode user = mapper.createObjectNode();
-		// user.put("position", 1);
-		// user.put("nom", "william");
-		// user.put("points", 10);
-		//
-		// ObjectNode user2 = mapper.createObjectNode();
-		// user2.put("position", 2);
-		// user2.put("nom", "Xi");
-		// user2.put("points", 5);
-		// classementsArray.add(user);
-		// classementsArray.add(user2);
+		objectNode.putPOJO("classement", classementsArray);
+
+		String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(objectNode);
+		this.template.convertAndSend("/topic/questions", json);
+	}
+	/**
+	 * Send the question result to broker and the last question status
+	 * 
+	 * @param question
+	 *            the question we are on
+	 * @param idQuiz
+	 *            the id of the Quiz we are on
+	 * @throws JsonProcessingException
+	 */
+	public void sendLastResult(int idQuestion, int idQuiz) throws JsonProcessingException {
+
+		Question question = questionDAO.getQuestion(idQuestion);
+		ArrayList<Proposition> propositions = (ArrayList<Proposition>) questionDAO.getListePropositions(idQuestion);
+
+		ObjectMapper mapper = new ObjectMapper();
+		ObjectNode objectNode = mapper.createObjectNode();
+		ObjectNode questionNode = mapper.createObjectNode();
+		ObjectNode reponseNode = mapper.createObjectNode();
+		ArrayNode propositionArray = mapper.createArrayNode();
+
+		objectNode.put("status", 3);
+		objectNode.put("numero", 0);
+		objectNode.put("idquiz", idQuiz);
+
+		questionNode.put("id", question.getId());
+		questionNode.put("libelle", question.getLibelle());
+		objectNode.set("question", questionNode);
+
+		double total=0;
+		for (Proposition p : propositions) {
+			total += choisirDAO.getNbChoixDunProposition(p.getId());
+		}
+		for (int i = 0; i < 4; i++) {
+			Proposition propositionTemp = propositions.get(i);
+			if (propositionTemp.isBonneReponse() == 1) {
+				reponseNode.put("id", propositionTemp.getId());
+				reponseNode.put("libelle", propositionTemp.getLibelle());
+			}
+			int idPropositionTemp = propositionTemp.getId();
+			double stat = choisirDAO.getNbChoixDunProposition(idPropositionTemp);
+			BigDecimal b = new BigDecimal((stat/(total > 0 ? total : 1))*100);
+			double statPercent = b.setScale(2, BigDecimal.ROUND_FLOOR).doubleValue(); 
+			propositionArray.add(mapper.createObjectNode().put("id", propositionTemp.getId())
+					.put("libelle", propositionTemp.getLibelle()).put("stat", statPercent));
+		}
+		objectNode.set("propositions", propositionArray);
+
+		objectNode.set("reponse", reponseNode);
+
+		// begin
+		List<Personne> participants = choisirDAO.getParticipantsQuiz(idQuiz);
+
+		class Classement {
+			Personne personne;
+			int point;
+
+			public Classement(Personne personne, int point) {
+				this.personne = personne;
+				this.point = point;
+			}
+		}
+
+		Comparator<Classement> comparator = new Comparator<Classement>() {
+			public int compare(Classement c1, Classement c2) {
+				if (c1.point != c2.point) {
+					return c2.point - c1.point;
+				} else {
+					if (!c1.personne.getNom().equals(c2.personne.getNom())) {
+						return c1.personne.getNom().compareTo(c2.personne.getNom());
+					} else {
+						return c1.personne.getId() - c2.personne.getId();
+					}
+				}
+			}
+		};
+
+		ArrayList<Classement> classements = new ArrayList();
+
+		for (Personne participant : participants) {
+			int points = choisirDAO.getNbBonnesReponseDunParticipantAuQuiz(idQuiz, participant.getId());
+			Classement classementTemp = new Classement(participant, points);
+			classements.add(classementTemp);
+		}
+
+		Collections.sort(classements, comparator);
+		ArrayNode classementsArray = mapper.createArrayNode();
+		for (int i = 0; i < classements.size(); i++) {
+			ObjectNode user = mapper.createObjectNode();
+			user.put("position", i + 1);
+			user.put("nom", classements.get(i).personne.getNom());
+			user.put("points", classements.get(i).point);
+			classementsArray.add(user);
+		}
 
 		objectNode.putPOJO("classement", classementsArray);
 
 		String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(objectNode);
-		System.out.println("sendResult:" + json);
 		this.template.convertAndSend("/topic/questions", json);
 	}
-
 }
